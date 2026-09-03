@@ -1,0 +1,132 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import { Upload, X, Image as ImageIcon, Check } from "lucide-react";
+import { CLOUDINARY_CONFIG } from "@/lib/cloudinary";
+
+interface ImageUploaderProps {
+  label?: string;
+  value: string;
+  onChange: (url: string) => void;
+  helperText?: string;
+}
+
+export function ImageUploader({
+  label = "Cover Photograph",
+  value,
+  onChange,
+  helperText = "Enter high-resolution image URL (Unsplash or Cloudinary) or upload.",
+}: ImageUploaderProps) {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setUploadError("Image file size must be less than 10MB.");
+      return;
+    }
+
+    setIsUploading(true);
+    setUploadError("");
+
+    try {
+      // If Cloudinary is configured
+      if (CLOUDINARY_CONFIG.cloudName && CLOUDINARY_CONFIG.uploadPreset) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", CLOUDINARY_CONFIG.uploadPreset);
+
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CONFIG.cloudName}/image/upload`,
+          { method: "POST", body: formData }
+        );
+
+        if (!res.ok) throw new Error("Cloudinary upload failed");
+        const data = await res.json();
+        onChange(data.secure_url);
+      } else {
+        // Fallback: Read file as Data URL for instant local preview/storage
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (typeof reader.result === "string") {
+            onChange(reader.result);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    } catch (err) {
+      console.error(err);
+      setUploadError("Failed to upload image. Please provide a direct URL.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className="block text-xs uppercase tracking-wider text-[#c5a880] font-medium">
+        {label}
+      </label>
+
+      {/* URL Input */}
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="https://images.unsplash.com/... or Cloudinary URL"
+          className="flex-1 bg-[#161616] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+        />
+        <label className="cursor-pointer bg-[#222222] hover:bg-[#333333] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] flex items-center gap-1.5 transition-colors shrink-0">
+          <Upload className="w-3.5 h-3.5 text-[#c5a880]" />
+          <span>{isUploading ? "Uploading..." : "Upload"}</span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileUpload}
+            disabled={isUploading}
+            className="hidden"
+          />
+        </label>
+      </div>
+
+      {uploadError && (
+        <p className="text-[11px] text-red-400">{uploadError}</p>
+      )}
+
+      {helperText && !uploadError && (
+        <p className="text-[11px] text-[#777] font-light">{helperText}</p>
+      )}
+
+      {/* Preview */}
+      {value && (
+        <div className="relative aspect-video max-w-sm overflow-hidden bg-black border border-white/10 mt-2">
+          <Image
+            src={value}
+            alt="Uploaded Preview"
+            fill
+            sizes="300px"
+            className="object-cover"
+          />
+          <button
+            type="button"
+            onClick={() => onChange("")}
+            className="absolute top-2 right-2 p-1.5 bg-black/80 hover:bg-red-950 text-white rounded-full transition-colors"
+            title="Remove image"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+          <div className="absolute bottom-2 left-2 bg-black/80 px-2 py-0.5 text-[10px] text-[#c5a880] flex items-center gap-1">
+            <Check className="w-3 h-3" />
+            <span>Image Attached</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
