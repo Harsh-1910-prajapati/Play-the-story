@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { Analytics } from "@vercel/analytics/next";
 
 const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-serif",
@@ -131,6 +132,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingWhatsApp />
+        <Analytics />
       </body>
     </html>
   );
