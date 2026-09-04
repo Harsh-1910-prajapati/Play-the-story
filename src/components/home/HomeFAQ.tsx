@@ -1,9 +1,5 @@
-"use client";
-
-import React, { useState } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const FAQS = [
   {
@@ -33,12 +29,6 @@ const FAQS = [
 ];
 
 export function HomeFAQ() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-
-  const toggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
-  };
-
   return (
     <section className="py-24 sm:py-32 bg-[#0d0d0d] border-t border-white/5 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,45 +39,30 @@ export function HomeFAQ() {
         />
 
         <div className="space-y-4">
-          {FAQS.map((faq, idx) => {
-            const isOpen = openIdx === idx;
-            return (
-              <div
+          {FAQS.map((faq, idx) => (
+              <details
                 key={idx}
-                className={cn(
-                  "border transition-colors duration-300 bg-[#121212]",
-                  isOpen ? "border-[#c5a880]/50" : "border-white/10 hover:border-white/20"
-                )}
+                open={idx === 0}
+                className="group border border-white/10 transition-colors duration-300 bg-[#121212] open:border-[#c5a880]/50 hover:border-white/20"
               >
-                <button
-                  type="button"
-                  onClick={() => toggle(idx)}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#c5a880]"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${idx}`}
-                  id={`faq-question-${idx}`}
+                <summary
+                  className="list-none w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#c5a880]"
                 >
                   <span className="font-serif text-lg sm:text-xl text-[#fbf9f5] font-normal tracking-wide">
                     {faq.q}
                   </span>
                   <span
-                    className={cn(
-                      "w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#c5a880] transition-transform duration-300",
-                      isOpen && "rotate-180 bg-[#c5a880]/10 border-[#c5a880]/40"
-                    )}
+                    className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#c5a880] transition-transform duration-300 group-open:rotate-180 group-open:bg-[#c5a880]/10 group-open:border-[#c5a880]/40"
                   >
                     <ChevronDown className="w-4 h-4" />
                   </span>
-                </button>
+                </summary>
 
-                {isOpen && (
-                  <div id={`faq-answer-${idx}`} role="region" aria-labelledby={`faq-question-${idx}`} className="px-6 pb-6 pt-1 text-sm text-[#a6a095] font-light leading-relaxed border-t border-white/5 animate-in fade-in duration-200">
-                    <p>{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                <div id={`faq-answer-${idx}`} className="px-6 pb-6 pt-1 text-sm text-[#a6a095] font-light leading-relaxed border-t border-white/5">
+                  <p>{faq.a}</p>
+                </div>
+              </details>
+          ))}
         </div>
       </div>
     </section>
