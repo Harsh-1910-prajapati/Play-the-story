@@ -14,10 +14,6 @@ export function FloatingWhatsApp() {
     return null;
   }
 
-  const handleOpenWhatsApp = () => {
-    window.open(getWhatsAppUrl(), "_blank");
-  };
-
   return (
     <>
       {/* Mobile Sticky Bottom CTA */}
@@ -63,13 +59,15 @@ export function FloatingWhatsApp() {
             <p className="text-xs text-[#a6a095] mb-4 leading-relaxed font-light">
               Namaste! Connect directly with our creative team to check shoot availability or discuss wedding films, portraits & campaigns.
             </p>
-            <button
-              onClick={handleOpenWhatsApp}
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-black font-medium text-xs uppercase tracking-wider py-2.5 px-4 flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-black" />
               Chat on WhatsApp
-            </button>
+            </a>
           </div>
         )}
 
