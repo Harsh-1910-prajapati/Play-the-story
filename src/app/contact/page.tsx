@@ -4,12 +4,13 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { siteConfig } from "@/config/site";
 import { Sparkles, Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/Icons";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact & Book Us — Wedding Photography Ahmedabad",
-  description:
-    "Check wedding date availability or schedule an in-studio consultation in Ahmedabad. Reach Play The Story via inquiry form, WhatsApp, or direct call.",
-};
+  description: "Check availability or schedule a consultation in Ahmedabad with Play The Story via enquiry form, WhatsApp, or phone.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(

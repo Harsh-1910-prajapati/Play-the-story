@@ -19,7 +19,7 @@ export async function PATCH(req: NextRequest) {
   if (unauthorized) return unauthorized;
   try {
     const { id, status } = await req.json();
-    if (!id || !status) {
+    if (!id || !status || !["new", "contacted", "in_progress", "completed", "archived"].includes(status)) {
       return NextResponse.json({ success: false, error: "Missing id or status" }, { status: 400 });
     }
 

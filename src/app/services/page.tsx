@@ -5,12 +5,13 @@ import { dataRepository } from "@/lib/data/repository";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Check, Sparkles, HelpCircle, Shield, Clock, Film } from "lucide-react";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Services & Deliverables — Luxury Wedding Photography & Films",
-  description:
-    "Explore our bespoke wedding photography, 4K cinematic films, pre-wedding stories, and post-production suites. Based in Ahmedabad, available worldwide.",
-};
+  description: "Explore photography, films, portraits, commercial campaigns, content creation, and post-production services from Ahmedabad.",
+  path: "/services",
+});
 
 const FAQS = [
   {

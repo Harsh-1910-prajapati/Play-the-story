@@ -21,12 +21,12 @@ interface AdminEnquiriesViewProps {
 
 export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps) {
   const [enquiries, setEnquiries] = useState<Enquiry[]>(initialEnquiries);
-  const [filterStatus, setFilterStatus] = useState<string>("All");
+  const [filterStatus, setFilterStatus] = useState<string>("all");
   const [selectedEnquiry, setSelectedEnquiry] = useState<Enquiry | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
   const filtered =
-    filterStatus === "All"
+    filterStatus === "all"
       ? enquiries
       : enquiries.filter((e) => e.status === filterStatus);
 
@@ -84,7 +84,7 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
 
         {/* Status Filter Tabs */}
         <div className="flex items-center gap-2 bg-[#141414] p-1 border border-white/10">
-          {["All", "New", "Contacted", "Completed"].map((status) => (
+          {["all", "new", "contacted", "in_progress", "completed", "archived"].map((status) => (
             <button
               key={status}
               onClick={() => setFilterStatus(status)}
@@ -94,10 +94,10 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                   : "text-[#a6a095] hover:text-[#fbf9f5]"
               }`}
             >
-              {status}
-              {status === "New" && (
+              {status.replace("_", " ")}
+              {status === "new" && (
                 <span className="ml-1.5 px-1.5 py-0.2 bg-black/40 rounded-full text-[10px]">
-                  {enquiries.filter((e) => e.status === "New").length}
+                  {enquiries.filter((e) => e.status === "new").length}
                 </span>
               )}
             </button>
@@ -183,16 +183,18 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                           )
                         }
                         className={`text-[11px] uppercase tracking-wider px-2.5 py-1 bg-black border rounded focus:outline-none ${
-                          enq.status === "New"
+                          enq.status === "new"
                             ? "border-[#c5a880] text-[#c5a880]"
-                            : enq.status === "Contacted"
+                            : enq.status === "contacted"
                             ? "border-blue-400 text-blue-300"
                             : "border-green-400 text-green-300"
                         }`}
                       >
-                        <option value="New">New</option>
-                        <option value="Contacted">Contacted</option>
-                        <option value="Completed">Completed</option>
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="archived">Archived</option>
                       </select>
                     </td>
 

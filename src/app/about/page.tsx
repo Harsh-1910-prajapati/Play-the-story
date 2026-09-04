@@ -4,12 +4,13 @@ import { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Camera, Film, Heart, Sparkles, CheckCircle } from "lucide-react";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About Us — Preserving Love Stories in Ahmedabad & Worldwide",
-  description:
-    "Learn about Play The Story, an editorial luxury wedding photography and cinematic film studio based in Ahmedabad, Gujarat. Founded on emotion-first storytelling.",
-};
+  description: "Learn about Play The Story, a creative photography and cinematic film studio based in Ahmedabad, Gujarat.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

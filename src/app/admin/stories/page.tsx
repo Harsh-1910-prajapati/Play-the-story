@@ -12,6 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminStoriesPage() {
   await requireAdminPage();
-  const stories = await dataRepository.getStories();
+  const stories = await dataRepository.getStories(undefined, true);
   return <AdminStoriesView initialStories={stories} />;
 }

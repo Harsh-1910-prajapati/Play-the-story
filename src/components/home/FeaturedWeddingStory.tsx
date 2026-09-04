@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { WeddingStory } from "@/types";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, MapPin, Calendar, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 interface FeaturedWeddingStoryProps {
   story: WeddingStory;
@@ -20,12 +19,12 @@ export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Pre-title */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-3">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#c5a880] mb-3 font-mono">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Featured Editorial Story</span>
+            <span>FEATURED STORY</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#fbf9f5] font-light">
-            A Story Worth Remembering
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#fbf9f5] font-light tracking-wide uppercase">
+            A MOMENT WORTH REMEMBERING
           </h2>
         </div>
 
@@ -36,18 +35,16 @@ export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
             <div className="relative aspect-[4/5] sm:aspect-[16/11] w-full overflow-hidden border border-white/10 shadow-2xl">
               <Image
                 src={story.cover_image}
-                alt={`${story.couple_names} — Featured Wedding`}
+                alt={`${story.couple_names} — Featured Story`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover transition-transform duration-1000 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-              {story.wedding_type && (
-                <div className="absolute top-4 left-4 z-10 bg-black/80 backdrop-blur-sm border border-white/10 text-[10px] uppercase tracking-widest text-[#c5a880] px-3 py-1">
-                  {story.wedding_type}
-                </div>
-              )}
+              <div className="absolute top-4 left-4 z-10 bg-black/80 backdrop-blur-sm border border-white/10 text-[10px] uppercase tracking-widest text-[#c5a880] px-3 py-1 font-mono">
+                {story.category.toUpperCase()} / {story.location.toUpperCase()}
+              </div>
             </div>
 
             {/* Floating Stamp / Monogram */}
@@ -62,16 +59,12 @@ export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
           {/* Magazine Text Column */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6 lg:pl-4">
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3 text-xs text-[#a6a095]">
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-[#c5a880]" />
-                  {story.location}
-                </span>
+              <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wider text-[#a6a095] font-mono">
+                <span>{story.category}</span>
+                <span>/</span>
+                <span>{story.location}</span>
                 <span>•</span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-[#c5a880]" />
-                  {formatDate(story.wedding_date)}
-                </span>
+                <span>{formatDate(story.wedding_date)}</span>
               </div>
 
               <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#fbf9f5] font-normal leading-[1.12]">
@@ -91,8 +84,8 @@ export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
 
             <div className="pt-4">
               <Button href={`/stories/${story.slug}`} variant="gold" size="md">
-                <span className="flex items-center gap-2">
-                  View Full Wedding Story
+                <span className="flex items-center gap-2 uppercase tracking-widest text-xs">
+                  <span>VIEW FULL STORY</span>
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </Button>

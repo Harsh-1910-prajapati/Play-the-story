@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dataRepository } from "@/lib/data/repository";
 import { requireAdminApi } from "@/lib/admin-auth";
+import { validateAdminPayload } from "@/lib/admin-validation";
 
 export async function GET() {
   const unauthorized = await requireAdminApi();
   if (unauthorized) return unauthorized;
   try {
-    const stories = await dataRepository.getStories();
+    const stories = await dataRepository.getStories(undefined, true);
     return NextResponse.json({ success: true, stories });
   } catch (err) {
     console.error("Fetch stories error:", err);
@@ -19,6 +20,8 @@ export async function POST(req: NextRequest) {
   if (unauthorized) return unauthorized;
   try {
     const body = await req.json();
+    const validationError = validateAdminPayload("story", body);
+    if (validationError) return NextResponse.json({ success: false, error: validationError }, { status: 400 });
     const saved = await dataRepository.saveStory(body);
     return NextResponse.json({ success: true, story: saved });
   } catch (err) {

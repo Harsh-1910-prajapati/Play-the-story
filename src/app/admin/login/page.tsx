@@ -128,8 +128,7 @@ export default function AdminLoginPage() {
           <div className="mt-8 pt-6 border-t border-white/10 flex items-start gap-2.5 text-[11px] text-[#777]">
             <ShieldCheck className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
             <span>
-              Configured via <code className="text-[#a6a095]">ADMIN_EMAIL</code> and{" "}
-              <code className="text-[#a6a095]">ADMIN_PASSWORD</code>. Pre-filled for development review.
+              Sign in with the Supabase Auth user assigned the admin role.
             </span>
           </div>
         </div>

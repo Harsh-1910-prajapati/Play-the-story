@@ -12,6 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminServicesPage() {
   await requireAdminPage();
-  const services = await dataRepository.getServices();
+  const services = await dataRepository.getServices(true);
   return <AdminServicesView initialServices={services} />;
 }

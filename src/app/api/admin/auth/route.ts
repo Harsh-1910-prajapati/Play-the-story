@@ -1,48 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import {
-  adminSessionCookieOptions,
-  createAdminSessionToken,
-  isAdminAuthenticated,
-  SESSION_COOKIE_NAME,
-} from "@/lib/admin-auth";
-
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+import { getAdminUser } from "@/lib/admin-auth";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function POST(req: NextRequest) {
   try {
     const { email, password, action } = await req.json();
 
+    const supabase = await getSupabaseServerClient();
+    if (!supabase) {
+      return NextResponse.json({ success: false, error: "Authentication is not configured" }, { status: 500 });
+    }
+
     if (action === "logout") {
-      const cookieStore = await cookies();
-      cookieStore.delete(SESSION_COOKIE_NAME);
+      await supabase.auth.signOut();
       return NextResponse.json({ success: true, message: "Logged out successfully" });
     }
 
-    if (!ADMIN_EMAIL || !ADMIN_PASSWORD || !process.env.ADMIN_SESSION_SECRET) {
-      return NextResponse.json(
-        { success: false, error: "Admin authentication is not configured" },
-        { status: 500 }
-      );
+    if (typeof email !== "string" || typeof password !== "string" || !email || !password) {
+      return NextResponse.json({ success: false, error: "Email and password are required" }, { status: 400 });
     }
 
-    // Authentication check
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      const cookieStore = await cookies();
-      cookieStore.set(SESSION_COOKIE_NAME, createAdminSessionToken(), adminSessionCookieOptions);
-
-      return NextResponse.json({
-        success: true,
-        message: "Authentication successful",
-        user: { email: ADMIN_EMAIL, role: "admin" },
-      });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error || !data.user || data.user.app_metadata?.role !== "admin") {
+      await supabase.auth.signOut();
+      return NextResponse.json({ success: false, error: "Invalid admin credentials" }, { status: 401 });
     }
 
-    return NextResponse.json(
-      { success: false, error: "Invalid admin email or password" },
-      { status: 401 }
-    );
+    return NextResponse.json({
+      success: true,
+      message: "Authentication successful",
+      user: { email: data.user.email, role: "admin" },
+    });
   } catch (err) {
     console.error("Auth API Error:", err);
     return NextResponse.json(
@@ -53,9 +41,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  const isAuthenticated = await isAdminAuthenticated();
+  const user = await getAdminUser();
   return NextResponse.json({
-    isAuthenticated,
-    user: isAuthenticated ? { email: ADMIN_EMAIL, role: "admin" } : null,
+    isAuthenticated: Boolean(user),
+    user: user ? { email: user.email, role: "admin" } : null,
   });
 }

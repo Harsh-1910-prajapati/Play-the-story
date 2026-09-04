@@ -63,6 +63,15 @@ body {
   color: #080808;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #c5a880;
+  outline-offset: 3px;
+}
+
 /* Editorial Gold Accent Helpers */
 .text-gold-gradient {
   background: linear-gradient(135deg, #dfc8a5 0%, #c5a880 50%, #9e7f56 100%);

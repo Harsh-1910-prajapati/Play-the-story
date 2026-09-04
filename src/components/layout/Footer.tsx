@@ -21,17 +21,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/10">
           {/* Brand Col */}
           <div className="md:col-span-5 space-y-6">
-            <Link href="/" className="inline-block">
-              <span className="font-serif text-2xl sm:text-3xl tracking-[0.18em] uppercase text-[#fbf9f5] font-medium">
-                Play The Story
+            <Link href="/" className="inline-block leading-none">
+              <span className="font-serif text-2xl sm:text-3xl tracking-[0.22em] uppercase text-[#fbf9f5] font-medium block">
+                PLAY THE STORY
               </span>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[#c5a880] mt-0.5">
-                Luxury Wedding Photography & Films
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[#c5a880] mt-1.5 font-sans">
+                Creative Photography & Films
               </p>
             </Link>
 
             <p className="text-sm text-[#a6a095] font-light leading-relaxed max-w-md">
-              &ldquo;We don&apos;t just capture weddings. We preserve the emotions, people and moments that make your story yours.&rdquo;
+              &ldquo;{siteConfig.tagline}&rdquo; — One creative studio for different kinds of visual stories. From intimate weddings and couple stories to brand campaigns and motion films.
             </p>
 
             <div className="pt-2 flex items-center space-x-4 text-[#d5d0c7]">
@@ -79,38 +79,56 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-xs uppercase tracking-wider text-[#c5a880] hover:text-[#fbf9f5] transition-colors"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Services Links */}
           <div className="md:col-span-2 space-y-4">
             <h4 className="text-xs uppercase tracking-[0.25em] text-[#c5a880] font-medium">
-              Services
+              What We Do
             </h4>
             <ul className="space-y-2.5 text-xs text-[#a6a095] font-light">
               <li>
-                <Link href="/services" className="hover:text-[#fbf9f5] transition-colors">
-                  Wedding Photography
+                <Link href="/services#weddings" className="hover:text-[#fbf9f5] transition-colors">
+                  Weddings & Films
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#fbf9f5] transition-colors">
-                  Cinematic Films
+                <Link href="/services#couples" className="hover:text-[#fbf9f5] transition-colors">
+                  Couples & Pre-Weddings
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#fbf9f5] transition-colors">
-                  Pre-Wedding Shoots
+                <Link href="/services#events" className="hover:text-[#fbf9f5] transition-colors">
+                  Events & Celebrations
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#fbf9f5] transition-colors">
-                  Event Coverage
+                <Link href="/services#portraits" className="hover:text-[#fbf9f5] transition-colors">
+                  Portraits & Fashion
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#fbf9f5] transition-colors">
-                  Video Post-Production
+                <Link href="/services#commercial" className="hover:text-[#fbf9f5] transition-colors">
+                  Commercial & Brand
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#content" className="hover:text-[#fbf9f5] transition-colors">
+                  Reels & Short Films
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#post-production" className="hover:text-[#fbf9f5] transition-colors">
+                  Post-Production & Grading
                 </Link>
               </li>
             </ul>
@@ -151,7 +169,7 @@ export function Footer() {
                 href="/contact"
                 className="inline-flex items-center gap-1.5 text-xs text-[#c5a880] hover:text-white uppercase tracking-wider"
               >
-                <span>Book a Studio Consultation</span>
+                <span>Start a Conversation</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -161,10 +179,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#666] font-light gap-4">
           <p>
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All Rights Reserved. Crafted for Timeless Memories.
+            &copy; {siteConfig.copyrightYear} {siteConfig.name}. Creative Photography & Films. All Rights Reserved.
           </p>
           <div className="flex items-center space-x-6">
-            <span>Ahmedabad, Gujarat, India</span>
+            <span>Ahmedabad · Gujarat · India · Worldwide</span>
             <Link
               href="/admin/login"
               className="text-[#444] hover:text-[#888] transition-colors"

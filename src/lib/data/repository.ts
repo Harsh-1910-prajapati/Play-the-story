@@ -1,6 +1,15 @@
-import { WeddingStory, Film, ServiceItem, Testimonial, Enquiry, AdminStats, StoryCategory } from "@/types";
+import { WeddingStory, Film, ServiceItem, Testimonial, Enquiry, AdminStats, StoryCategory, EnquiryStatus } from "@/types";
 import { initialStories, initialFilms, initialServices, initialTestimonials, initialEnquiries } from "./mock-data";
-import { getSupabaseClient, isSupabaseConfigured } from "../supabase/client";
+import { getSupabaseAdminClient, getSupabasePublicClient } from "../supabase/server";
+
+const isSupabaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL &&
+  (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)
+);
+
+function getSupabaseClient() {
+  return getSupabaseAdminClient() || getSupabasePublicClient();
+}
 
 // In-memory fallback stores for local testing and zero-crash operation
 let storiesStore: WeddingStory[] = [...initialStories];
@@ -9,20 +18,46 @@ let servicesStore: ServiceItem[] = [...initialServices];
 let testimonialsStore: Testimonial[] = [...initialTestimonials];
 let enquiriesStore: Enquiry[] = [...initialEnquiries];
 
+function normalizeService(service: ServiceItem): ServiceItem {
+  const row = service as ServiceItem & { description?: string; image?: string; items?: unknown };
+  return {
+    ...service,
+    short_description: service.short_description || row.description || "",
+    full_description: service.full_description || row.description || "",
+    image_url: service.image_url || row.image || "",
+    features: service.features?.length ? service.features : Array.isArray(row.items) ? row.items as string[] : [],
+  };
+}
+
+function normalizeStory(story: WeddingStory): WeddingStory {
+  const row = story as WeddingStory & { event_date?: string };
+  return { ...story, wedding_date: story.wedding_date || row.event_date || "" };
+}
+
+function normalizeTestimonial(testimonial: Testimonial): Testimonial {
+  const row = testimonial as Testimonial & { review?: string };
+  return { ...testimonial, review_text: testimonial.review_text || row.review || "" };
+}
+
 export const dataRepository = {
   // --- Stories ---
-  async getStories(category?: string): Promise<WeddingStory[]> {
+  async getStories(category?: string, includeUnpublished = false): Promise<WeddingStory[]> {
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
           let query = client.from("wedding_stories").select("*, gallery:wedding_images(*)");
           if (category && category.toLowerCase() !== "all") {
-            query = query.ilike("category", category);
+            if (category.toLowerCase() === "couples") {
+              query = query.or("category.ilike.Couples,category.ilike.Pre-Weddings,category.ilike.Engagements");
+            } else {
+              query = query.ilike("category", category);
+            }
           }
+          if (!includeUnpublished) query = query.eq("published", true);
           const { data, error } = await query.order("wedding_date", { ascending: false });
-          if (!error && data && data.length > 0) {
-            return data as WeddingStory[];
+          if (!error && data) {
+            return (data as WeddingStory[]).map(normalizeStory);
           }
         }
       } catch (err) {
@@ -30,18 +65,26 @@ export const dataRepository = {
       }
     }
 
+    const baseStories = includeUnpublished
+      ? [...storiesStore]
+      : storiesStore.filter((s) => s.published !== false);
     if (!category || category.toLowerCase() === "all") {
-      return [...storiesStore];
+      return [...baseStories];
     }
-    return storiesStore.filter(
-      (s) => s.category.toLowerCase() === category.toLowerCase()
-    );
+    const catLower = category.toLowerCase();
+    return baseStories.filter((s) => {
+      const sCat = s.category.toLowerCase();
+      if (catLower === "couples") {
+        return sCat === "couples" || sCat === "pre-weddings" || sCat === "engagements";
+      }
+      return sCat === catLower;
+    });
   },
 
   async getFeaturedStories(): Promise<WeddingStory[]> {
     const stories = await this.getStories();
     const featured = stories.filter((s) => s.featured);
-    return featured.length > 0 ? featured : stories.slice(0, 3);
+    return featured;
   },
 
   async getStoryBySlug(slug: string): Promise<WeddingStory | null> {
@@ -53,9 +96,10 @@ export const dataRepository = {
             .from("wedding_stories")
             .select("*, gallery:wedding_images(*)")
             .eq("slug", slug)
+            .eq("published", true)
             .single();
           if (!error && data) {
-            return data as WeddingStory;
+            return normalizeStory(data as WeddingStory);
           }
         }
       } catch (err) {
@@ -63,20 +107,24 @@ export const dataRepository = {
       }
     }
 
-    const found = storiesStore.find((s) => s.slug === slug);
+    const found = storiesStore.find((s) => s.slug === slug && s.published !== false);
     return found || null;
   },
 
   async saveStory(story: Partial<WeddingStory>): Promise<WeddingStory> {
+    const storyPayload = {
+      ...story,
+      event_date: story.event_date || story.wedding_date || null,
+    };
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
-          if (story.id && storiesStore.some(s => s.id === story.id)) {
-            const { data } = await client.from("wedding_stories").update(story).eq("id", story.id).select().single();
+          if (story.id) {
+            const { data } = await client.from("wedding_stories").update(storyPayload).eq("id", story.id).select().single();
             if (data) return data as WeddingStory;
           } else {
-            const { data } = await client.from("wedding_stories").insert(story).select().single();
+            const { data } = await client.from("wedding_stories").insert(storyPayload).select().single();
             if (data) return data as WeddingStory;
           }
         }
@@ -111,6 +159,7 @@ export const dataRepository = {
         "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
       description: story.description || "",
       featured: Boolean(story.featured),
+      published: story.published ?? false,
       film_url: story.film_url,
       gallery: story.gallery || [],
       created_at: new Date().toISOString(),
@@ -135,16 +184,17 @@ export const dataRepository = {
   },
 
   // --- Films ---
-  async getFilms(): Promise<Film[]> {
+  async getFilms(includeUnpublished = false): Promise<Film[]> {
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
-          const { data, error } = await client
-            .from("films")
-            .select("*")
+          let query = client.from("films").select("*");
+          if (!includeUnpublished) query = query.eq("published", true);
+          const { data, error } = await query
+            .order("sort_order", { ascending: true })
             .order("display_order", { ascending: true });
-          if (!error && data && data.length > 0) {
+          if (!error && data) {
             return data as Film[];
           }
         }
@@ -152,7 +202,7 @@ export const dataRepository = {
         console.warn("Supabase getFilms fallback:", err);
       }
     }
-    return [...filmsStore];
+    return includeUnpublished ? [...filmsStore] : filmsStore.filter((f) => f.published !== false);
   },
 
   async saveFilm(film: Partial<Film>): Promise<Film> {
@@ -216,36 +266,44 @@ export const dataRepository = {
   },
 
   // --- Services ---
-  async getServices(): Promise<ServiceItem[]> {
+  async getServices(includeUnpublished = false): Promise<ServiceItem[]> {
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
-          const { data, error } = await client
-            .from("services")
-            .select("*")
+          let query = client.from("services").select("*");
+          if (!includeUnpublished) query = query.eq("published", true);
+          const { data, error } = await query
+            .order("sort_order", { ascending: true })
             .order("display_order", { ascending: true });
-          if (!error && data && data.length > 0) {
-            return data as ServiceItem[];
+          if (!error && data) {
+            return (data as ServiceItem[]).map(normalizeService);
           }
         }
       } catch (err) {
         console.warn("Supabase getServices fallback:", err);
       }
     }
-    return [...servicesStore];
+    const services = includeUnpublished ? [...servicesStore] : servicesStore.filter((s) => s.published !== false);
+    return services.map(normalizeService);
   },
 
   async saveService(service: Partial<ServiceItem>): Promise<ServiceItem> {
+    const servicePayload = {
+      ...service,
+      description: service.full_description || service.short_description || "",
+      items: service.items || service.features || [],
+      image: service.image || service.image_url || null,
+    };
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
           if (service.id) {
-            const { data } = await client.from("services").update(service).eq("id", service.id).select().single();
+            const { data } = await client.from("services").update(servicePayload).eq("id", service.id).select().single();
             if (data) return data as ServiceItem;
           } else {
-            const { data } = await client.from("services").insert(service).select().single();
+            const { data } = await client.from("services").insert(servicePayload).select().single();
             if (data) return data as ServiceItem;
           }
         }
@@ -274,7 +332,10 @@ export const dataRepository = {
         service.image_url ||
         "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
       features: service.features || [],
+      items: service.items || service.features || [],
+      sort_order: service.sort_order || servicesStore.length + 1,
       display_order: servicesStore.length + 1,
+      published: service.published ?? true,
       created_at: new Date().toISOString(),
     };
     servicesStore.push(newService);
@@ -297,33 +358,44 @@ export const dataRepository = {
   },
 
   // --- Testimonials ---
-  async getTestimonials(): Promise<Testimonial[]> {
+  async getTestimonials(includeUnpublished = false): Promise<Testimonial[]> {
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
-          const { data, error } = await client.from("testimonials").select("*").order("created_at", { ascending: false });
-          if (!error && data && data.length > 0) {
-            return data as Testimonial[];
+          let query = client.from("testimonials").select("*");
+          if (!includeUnpublished) query = query.eq("published", true);
+          const { data, error } = await query
+            .order("sort_order", { ascending: true })
+            .order("created_at", { ascending: false });
+          if (!error && data) {
+            return (data as Testimonial[]).map(normalizeTestimonial);
           }
         }
       } catch (err) {
         console.warn("Supabase getTestimonials fallback:", err);
       }
     }
-    return [...testimonialsStore];
+    const testimonials = includeUnpublished
+      ? [...testimonialsStore]
+      : testimonialsStore.filter((t) => t.published !== false);
+    return testimonials.map(normalizeTestimonial);
   },
 
   async saveTestimonial(testimonial: Partial<Testimonial>): Promise<Testimonial> {
+    const testimonialPayload = {
+      ...testimonial,
+      review: testimonial.review || testimonial.review_text || "",
+    };
     if (isSupabaseConfigured) {
       try {
         const client = getSupabaseClient();
         if (client) {
           if (testimonial.id) {
-            const { data } = await client.from("testimonials").update(testimonial).eq("id", testimonial.id).select().single();
+            const { data } = await client.from("testimonials").update(testimonialPayload).eq("id", testimonial.id).select().single();
             if (data) return data as Testimonial;
           } else {
-            const { data } = await client.from("testimonials").insert(testimonial).select().single();
+            const { data } = await client.from("testimonials").insert(testimonialPayload).select().single();
             if (data) return data as Testimonial;
           }
         }
@@ -380,7 +452,7 @@ export const dataRepository = {
             .from("enquiries")
             .select("*")
             .order("created_at", { ascending: false });
-          if (!error && data && data.length > 0) {
+          if (!error && data) {
             return data as Enquiry[];
           }
         }
@@ -397,7 +469,7 @@ export const dataRepository = {
     const newEnquiry: Enquiry = {
       ...enquiryData,
       id: `enq-${Date.now()}`,
-      status: "New",
+      status: "new",
       created_at: new Date().toISOString(),
     };
 
@@ -405,7 +477,7 @@ export const dataRepository = {
       try {
         const client = getSupabaseClient();
         if (client) {
-          const { data, error } = await client.from("enquiries").insert(newEnquiry).select().single();
+          const { data, error } = await client.from("enquiries").insert(enquiryData).select().single();
           if (!error && data) {
             enquiriesStore.unshift(data as Enquiry);
             return data as Enquiry;
@@ -422,7 +494,7 @@ export const dataRepository = {
 
   async updateEnquiryStatus(
     id: string,
-    status: "New" | "Contacted" | "Completed"
+    status: EnquiryStatus
   ): Promise<Enquiry | null> {
     if (isSupabaseConfigured) {
       try {
@@ -468,14 +540,14 @@ export const dataRepository = {
   async getAdminStats(): Promise<AdminStats> {
     const [enquiries, stories, films, testimonials] = await Promise.all([
       this.getEnquiries(),
-      this.getStories(),
-      this.getFilms(),
-      this.getTestimonials(),
+      this.getStories(undefined, true),
+      this.getFilms(true),
+      this.getTestimonials(true),
     ]);
 
     return {
       totalEnquiries: enquiries.length,
-      newEnquiries: enquiries.filter((e) => e.status === "New").length,
+      newEnquiries: enquiries.filter((e) => e.status === "new").length,
       totalStories: stories.length,
       totalFilms: films.length,
       totalTestimonials: testimonials.length,

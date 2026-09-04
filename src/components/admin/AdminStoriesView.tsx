@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { WeddingStory, StoryCategory } from "@/types";
+import { WeddingStory, WeddingImage, StoryCategory } from "@/types";
 import { formatDate } from "@/lib/utils";
 import { ImageUploader } from "./ImageUploader";
 import { Button } from "@/components/ui/Button";
-import { Plus, Edit3, Trash2, ExternalLink, X, Check, Star } from "lucide-react";
+import { Plus, Edit3, Trash2, ExternalLink, X, Star } from "lucide-react";
 
 interface AdminStoriesViewProps {
   initialStories: WeddingStory[];
@@ -17,6 +17,9 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
   const [stories, setStories] = useState<WeddingStory[]>(initialStories);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [galleryDraftUrl, setGalleryDraftUrl] = useState("");
+  const [galleryDraftAlt, setGalleryDraftAlt] = useState("");
+  const [galleryDraftPublicId, setGalleryDraftPublicId] = useState("");
   const [activeStory, setActiveStory] = useState<Partial<WeddingStory>>({
     couple_names: "",
     title: "",
@@ -29,6 +32,8 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
     description: "",
     featured: false,
     film_url: "",
+    published: false,
+    gallery: [],
   });
 
   const handleOpenNew = () => {
@@ -44,13 +49,71 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
       description: "",
       featured: false,
       film_url: "",
+      published: false,
+      gallery: [],
     });
     setIsEditing(true);
   };
 
   const handleOpenEdit = (story: WeddingStory) => {
     setActiveStory({ ...story });
+    setGalleryDraftUrl("");
+    setGalleryDraftAlt("");
+    setGalleryDraftPublicId("");
     setIsEditing(true);
+  };
+
+  const handleAddGalleryImage = async () => {
+    if (!activeStory.id || !galleryDraftUrl.trim() || !galleryDraftAlt.trim()) return;
+    const res = await fetch("/api/admin/gallery", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        story_id: activeStory.id,
+        image_url: galleryDraftUrl.trim(),
+        alt_text: galleryDraftAlt.trim(),
+        public_id: galleryDraftPublicId,
+        sort_order: activeStory.gallery?.length || 0,
+      }),
+    });
+    const data = await res.json();
+    if (data.success && data.image) {
+      setActiveStory({
+        ...activeStory,
+        gallery: [...(activeStory.gallery || []), data.image as WeddingImage],
+      });
+      setGalleryDraftUrl("");
+      setGalleryDraftAlt("");
+      setGalleryDraftPublicId("");
+    }
+  };
+
+  const handleDeleteGalleryImage = async (id: string) => {
+    const res = await fetch(`/api/admin/gallery?id=${id}`, { method: "DELETE" });
+    if (res.ok) {
+      setActiveStory({
+        ...activeStory,
+        gallery: (activeStory.gallery || []).filter((image) => image.id !== id),
+      });
+    }
+  };
+
+  const handleMoveGalleryImage = async (index: number, direction: -1 | 1) => {
+    const gallery = [...(activeStory.gallery || [])];
+    const nextIndex = index + direction;
+    if (nextIndex < 0 || nextIndex >= gallery.length) return;
+    [gallery[index], gallery[nextIndex]] = [gallery[nextIndex], gallery[index]];
+    const orderedGallery = gallery.map((image, sort_order) => ({ ...image, sort_order }));
+    await Promise.all(
+      orderedGallery.map((image) =>
+        fetch("/api/admin/gallery", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: image.id, sort_order: image.sort_order }),
+        })
+      )
+    );
+    setActiveStory({ ...activeStory, gallery: orderedGallery });
   };
 
   const handleDelete = async (id: string) => {
@@ -80,7 +143,9 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/^-|-$/g, "");
 
-      const payload = { ...activeStory, slug: autoSlug };
+      const storyFields = { ...activeStory };
+      delete storyFields.gallery;
+      const payload = { ...storyFields, slug: autoSlug };
 
       const res = await fetch("/api/admin/stories", {
         method: "POST",
@@ -94,10 +159,10 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
           const idx = prev.findIndex((s) => s.id === data.story.id);
           if (idx !== -1) {
             const next = [...prev];
-            next[idx] = data.story;
+            next[idx] = { ...data.story, gallery: activeStory.gallery || [] };
             return next;
           }
-          return [data.story, ...prev];
+          return [{ ...data.story, gallery: activeStory.gallery || [] }, ...prev];
         });
         setIsEditing(false);
       }
@@ -360,6 +425,51 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                 }
               />
 
+              {activeStory.id && (
+                <div className="space-y-3 border-t border-white/10 pt-4">
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                      Story Gallery
+                    </label>
+                    <p className="text-[11px] text-[#777]">Add, describe, remove, or reorder images in this story.</p>
+                  </div>
+                  <ImageUploader
+                    label="Gallery Image"
+                    value={galleryDraftUrl}
+                    onChange={setGalleryDraftUrl}
+                    onUpload={({ url, public_id }) => {
+                      setGalleryDraftUrl(url);
+                      setGalleryDraftPublicId(public_id);
+                    }}
+                  />
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={galleryDraftAlt}
+                      onChange={(e) => setGalleryDraftAlt(e.target.value)}
+                      placeholder="Descriptive alt text"
+                      className="flex-1 bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    />
+                    <button type="button" onClick={handleAddGalleryImage} className="px-3 py-2 bg-[#222] text-xs text-[#fbf9f5] border border-white/10">
+                      Add Image
+                    </button>
+                  </div>
+                  <div className="space-y-2">
+                    {(activeStory.gallery || []).map((image, index) => (
+                      <div key={image.id} className="flex items-center gap-3 bg-[#181818] border border-white/10 p-2">
+                        <div className="relative w-16 h-12 shrink-0 bg-black overflow-hidden">
+                          <Image src={image.image_url} alt={image.alt_text || "Gallery image"} fill sizes="64px" className="object-cover" />
+                        </div>
+                        <span className="text-[11px] text-[#a6a095] flex-1 truncate">{image.alt_text}</span>
+                        <button type="button" onClick={() => handleMoveGalleryImage(index, -1)} disabled={index === 0} className="text-xs text-[#c5a880] disabled:text-[#444]" title="Move image up">↑</button>
+                        <button type="button" onClick={() => handleMoveGalleryImage(index, 1)} disabled={index === (activeStory.gallery?.length || 1) - 1} className="text-xs text-[#c5a880] disabled:text-[#444]" title="Move image down">↓</button>
+                        <button type="button" onClick={() => handleDeleteGalleryImage(image.id)} className="text-xs text-red-400" title="Delete gallery image">Delete</button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
                   Story Narrative / Description *
@@ -392,6 +502,19 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                   className="text-xs text-[#fbf9f5] cursor-pointer"
                 >
                   Feature this story prominently on the homepage editorial section
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <input
+                  type="checkbox"
+                  id="published-checkbox"
+                  checked={Boolean(activeStory.published)}
+                  onChange={(e) => setActiveStory({ ...activeStory, published: e.target.checked })}
+                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                />
+                <label htmlFor="published-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                  Publish this story on the live website
                 </label>
               </div>
 

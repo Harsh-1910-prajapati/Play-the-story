@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { AdminStats, Enquiry } from "@/types";
+import { AdminStats, Enquiry, EnquiryStatus } from "@/types";
 import { formatDate } from "@/lib/utils";
 import {
   Inbox,
@@ -11,10 +11,8 @@ import {
   MessageSquareQuote,
   Plus,
   ArrowRight,
-  CheckCircle,
   Clock,
   Phone,
-  Mail,
   MapPin,
 } from "lucide-react";
 
@@ -30,7 +28,7 @@ export function AdminOverviewView({
   const [enquiries, setEnquiries] = useState<Enquiry[]>(initialEnquiries);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
-  const handleStatusChange = async (id: string, newStatus: "New" | "Contacted" | "Completed") => {
+  const handleStatusChange = async (id: string, newStatus: EnquiryStatus) => {
     setUpdatingId(id);
     try {
       const res = await fetch("/api/admin/enquiries", {
@@ -236,13 +234,13 @@ export function AdminOverviewView({
                       onChange={(e) =>
                         handleStatusChange(
                           enq.id,
-                          e.target.value as "New" | "Contacted" | "Completed"
+                          e.target.value as EnquiryStatus
                         )
                       }
                       className={`text-[10px] uppercase tracking-wider px-2 py-1 bg-black border rounded focus:outline-none ${
-                        enq.status === "New"
+                        enq.status === "new"
                           ? "border-[#c5a880] text-[#c5a880]"
-                          : enq.status === "Contacted"
+                          : enq.status === "contacted"
                           ? "border-blue-400 text-blue-300"
                           : "border-green-400 text-green-300"
                       }`}

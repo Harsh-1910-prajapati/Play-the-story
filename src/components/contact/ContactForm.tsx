@@ -30,6 +30,7 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading) return;
     setIsLoading(true);
     setStatus("idle");
     setErrorMessage("");
@@ -128,20 +129,23 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <div className="p-4 bg-red-950/40 border border-red-800 text-red-200 text-xs flex items-center gap-3">
+        <div role="alert" className="p-4 bg-red-950/40 border border-red-800 text-red-200 text-xs flex items-center gap-3">
           <AlertCircle className="w-5 h-5 shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
+      <input type="text" name="website_url" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
       {/* Row 1: Names */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-name" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Your Full Name *
           </label>
           <input
             type="text"
+            id="contact-name"
             name="name"
             required
             placeholder="e.g. Pooja Shah"
@@ -152,11 +156,12 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-partner-name" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Partner&apos;s Name
           </label>
           <input
             type="text"
+            id="contact-partner-name"
             name="partner_name"
             placeholder="e.g. Ronak Patel"
             value={formData.partner_name}
@@ -169,11 +174,12 @@ export function ContactForm() {
       {/* Row 2: Contact Info */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-email" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Email Address *
           </label>
           <input
             type="email"
+            id="contact-email"
             name="email"
             required
             placeholder="pooja@example.com"
@@ -184,11 +190,12 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-phone" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Phone / WhatsApp *
           </label>
           <input
             type="tel"
+            id="contact-phone"
             name="phone"
             required
             placeholder="+91 98251 12345"
@@ -202,11 +209,12 @@ export function ContactForm() {
       {/* Row 3: Wedding Date & Event Type */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
-            Wedding Date (or month/year) *
+          <label htmlFor="contact-wedding-date" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+            Event / Shoot Date *
           </label>
           <input
             type="date"
+            id="contact-wedding-date"
             name="wedding_date"
             required
             value={formData.wedding_date}
@@ -216,25 +224,25 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
-            Event Coverage Type *
+          <label htmlFor="contact-event-type" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+            Service / Event Type *
           </label>
           <select
+            id="contact-event-type"
             name="event_type"
             value={formData.event_type}
             onChange={handleChange}
             className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880] transition-colors"
           >
-            <option value="Full Wedding Coverage (Photo + Cinema)">
-              Full Wedding Coverage (Photo + Cinema)
+            <option value="Weddings (Full Photography & Cinema)">
+              Weddings (Full Photography & Cinema)
             </option>
-            <option value="Wedding Photography Only">Wedding Photography Only</option>
-            <option value="Cinematic Films Only">Cinematic Films Only</option>
-            <option value="Pre-Wedding Shoot & Story">Pre-Wedding Shoot & Story</option>
-            <option value="Engagement / Reception Soiree">Engagement / Reception Soiree</option>
-            <option value="Destination Multi-Day Celebration">
-              Destination Multi-Day Celebration
-            </option>
+            <option value="Couples & Pre-Wedding Story">Couples & Pre-Wedding Story</option>
+            <option value="Events & Celebrations">Events & Celebrations</option>
+            <option value="Personal & Fashion Portraits">Personal & Fashion Portraits</option>
+            <option value="Commercial & Brand Campaigns">Commercial & Brand Campaigns</option>
+            <option value="Content Creation & Social Reels">Content Creation & Social Reels</option>
+            <option value="Post-Production & Video Editing">Post-Production & Video Editing</option>
           </select>
         </div>
       </div>
@@ -242,11 +250,12 @@ export function ContactForm() {
       {/* Row 4: Location & Budget */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-location" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Wedding Venue / City *
           </label>
           <input
             type="text"
+            id="contact-location"
             name="location"
             required
             placeholder="e.g. The Ummed, Ahmedabad"
@@ -257,10 +266,11 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-budget" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
             Estimated Photography/Film Budget
           </label>
           <select
+            id="contact-budget"
             name="estimated_budget"
             value={formData.estimated_budget}
             onChange={handleChange}
@@ -276,10 +286,11 @@ export function ContactForm() {
 
       {/* Row 5: Message */}
       <div>
-        <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+        <label htmlFor="contact-message" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
           Tell Us About Your Celebration (Optional)
         </label>
         <textarea
+          id="contact-message"
           name="message"
           rows={4}
           placeholder="Tell us about your wedding ceremonies, traditions, estimated guest count, or any special moments you care most about..."

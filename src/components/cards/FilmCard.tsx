@@ -68,6 +68,11 @@ export function FilmCard({ film, priority = false }: FilmCardProps) {
             <p className="text-xs uppercase tracking-widest text-[#c5a880] mt-1 font-medium">
               {film.couple_names}
             </p>
+            {film.description && (
+              <p className="text-xs text-[#a6a095] mt-3 line-clamp-2 font-light leading-relaxed">
+                {film.description}
+              </p>
+            )}
           </div>
 
           <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">

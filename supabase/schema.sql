@@ -1,72 +1,92 @@
--- Supabase SQL Schema for "Play The Story" Luxury Wedding Photography & Films
--- Execute in Supabase SQL Editor
+-- PLAY THE STORY production schema
+-- Run this in the Supabase SQL editor for a new project.
+-- Existing installations should review the compatibility columns before applying it.
 
--- 1. Create Tables
-CREATE TABLE IF NOT EXISTS wedding_stories (
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+CREATE TABLE IF NOT EXISTS public.wedding_stories (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   title TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  couple_names TEXT NOT NULL,
-  wedding_date DATE NOT NULL,
-  location TEXT NOT NULL,
-  category TEXT NOT NULL CHECK (category IN ('Weddings', 'Pre-Weddings', 'Engagements', 'Receptions', 'Events')),
-  wedding_type TEXT,
-  cover_image TEXT NOT NULL,
-  description TEXT NOT NULL,
-  featured BOOLEAN DEFAULT false,
-  film_url TEXT,
-  created_at TIMESTAMPTZ DEFAULT now(),
-  updated_at TIMESTAMPTZ DEFAULT now()
-);
-
-CREATE TABLE IF NOT EXISTS wedding_images (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  story_id UUID REFERENCES wedding_stories(id) ON DELETE CASCADE,
-  image_url TEXT NOT NULL,
-  caption TEXT,
-  display_order INT DEFAULT 0,
-  created_at TIMESTAMPTZ DEFAULT now()
-);
-
-CREATE TABLE IF NOT EXISTS films (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  title TEXT NOT NULL,
-  couple_names TEXT NOT NULL,
-  location TEXT NOT NULL,
-  duration TEXT NOT NULL,
-  thumbnail_url TEXT NOT NULL,
-  video_url TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
   category TEXT NOT NULL,
-  featured BOOLEAN DEFAULT false,
-  display_order INT DEFAULT 0,
-  created_at TIMESTAMPTZ DEFAULT now()
+  location TEXT NOT NULL,
+  event_date DATE,
+  description TEXT NOT NULL,
+  cover_image TEXT NOT NULL,
+  featured BOOLEAN NOT NULL DEFAULT false,
+  published BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  couple_names TEXT,
+  wedding_date DATE,
+  wedding_type TEXT,
+  film_url TEXT
 );
 
-CREATE TABLE IF NOT EXISTS services (
+CREATE TABLE IF NOT EXISTS public.wedding_images (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  story_id UUID NOT NULL REFERENCES public.wedding_stories(id) ON DELETE CASCADE,
+  image_url TEXT NOT NULL,
+  public_id TEXT,
+  alt_text TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS public.films (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   title TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  short_description TEXT NOT NULL,
-  full_description TEXT NOT NULL,
-  image_url TEXT NOT NULL,
-  features TEXT[] DEFAULT '{}',
-  display_order INT DEFAULT 0,
-  created_at TIMESTAMPTZ DEFAULT now()
+  category TEXT NOT NULL,
+  description TEXT,
+  video_url TEXT NOT NULL,
+  thumbnail_url TEXT NOT NULL,
+  public_id TEXT,
+  featured BOOLEAN NOT NULL DEFAULT false,
+  published BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  couple_names TEXT,
+  location TEXT,
+  duration TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  display_order INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS testimonials (
+CREATE TABLE IF NOT EXISTS public.services (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  description TEXT NOT NULL,
+  items JSONB NOT NULL DEFAULT '[]'::jsonb,
+  image TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  published BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  short_description TEXT,
+  full_description TEXT,
+  image_url TEXT,
+  features JSONB NOT NULL DEFAULT '[]'::jsonb,
+  display_order INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS public.testimonials (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   client_name TEXT NOT NULL,
-  wedding_event TEXT NOT NULL,
+  review TEXT NOT NULL,
+  shoot_type TEXT,
   location TEXT,
-  rating INT DEFAULT 5 CHECK (rating >= 1 AND rating <= 5),
-  review_text TEXT NOT NULL,
+  rating INTEGER NOT NULL DEFAULT 5 CHECK (rating BETWEEN 1 AND 5),
+  published BOOLEAN NOT NULL DEFAULT false,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  wedding_event TEXT,
+  review_text TEXT,
   photo_url TEXT,
-  featured BOOLEAN DEFAULT true,
-  created_at TIMESTAMPTZ DEFAULT now()
+  featured BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE IF NOT EXISTS enquiries (
+CREATE TABLE IF NOT EXISTS public.enquiries (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
   partner_name TEXT,
@@ -77,42 +97,99 @@ CREATE TABLE IF NOT EXISTS enquiries (
   location TEXT NOT NULL,
   estimated_budget TEXT NOT NULL,
   message TEXT,
-  status TEXT DEFAULT 'New' CHECK (status IN ('New', 'Contacted', 'Completed')),
-  created_at TIMESTAMPTZ DEFAULT now()
+  status TEXT NOT NULL DEFAULT 'new' CHECK (
+    status IN ('new', 'contacted', 'in_progress', 'completed', 'archived')
+  ),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- 2. Create Indexes for Performance
-CREATE INDEX IF NOT EXISTS idx_stories_slug ON wedding_stories(slug);
-CREATE INDEX IF NOT EXISTS idx_stories_category ON wedding_stories(category);
-CREATE INDEX IF NOT EXISTS idx_stories_featured ON wedding_stories(featured);
-CREATE INDEX IF NOT EXISTS idx_wedding_images_story ON wedding_images(story_id);
-CREATE INDEX IF NOT EXISTS idx_films_featured ON films(featured);
-CREATE INDEX IF NOT EXISTS idx_enquiries_status ON enquiries(status);
-CREATE INDEX IF NOT EXISTS idx_enquiries_created ON enquiries(created_at DESC);
+CREATE OR REPLACE FUNCTION public.set_updated_at()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$;
 
--- 3. Enable Row Level Security (RLS)
-ALTER TABLE wedding_stories ENABLE ROW LEVEL SECURITY;
-ALTER TABLE wedding_images ENABLE ROW LEVEL SECURITY;
-ALTER TABLE films ENABLE ROW LEVEL SECURITY;
-ALTER TABLE services ENABLE ROW LEVEL SECURITY;
-ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
-ALTER TABLE enquiries ENABLE ROW LEVEL SECURITY;
+DROP TRIGGER IF EXISTS wedding_stories_set_updated_at ON public.wedding_stories;
+CREATE TRIGGER wedding_stories_set_updated_at BEFORE UPDATE ON public.wedding_stories
+  FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
+DROP TRIGGER IF EXISTS films_set_updated_at ON public.films;
+CREATE TRIGGER films_set_updated_at BEFORE UPDATE ON public.films
+  FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
+DROP TRIGGER IF EXISTS services_set_updated_at ON public.services;
+CREATE TRIGGER services_set_updated_at BEFORE UPDATE ON public.services
+  FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
--- 4. RLS Policies
--- Public read policies for active content
-CREATE POLICY "Allow public read access for wedding_stories" ON wedding_stories FOR SELECT USING (true);
-CREATE POLICY "Allow public read access for wedding_images" ON wedding_images FOR SELECT USING (true);
-CREATE POLICY "Allow public read access for films" ON films FOR SELECT USING (true);
-CREATE POLICY "Allow public read access for services" ON services FOR SELECT USING (true);
-CREATE POLICY "Allow public read access for testimonials" ON testimonials FOR SELECT USING (true);
+CREATE INDEX IF NOT EXISTS idx_wedding_stories_published_category
+  ON public.wedding_stories (published, category);
+CREATE INDEX IF NOT EXISTS idx_wedding_stories_featured
+  ON public.wedding_stories (featured) WHERE featured = true;
+CREATE INDEX IF NOT EXISTS idx_wedding_images_story_sort
+  ON public.wedding_images (story_id, sort_order);
+CREATE INDEX IF NOT EXISTS idx_films_published_category
+  ON public.films (published, category);
+CREATE INDEX IF NOT EXISTS idx_services_published_sort
+  ON public.services (published, sort_order);
+CREATE INDEX IF NOT EXISTS idx_testimonials_published_sort
+  ON public.testimonials (published, sort_order);
+CREATE INDEX IF NOT EXISTS idx_enquiries_status_created
+  ON public.enquiries (status, created_at DESC);
 
--- Public can insert new enquiries
-CREATE POLICY "Allow public insert for enquiries" ON enquiries FOR INSERT WITH CHECK (true);
+ALTER TABLE public.wedding_stories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.wedding_images ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.films ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.services ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.testimonials ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.enquiries ENABLE ROW LEVEL SECURITY;
 
--- Admin authenticated users full access
-CREATE POLICY "Allow authenticated admin full access wedding_stories" ON wedding_stories FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "Allow authenticated admin full access wedding_images" ON wedding_images FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "Allow authenticated admin full access films" ON films FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "Allow authenticated admin full access services" ON services FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "Allow authenticated admin full access testimonials" ON testimonials FOR ALL TO authenticated USING (true) WITH CHECK (true);
-CREATE POLICY "Allow authenticated admin full access enquiries" ON enquiries FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS BOOLEAN
+LANGUAGE sql
+STABLE
+AS $$
+  SELECT COALESCE((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin', false);
+$$;
+
+DROP POLICY IF EXISTS wedding_stories_public_read ON public.wedding_stories;
+CREATE POLICY wedding_stories_public_read ON public.wedding_stories
+  FOR SELECT TO anon, authenticated USING (published = true OR public.is_admin());
+DROP POLICY IF EXISTS wedding_images_public_read ON public.wedding_images;
+CREATE POLICY wedding_images_public_read ON public.wedding_images
+  FOR SELECT TO anon, authenticated USING (
+    EXISTS (SELECT 1 FROM public.wedding_stories story WHERE story.id = wedding_images.story_id
+      AND (story.published = true OR public.is_admin()))
+  );
+DROP POLICY IF EXISTS films_public_read ON public.films;
+CREATE POLICY films_public_read ON public.films
+  FOR SELECT TO anon, authenticated USING (published = true OR public.is_admin());
+DROP POLICY IF EXISTS services_public_read ON public.services;
+CREATE POLICY services_public_read ON public.services
+  FOR SELECT TO anon, authenticated USING (published = true OR public.is_admin());
+DROP POLICY IF EXISTS testimonials_public_read ON public.testimonials;
+CREATE POLICY testimonials_public_read ON public.testimonials
+  FOR SELECT TO anon, authenticated USING (published = true OR public.is_admin());
+DROP POLICY IF EXISTS enquiries_public_insert ON public.enquiries;
+CREATE POLICY enquiries_public_insert ON public.enquiries
+  FOR INSERT TO anon, authenticated WITH CHECK (status = 'new');
+
+DROP POLICY IF EXISTS wedding_stories_admin_all ON public.wedding_stories;
+CREATE POLICY wedding_stories_admin_all ON public.wedding_stories
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS wedding_images_admin_all ON public.wedding_images;
+CREATE POLICY wedding_images_admin_all ON public.wedding_images
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS films_admin_all ON public.films;
+CREATE POLICY films_admin_all ON public.films
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS services_admin_all ON public.services;
+CREATE POLICY services_admin_all ON public.services
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS testimonials_admin_all ON public.testimonials;
+CREATE POLICY testimonials_admin_all ON public.testimonials
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS enquiries_admin_all ON public.enquiries;
+CREATE POLICY enquiries_admin_all ON public.enquiries
+  FOR ALL TO authenticated USING (public.is_admin()) WITH CHECK (public.is_admin());

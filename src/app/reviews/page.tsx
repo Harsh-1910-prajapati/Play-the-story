@@ -4,12 +4,13 @@ import { dataRepository } from "@/lib/data/repository";
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { Button } from "@/components/ui/Button";
 import { Heart } from "lucide-react";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Client Reviews & Love Notes — Play The Story",
-  description:
-    "Read genuine reviews and heartfelt love notes from couples and families across Gujarat and India who entrusted their wedding memories to Play The Story.",
-};
+  description: "Read genuine reviews from couples and families across Gujarat and India who entrusted their memories to Play The Story.",
+  path: "/reviews",
+});
 
 export const revalidate = 60;
 

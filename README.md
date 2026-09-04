@@ -81,9 +81,21 @@ Create a `.env.local` file and add the required Supabase environment variables.
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_server_only_service_role_key
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+NEXT_PUBLIC_SITE_URL=https://playthestory.com
+NEXT_PUBLIC_WHATSAPP_NUMBER=your_whatsapp_number
 ```
 
 > Never commit your real `.env.local` file or secret credentials to GitHub.
+
+The service-role key is server-only. Do not prefix it with `NEXT_PUBLIC_` or use
+it in client components. Create the admin user in Supabase Auth and set
+`app_metadata.role` to `admin`; the application does not use a custom password
+store.
 
 ### 5. Run the development server
 
@@ -112,11 +124,25 @@ This project uses **Supabase** for backend/database functionality.
 
 The `supabase/` directory contains project-related Supabase configuration and database resources.
 
+Run `supabase/schema.sql` in the Supabase SQL editor to create the relational
+content model, indexes, update triggers, and Row Level Security policies. Public
+content is readable only when published; administrative database access requires
+a Supabase Auth user with `app_metadata.role = 'admin'` or a trusted server-side
+service-role request.
+
 ## 🌐 Deployment
 
-This project can be deployed using platforms that support Next.js applications, such as **Vercel**.
+This project is designed for **GitHub → Vercel → Supabase/Cloudinary** deployment.
 
-Before deployment, make sure the required environment variables are configured in the hosting platform.
+1. Run `supabase/schema.sql` in the production Supabase project.
+2. Create the admin user in Supabase Auth and set `app_metadata.role` to `admin`.
+3. In Supabase Auth URL Configuration, set the Site URL to `NEXT_PUBLIC_SITE_URL`.
+4. Add the production URL and local development URL to the allowed redirect URLs.
+5. Import the GitHub repository into Vercel and set the variables listed above for Production.
+6. Deploy, then verify public routes, the contact form, admin login, and Cloudinary uploads.
+
+The application does not include a Vercel-specific rewrite or custom server. The
+default Next.js build command (`next build`) and output settings are sufficient.
 
 ## 🔒 Environment Variables
 
@@ -144,6 +170,5 @@ and provide only safe example values in:
 
 If you like this project, consider giving it a ⭐ on GitHub.
 
----
 
 **Built with ❤️ using Next.js, React, Tailwind CSS & Supabase.**

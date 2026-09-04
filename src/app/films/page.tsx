@@ -4,12 +4,13 @@ import { dataRepository } from "@/lib/data/repository";
 import { FilmCard } from "@/components/cards/FilmCard";
 import { Sparkles, Film as FilmIcon, Music, Video } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Cinematic Wedding Films — 4K Documentaries & Teasers",
-  description:
-    "Experience the raw emotion, laughter, and heritage of Indian luxury weddings captured in 4K cinema films by Play The Story, Ahmedabad.",
-};
+  description: "Experience emotional wedding, commercial, and event films created by Play The Story in Ahmedabad and worldwide.",
+  path: "/films",
+});
 
 export const revalidate = 60;
 

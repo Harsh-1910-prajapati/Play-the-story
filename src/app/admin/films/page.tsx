@@ -12,6 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminFilmsPage() {
   await requireAdminPage();
-  const films = await dataRepository.getFilms();
+  const films = await dataRepository.getFilms(true);
   return <AdminFilmsView initialFilms={films} />;
 }

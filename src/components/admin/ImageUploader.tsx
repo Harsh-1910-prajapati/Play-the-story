@@ -2,13 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Upload, X, Image as ImageIcon, Check } from "lucide-react";
-import { CLOUDINARY_CONFIG } from "@/lib/cloudinary";
-
+import { Upload, X, Check } from "lucide-react";
 interface ImageUploaderProps {
   label?: string;
   value: string;
   onChange: (url: string) => void;
+  onUpload?: (result: { url: string; public_id: string }) => void;
   helperText?: string;
 }
 
@@ -16,6 +15,7 @@ export function ImageUploader({
   label = "Cover Photograph",
   value,
   onChange,
+  onUpload,
   helperText = "Enter high-resolution image URL (Unsplash or Cloudinary) or upload.",
 }: ImageUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
@@ -35,33 +35,16 @@ export function ImageUploader({
     setUploadError("");
 
     try {
-      // If Cloudinary is configured
-      if (CLOUDINARY_CONFIG.cloudName && CLOUDINARY_CONFIG.uploadPreset) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", CLOUDINARY_CONFIG.uploadPreset);
-
-        const res = await fetch(
-          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CONFIG.cloudName}/image/upload`,
-          { method: "POST", body: formData }
-        );
-
-        if (!res.ok) throw new Error("Cloudinary upload failed");
-        const data = await res.json();
-        onChange(data.secure_url);
-      } else {
-        // Fallback: Read file as Data URL for instant local preview/storage
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (typeof reader.result === "string") {
-            onChange(reader.result);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/admin/media/image", { method: "POST", body: formData });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || "Cloudinary upload failed");
+      onChange(data.url);
+      onUpload?.({ url: data.url, public_id: data.public_id });
     } catch (err) {
       console.error(err);
-      setUploadError("Failed to upload image. Please provide a direct URL.");
+      setUploadError("Failed to upload image. Check media storage configuration or provide a direct URL.");
     } finally {
       setIsUploading(false);
     }

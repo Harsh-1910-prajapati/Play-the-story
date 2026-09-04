@@ -54,7 +54,7 @@ export function WeddingStoryCard({ story, priority = false }: WeddingStoryCardPr
           </p>
 
           <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] uppercase tracking-widest text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors">
-            <span>View Complete Story</span>
+            <span>View Story</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </div>
         </div>

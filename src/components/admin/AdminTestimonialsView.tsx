@@ -25,6 +25,7 @@ export function AdminTestimonialsView({
     review_text: "",
     photo_url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop",
     featured: true,
+    published: false,
   });
 
   const handleOpenNew = () => {
@@ -36,6 +37,7 @@ export function AdminTestimonialsView({
       review_text: "",
       photo_url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop",
       featured: true,
+      published: false,
     });
     setIsEditing(true);
   };
@@ -320,6 +322,19 @@ export function AdminTestimonialsView({
                   className="text-xs text-[#fbf9f5] cursor-pointer"
                 >
                   Feature this review on the homepage testimonials section
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <input
+                  type="checkbox"
+                  id="published-review-checkbox"
+                  checked={Boolean(activeTestimonial.published)}
+                  onChange={(e) => setActiveTestimonial({ ...activeTestimonial, published: e.target.checked })}
+                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                />
+                <label htmlFor="published-review-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                  Publish this review on the live website
                 </label>
               </div>
 

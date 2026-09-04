@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Analytics } from "@vercel/analytics/next";
+import { DEFAULT_SOCIAL_IMAGE } from "@/config/seo";
 
 const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-serif",
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: { canonical: "/" },
   keywords: [
     "Wedding Photography Ahmedabad",
     "Luxury Wedding Photographer Gujarat",
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
+        url: DEFAULT_SOCIAL_IMAGE,
         width: 1200,
         height: 630,
         alt: "Play The Story — Luxury Wedding Photography",
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
+      DEFAULT_SOCIAL_IMAGE,
     ],
   },
   robots: {
@@ -83,7 +85,7 @@ const jsonLd = {
   "@type": ["LocalBusiness", "ProfessionalService"],
   name: siteConfig.name,
   description: siteConfig.description,
-  image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
+  image: DEFAULT_SOCIAL_IMAGE,
   telephone: siteConfig.contact.phoneFormatted,
   email: siteConfig.contact.email,
   address: {
@@ -99,7 +101,7 @@ const jsonLd = {
     latitude: 23.0338,
     longitude: 72.5076,
   },
-  url: "https://playthestory.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://playthestory.com",
   priceRange: "₹₹₹₹",
   openingHoursSpecification: [
     {

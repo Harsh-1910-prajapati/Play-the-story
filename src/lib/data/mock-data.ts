@@ -218,6 +218,57 @@ export const initialStories: WeddingStory[] = [
       },
     ],
   },
+  {
+    id: "story-7",
+    title: "Sculpted in Light — Editorial Studio Series",
+    slug: "maya-sen-editorial-portraits",
+    couple_names: "Maya Sen",
+    wedding_date: "2025-06-15",
+    location: "Play The Story Studio, Ahmedabad",
+    category: "Portraits",
+    wedding_type: "Editorial Fashion Portraiture",
+    featured: false,
+    cover_image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1920&auto=format&fit=crop",
+    description:
+      "An exploration of minimalist silhouettes, natural chiaroscuro contrast, and high-fashion editorial styling. Captured using custom continuous tungsten lights in our studio space.",
+    gallery: [
+      {
+        id: "img-7-1",
+        story_id: "story-7",
+        image_url:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1600&auto=format&fit=crop",
+        caption: "Deliberate framing and organic shadow play",
+        display_order: 1,
+      },
+    ],
+  },
+  {
+    id: "story-8",
+    title: "Heritage Craft & Contemporary Luxury",
+    slug: "atelier-ahmedabad-commercial-campaign",
+    couple_names: "Atelier Vayu Brand Film",
+    wedding_date: "2025-05-10",
+    location: "Heritage Precinct, Ahmedabad",
+    category: "Commercial",
+    wedding_type: "Luxury Brand Campaign",
+    featured: false,
+    cover_image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop",
+    description:
+      "A cinematic visual narrative for a bespoke textile atelier. We followed the artisans from handloom silk weaving at dawn to the final high-fashion runway showcase.",
+    film_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    gallery: [
+      {
+        id: "img-8-1",
+        story_id: "story-8",
+        image_url:
+          "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop",
+        caption: "Craftsmanship in tactile slow motion",
+        display_order: 1,
+      },
+    ],
+  },
 ];
 
 export const initialFilms: Film[] = [
@@ -278,98 +329,188 @@ export const initialFilms: Film[] = [
 export const initialServices: ServiceItem[] = [
   {
     id: "service-1",
-    title: "Wedding Photography",
-    slug: "wedding-photography",
+    title: "Weddings",
+    slug: "weddings",
     short_description:
-      "Candid, traditional and editorial wedding photography that captures raw emotion, intimate rituals, and timeless grandeur.",
+      "Candid photography, traditional ceremonial documentation, and bespoke cinematic wedding feature films.",
     full_description:
       "We believe that wedding photography is an heirloom art. Our team blends non-intrusive photojournalism with refined editorial portraiture. We document every authentic tear, sudden burst of laughter, tender touch, and the majestic scale of your wedding ceremonies across Gujarat and destination venues worldwide.",
     image_url:
       "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
     features: [
-      "Dedicated lead candid and editorial photographers",
-      "Traditional family and ceremony documentation",
+      "Candid Photography",
+      "Traditional Photography",
+      "Cinematic Wedding Films",
       "Signature fine-art color grading and skin-tone perfection",
-      "Private high-resolution online gallery with download access",
       "Bespoke handcrafted Italian leather wedding album",
     ],
+    items: [
+      "Candid Photography",
+      "Traditional Photography",
+      "Cinematic Wedding Films",
+    ],
+    sort_order: 1,
     display_order: 1,
+    published: true,
   },
   {
     id: "service-2",
-    title: "Cinematic Wedding Films",
-    slug: "cinematic-wedding-films",
+    title: "Couples",
+    slug: "couples",
     short_description:
-      "Emotion-driven cinematic wedding films crafted with 4K cinema cameras, authentic sound design, and narrative storytelling.",
-    full_description:
-      "Our wedding films are conceived as genuine cinematic documentaries. We record original vows, parents' heartfelt speeches, ambient festival acoustics, and score each film with customized orchestral and contemporary sound design that evokes goosebumps every time you watch it.",
-    image_url:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
-    features: [
-      "Ultra HD 4K cinema cameras with prime cinema lenses",
-      "Cinematic Teaser (60–90 seconds) for social sharing",
-      "Signature Highlight Film (4–7 minutes) with custom narrative score",
-      "Full documentary multi-camera cut of key rituals and performances",
-      "Professional audio recording of vows and speeches",
-    ],
-    display_order: 2,
-  },
-  {
-    id: "service-3",
-    title: "Pre-Wedding Photography",
-    slug: "pre-wedding-photography",
-    short_description:
-      "Creative and personalized pre-wedding stories that reflect your unique personalities and personal romance.",
+      "Pre-wedding stories, intimate engagement shoots, and stylized couple portraits before the big day.",
     full_description:
       "Before the whirlwind of wedding festivities begins, we create a relaxed, intimate sanctuary for you both. Whether against the architectural stepwells of Gujarat, the golden desert dunes of Rajasthan, or an urban cafe where you first met, we craft stylized, deeply personal photographs.",
     image_url:
       "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
     features: [
-      "Concept development, wardrobe styling, and moodboard direction",
-      "Full-day destination or multi-location shoot experience",
-      "Drone aerial perspective photography and mini-film clips",
-      "Curated set of 40+ retouched signature portraits",
-      "Save-the-date digital invite design included",
+      "Pre-Wedding Shoots",
+      "Engagement Soirees",
+      "Couple Portraits",
+      "Moodboard direction and wardrobe styling consultation",
+      "Drone aerial cinematography & teaser cuts",
     ],
+    items: [
+      "Pre-Wedding",
+      "Engagement",
+      "Couple Portraits",
+    ],
+    sort_order: 2,
+    display_order: 2,
+    published: true,
+  },
+  {
+    id: "service-3",
+    title: "Events",
+    slug: "events",
+    short_description:
+      "High-caliber coverage for corporate summits, cultural galas, social milestones, and brand launches.",
+    full_description:
+      "Every milestone gathering has its own rhythm and energy. We deploy nimble, discreet multi-camera teams to capture both high-profile keynote stages and spontaneous networking interactions with crisp, modern polish.",
+    image_url:
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop",
+    features: [
+      "Corporate Conferences & Summits",
+      "Social Events & Private Galas",
+      "Launches & Celebrations",
+      "Rapid turnaround for PR and press releases",
+      "Multi-camera live streaming and recap edits",
+    ],
+    items: [
+      "Corporate",
+      "Social Events",
+      "Launches & Celebrations",
+    ],
+    sort_order: 3,
     display_order: 3,
+    published: true,
   },
   {
     id: "service-4",
-    title: "Event Coverage",
-    slug: "event-coverage",
+    title: "Portraits",
+    slug: "portraits",
     short_description:
-      "Professional coverage for engagement, reception, Haldi, Sangeet, Mehendi and cultural celebrations.",
+      "Personal editorial portraits, family legacy sessions, fashion lookbooks, and authentic lifestyle imagery.",
     full_description:
-      "Every single ritual has its own heartbeat. Our comprehensive event coverage ensures that no family celebration is treated as secondary. We deploy specialized teams to cover multiple events with tireless energy, capturing the zest of Haldi, the rhythm of Sangeet, and the sophistication of Receptions.",
+      "A great portrait reveals who you are when nobody is looking. We craft individual, executive, and family portraits with deliberate lighting, natural poses, and magazine-editorial aesthetics.",
     image_url:
-      "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop",
     features: [
-      "Multi-crew setup tailored to event scale and guest count",
-      "Live slideshow displays for reception guests",
-      "Fast 48-hour preview delivery for immediate social sharing",
-      "Unrestricted coverage hours for cultural ceremonies",
-      "Comprehensive archival storage backup for 5 years",
+      "Personal & Executive Portraits",
+      "Family Legacy Sessions",
+      "Fashion Lookbooks & Editorials",
+      "Lifestyle & Environmental Portraits",
+      "Studio and on-location lighting setups",
     ],
+    items: [
+      "Personal",
+      "Family",
+      "Fashion",
+      "Lifestyle",
+    ],
+    sort_order: 4,
     display_order: 4,
+    published: true,
   },
   {
     id: "service-5",
-    title: "Professional Video Editing",
-    slug: "professional-video-editing",
+    title: "Commercial",
+    slug: "commercial",
     short_description:
-      "High-quality cinematic editing, bespoke color grading, and narrative storytelling for modern cinema standards.",
+      "High-impact brand photography, product imagery, visual advertising campaigns, and cinematic business films.",
     full_description:
-      "The magic of cinema is born in the edit suite. Our post-production team specializes in meticulous pacing, Hollywood-grade DaVinci Resolve color grading tailored to vibrant Indian silks and skin tones, and rich audio design that breathes living rhythm into your wedding footage.",
+      "Elevate your brand presence with visuals engineered to convert and captivate. We partner with design-forward brands, hospitality groups, and luxury architecture studios to create striking visual assets.",
     image_url:
-      "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop",
     features: [
-      "Hollywood-standard DaVinci Resolve color grading",
-      "Bespoke sound mastering, noise suppression, and spatial audio",
-      "Re-edits and customizable music selection options",
-      "Optimized vertical cuts for Instagram Reels & 4K master deliverables",
-      "Cloud-hosted high-speed streaming link for seamless family viewing",
+      "Brand & Campaign Photography",
+      "Product & E-Commerce Imagery",
+      "Architectural & Hospitality Spaces",
+      "Cinematic Business & Brand Films",
+      "Commercial licensing & multi-format delivery",
     ],
+    items: [
+      "Brand Photography",
+      "Product Photography",
+      "Campaigns",
+      "Business Films",
+    ],
+    sort_order: 5,
     display_order: 5,
+    published: true,
+  },
+  {
+    id: "service-6",
+    title: "Content Creation",
+    slug: "content-creation",
+    short_description:
+      "Scroll-stopping Instagram Reels, high-engagement social media content, and evocative short-form films.",
+    full_description:
+      "In the modern digital landscape, visual speed matters as much as quality. Our content creators deliver crisp 9:16 vertical video narratives designed for viral engagement without sacrificing aesthetic prestige.",
+    image_url:
+      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1200&auto=format&fit=crop",
+    features: [
+      "Dynamic Vertical Instagram Reels & TikToks",
+      "Social Media Content Retainers",
+      "Cinematic Short Films & Teasers",
+      "Trending audio integration and dynamic typography",
+      "24–48 hour rapid delivery turnarounds",
+    ],
+    items: [
+      "Reels",
+      "Social Media Content",
+      "Short Films",
+    ],
+    sort_order: 6,
+    display_order: 6,
+    published: true,
+  },
+  {
+    id: "service-7",
+    title: "Post Production",
+    slug: "post-production",
+    short_description:
+      "Hollywood-grade DaVinci Resolve color grading, narrative film editing, wedding films, and audio sound design.",
+    full_description:
+      "The magic of cinema is born in the edit suite. Our post-production team specializes in meticulous pacing, DaVinci Resolve color grading tailored to vibrant Indian silks and skin tones, and rich spatial audio design.",
+    image_url:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200&auto=format&fit=crop",
+    features: [
+      "Video Editing & Master Cuts",
+      "Full-Length Wedding Films & Documentaries",
+      "Hollywood-Standard DaVinci Resolve Color Grading",
+      "Reels & Vertical Micro-Edits",
+      "Sound design, dialogue leveling, and noise restoration",
+    ],
+    items: [
+      "Video Editing",
+      "Wedding Films",
+      "Color Grading",
+      "Reels",
+    ],
+    sort_order: 7,
+    display_order: 7,
+    published: true,
   },
 ];
 
@@ -437,7 +578,7 @@ export const initialEnquiries: Enquiry[] = [
     estimated_budget: "₹3,50,000 – ₹5,000,000",
     message:
       "Hello team, we are planning our 3-day wedding in Ahmedabad and loved your cinematic films. Looking for both photography and 4K film coverage for around 600 guests.",
-    status: "New",
+    status: "new",
     created_at: "2026-03-01T10:30:00Z",
   },
   {
@@ -452,7 +593,7 @@ export const initialEnquiries: Enquiry[] = [
     estimated_budget: "₹5,00,000+",
     message:
       "We want an editorial-style photographer and cinematographer team to travel with us to Udaipur. Please share your availability and quote.",
-    status: "Contacted",
+    status: "contacted",
     created_at: "2026-02-28T15:45:00Z",
   },
 ];

@@ -58,6 +58,7 @@ export function Lightbox({
     <div
       role="dialog"
       aria-modal="true"
+      aria-label="Image lightbox"
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
     >
       <div

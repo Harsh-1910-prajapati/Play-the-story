@@ -23,6 +23,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
     full_description: "",
     image_url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
     features: [],
+    published: false,
   });
 
   const handleOpenNew = () => {
@@ -37,6 +38,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
         "Fine-art signature color grading",
         "Private high-resolution online gallery",
       ],
+      published: false,
     });
     setIsEditing(true);
   };
@@ -227,6 +229,19 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                   }
                   className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
                 />
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <input
+                  type="checkbox"
+                  id="published-service-checkbox"
+                  checked={Boolean(activeService.published)}
+                  onChange={(e) => setActiveService({ ...activeService, published: e.target.checked })}
+                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                />
+                <label htmlFor="published-service-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                  Publish this service on the live website
+                </label>
               </div>
 
               <div>

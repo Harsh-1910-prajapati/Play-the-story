@@ -3,12 +3,13 @@ import { Metadata } from "next";
 import { dataRepository } from "@/lib/data/repository";
 import { StoriesFilterView } from "@/components/stories/StoriesFilterView";
 import { Sparkles } from "lucide-react";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Portfolio / Our Stories — Play The Story",
-  description:
-    "Explore our complete portfolio of luxury wedding photography and films across Ahmedabad and destination venues worldwide.",
-};
+  description: "Explore Play The Story's photography portfolio of weddings, couples, events, portraits, and destination celebrations.",
+  path: "/portfolio",
+});
 
 export const revalidate = 60;
 

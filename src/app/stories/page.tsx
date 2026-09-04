@@ -3,12 +3,13 @@ import { Metadata } from "next";
 import { dataRepository } from "@/lib/data/repository";
 import { StoriesFilterView } from "@/components/stories/StoriesFilterView";
 import { Sparkles } from "lucide-react";
+import { createPageMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Our Stories — Luxury Wedding Photography Archives",
-  description:
-    "Explore our complete archive of royal Indian weddings, candid moments, and destination love stories across Ahmedabad, Rajasthan, and beyond.",
-};
+  description: "Explore published wedding, couple, pre-wedding, and event stories from Play The Story.",
+  path: "/stories",
+});
 
 export const revalidate = 60;
 

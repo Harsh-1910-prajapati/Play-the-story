@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Button } from "../ui/Button";
 import { DateCheckerModal } from "../ui/DateCheckerModal";
-import { Menu, X, Calendar } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -40,12 +40,12 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo / Brand */}
-          <Link href="/" className="group flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl tracking-[0.18em] uppercase text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-medium">
-              Play The Story
+          <Link href="/" className="group flex flex-col leading-none">
+            <span className="font-serif text-lg sm:text-xl tracking-[0.22em] uppercase text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-medium">
+              PLAY
             </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-[#c5a880] font-sans -mt-0.5">
-              Wedding Photography & Films
+            <span className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors font-light -mt-0.5">
+              THE STORY
             </span>
           </Link>
 
@@ -54,13 +54,13 @@ export function Navbar() {
             {siteConfig.navLinks.map((item) => {
               const isActive =
                 pathname === item.href ||
-                (item.href !== "/" && pathname.startsWith(item.href));
+                (item.href !== "/" && !item.href.startsWith("/#") && pathname.startsWith(item.href));
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "text-xs uppercase tracking-[0.2em] font-medium transition-colors relative py-1",
+                    "text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1",
                     isActive
                       ? "text-[#c5a880]"
                       : "text-[#d5d0c7] hover:text-[#fbf9f5]"
@@ -75,32 +75,33 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop Right CTA */}
+          {/* Desktop Right CTA: LET'S TALK → */}
           <div className="hidden md:flex items-center gap-4">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsDateModalOpen(true)}
-              className="border-[#c5a880]/60 text-[#fbf9f5] hover:border-[#c5a880] flex items-center gap-1.5 text-[11px]"
+              href="/contact"
+              className="border-[#c5a880]/60 text-[#fbf9f5] hover:border-[#c5a880] hover:bg-[#c5a880]/10 flex items-center gap-2 text-xs uppercase tracking-widest px-5 py-2.5 transition-all"
             >
-              <Calendar className="w-3.5 h-3.5 text-[#c5a880]" />
-              <span>Check Your Wedding Date</span>
+              <span>LET&apos;S TALK</span>
+              <span className="text-[#c5a880]">→</span>
             </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-3 md:hidden">
-            <button
-              onClick={() => setIsDateModalOpen(true)}
-              className="p-2 text-[#c5a880] hover:text-white"
-              aria-label="Check wedding date"
+            <Link
+              href="/contact"
+              className="text-[11px] uppercase tracking-wider text-[#c5a880] border border-[#c5a880]/50 px-2.5 py-1"
             >
-              <Calendar className="w-5 h-5" />
-            </button>
+              LET&apos;S TALK →
+            </Link>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-[#fbf9f5] hover:text-[#c5a880] focus:outline-none"
+              className="p-2 text-[#fbf9f5] hover:text-[#c5a880] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -113,12 +114,12 @@ export function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-full bg-[#0d0d0d] border-b border-white/10 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300">
+          <div id="mobile-navigation" className="md:hidden fixed inset-x-0 top-full bg-[#0d0d0d] border-b border-white/10 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300">
             <nav className="flex flex-col space-y-5">
               {siteConfig.navLinks.map((item) => {
                 const isActive =
                   pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href));
+                  (item.href !== "/" && !item.href.startsWith("/#") && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.name}
@@ -141,17 +142,15 @@ export function Navbar() {
                 <Button
                   variant="primary"
                   size="md"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsDateModalOpen(true);
-                  }}
-                  className="w-full flex items-center justify-center gap-2"
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 uppercase tracking-widest text-xs"
                 >
-                  <Calendar className="w-4 h-4" />
-                  Check Your Wedding Date
+                  <span>LET&apos;S TALK</span>
+                  <span>→</span>
                 </Button>
-                <p className="text-[11px] text-center text-[#a6a095] mt-2 font-light">
-                  Ahmedabad, Gujarat • Destination Weddings
+                <p className="text-[10px] text-center uppercase tracking-widest text-[#a6a095] mt-2 font-light">
+                  {siteConfig.location.coverageText}
                 </p>
               </div>
             </nav>

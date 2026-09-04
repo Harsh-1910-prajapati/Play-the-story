@@ -26,6 +26,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
     video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     thumbnail_url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
     featured: false,
+    published: false,
   });
 
   const handleOpenNew = () => {
@@ -38,6 +39,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
       video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       thumbnail_url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
       featured: false,
+      published: false,
     });
     setIsEditing(true);
   };
@@ -344,6 +346,19 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                   className="text-xs text-[#fbf9f5] cursor-pointer"
                 >
                   Feature this film prominently on the homepage
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <input
+                  type="checkbox"
+                  id="published-film-checkbox"
+                  checked={Boolean(activeFilm.published)}
+                  onChange={(e) => setActiveFilm({ ...activeFilm, published: e.target.checked })}
+                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                />
+                <label htmlFor="published-film-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                  Publish this film on the live website
                 </label>
               </div>
 

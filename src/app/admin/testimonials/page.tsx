@@ -12,6 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminTestimonialsPage() {
   await requireAdminPage();
-  const testimonials = await dataRepository.getTestimonials();
+  const testimonials = await dataRepository.getTestimonials(true);
   return <AdminTestimonialsView initialTestimonials={testimonials} />;
 }
