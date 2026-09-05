@@ -19,7 +19,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { createPageMetadata } from "@/config/seo";
 
 export const metadata = createPageMetadata({
-  title: "Creative Photography & Films in Ahmedabad",
+  title: "Play The Story",
   description: "Play The Story creates emotional photography, films, brand campaigns, and visual stories in Ahmedabad and worldwide.",
   path: "/",
 });
