@@ -1,7 +1,9 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Button } from "../ui/Button";
@@ -19,7 +21,9 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,14 +43,30 @@ export function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
           {/* Logo / Brand */}
-          <Link href="/" className="group flex flex-col leading-none">
-            <span className="font-serif text-lg sm:text-xl tracking-[0.22em] uppercase text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-medium">
-              PLAY
-            </span>
-            <span className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors font-light -mt-0.5">
-              THE STORY
-            </span>
+          <Link
+            href="/"
+            className="group flex items-center gap-3"
+          >
+            <Image
+              src="/Logo 2.PNG"
+              alt="Play The Story"
+              width={40}
+              height={40}
+              priority
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+
+            <div className="flex flex-col leading-none">
+              <span className="font-serif text-lg sm:text-xl tracking-[0.22em] uppercase text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-medium">
+                PLAY
+              </span>
+
+              <span className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors font-light -mt-0.5">
+                THE STORY
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -54,7 +74,10 @@ export function Navbar() {
             {siteConfig.navLinks.map((item) => {
               const isActive =
                 pathname === item.href ||
-                (item.href !== "/" && !item.href.startsWith("/#") && pathname.startsWith(item.href));
+                (item.href !== "/" &&
+                  !item.href.startsWith("/#") &&
+                  pathname.startsWith(item.href));
+
               return (
                 <Link
                   key={item.name}
@@ -67,6 +90,7 @@ export function Navbar() {
                   )}
                 >
                   {item.name}
+
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#c5a880]" />
                   )}
@@ -96,6 +120,7 @@ export function Navbar() {
             >
               LET&apos;S TALK →
             </Link>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-[#fbf9f5] hover:text-[#c5a880] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
@@ -114,12 +139,18 @@ export function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div id="mobile-navigation" className="md:hidden fixed inset-x-0 top-full bg-[#0d0d0d] border-b border-white/10 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300">
+          <div
+            id="mobile-navigation"
+            className="md:hidden fixed inset-x-0 top-full bg-[#0d0d0d] border-b border-white/10 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300"
+          >
             <nav className="flex flex-col space-y-5">
               {siteConfig.navLinks.map((item) => {
                 const isActive =
                   pathname === item.href ||
-                  (item.href !== "/" && !item.href.startsWith("/#") && pathname.startsWith(item.href));
+                  (item.href !== "/" &&
+                    !item.href.startsWith("/#") &&
+                    pathname.startsWith(item.href));
+
                 return (
                   <Link
                     key={item.name}
@@ -127,10 +158,13 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
                       "text-sm uppercase tracking-[0.25em] font-medium py-1 transition-colors flex items-center justify-between",
-                      isActive ? "text-[#c5a880]" : "text-[#d5d0c7]"
+                      isActive
+                        ? "text-[#c5a880]"
+                        : "text-[#d5d0c7]"
                     )}
                   >
                     <span>{item.name}</span>
+
                     {isActive && (
                       <span className="w-1.5 h-1.5 rounded-full bg-[#c5a880]" />
                     )}
@@ -149,6 +183,7 @@ export function Navbar() {
                   <span>LET&apos;S TALK</span>
                   <span>→</span>
                 </Button>
+
                 <p className="text-[10px] text-center uppercase tracking-widest text-[#a6a095] mt-2 font-light">
                   {siteConfig.location.coverageText}
                 </p>
@@ -166,3 +201,4 @@ export function Navbar() {
     </>
   );
 }
+
