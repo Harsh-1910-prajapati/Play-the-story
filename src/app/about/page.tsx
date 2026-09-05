@@ -34,14 +34,14 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/5] w-full overflow-hidden border border-white/10 shadow-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop"
-                alt="Play The Story Team at work"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
+            <Image
+              src="https://res.cloudinary.com/glhspt53/image/upload/v1788538650/photo-1519741497674-611481863552.jpg"
+              alt="Play The Story Team at work"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-[#141414] border border-[#c5a880]/40 p-6 hidden sm:block max-w-xs shadow-2xl">
               <p className="text-[10px] uppercase tracking-widest text-[#c5a880] mb-1">
