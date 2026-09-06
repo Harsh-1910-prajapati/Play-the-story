@@ -16,17 +16,17 @@ export default function ErrorBoundary({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#080808] px-4 py-24 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-[#25231F] px-4 py-24 text-center">
       <div className="max-w-md mx-auto space-y-6">
         <div className="w-14 h-14 mx-auto rounded-full bg-red-950/40 border border-red-800/60 flex items-center justify-center text-red-300">
           <AlertCircle className="w-7 h-7" />
         </div>
 
-        <h1 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] font-light">
+        <h1 className="font-serif text-3xl sm:text-4xl text-[#25231F] font-light">
           Something Went Wrong
         </h1>
 
-        <p className="text-sm text-[#a6a095] font-light leading-relaxed">
+        <p className="text-sm text-[#8A8175] font-light leading-relaxed">
           An unexpected error occurred while rendering this page. Our engineers have been alerted. Please try refreshing or return home.
         </p>
 

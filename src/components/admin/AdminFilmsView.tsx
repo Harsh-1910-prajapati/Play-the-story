@@ -98,12 +98,12 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl text-[#25231F] font-normal">
             Cinematic Films Manager
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Add and manage 4K wedding films, highlights, teasers, and pre-wedding movies.
           </p>
         </div>
@@ -124,13 +124,13 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
         {films.map((film) => (
           <div
             key={film.id}
-            className="bg-[#121212] border border-white/10 overflow-hidden flex flex-col justify-between hover:border-[#c5a880]/40 transition-colors"
+            className="bg-[#F5F1EA] border border-[#25231F]/15 overflow-hidden flex flex-col justify-between hover:border-[#B39B7A]/40 transition-colors"
           >
             <div>
               {/* Thumbnail */}
               <div
                 onClick={() => setPreviewVideoUrl(film.video_url)}
-                className="relative aspect-video w-full overflow-hidden bg-black cursor-pointer group"
+                className="relative aspect-video w-full overflow-hidden bg-[#25231F] cursor-pointer group"
               >
                 <Image
                   src={film.thumbnail_url}
@@ -139,16 +139,16 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-[#c5a880] text-black flex items-center justify-center pl-0.5 shadow-lg group-hover:scale-110 transition-transform">
+                <div className="absolute inset-0 bg-[#25231F]/40 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-[#B39B7A] text-[#F5F1EA] flex items-center justify-center pl-0.5 shadow-lg group-hover:scale-110 transition-transform">
                     <Play className="w-4 h-4 fill-black" />
                   </div>
                 </div>
-                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-[10px] text-white font-mono">
+                <div className="absolute bottom-2 right-2 bg-[#25231F]/80 px-2 py-0.5 text-[10px] text-white font-mono">
                   {film.duration}
                 </div>
                 {film.featured && (
-                  <div className="absolute top-2 right-2 bg-[#c5a880] text-black px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                  <div className="absolute top-2 right-2 bg-[#B39B7A] text-[#F5F1EA] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
                     <Star className="w-3 h-3 fill-black" />
                     Featured
                   </div>
@@ -157,23 +157,23 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
 
               {/* Details */}
               <div className="p-5">
-                <div className="text-[10px] uppercase tracking-wider text-[#c5a880] mb-1 font-mono">
+                <div className="text-[10px] uppercase tracking-wider text-[#B39B7A] mb-1 font-mono">
                   {film.category} • {film.location}
                 </div>
-                <h3 className="font-serif text-xl text-[#fbf9f5] font-medium">
+                <h3 className="font-serif text-xl text-[#25231F] font-medium">
                   {film.title}
                 </h3>
-                <p className="text-xs text-[#dfc8a5] mt-0.5 font-medium">
+                <p className="text-xs text-[#B39B7A] mt-0.5 font-medium">
                   {film.couple_names}
                 </p>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="p-4 bg-[#161616] border-t border-white/5 flex items-center justify-between">
+            <div className="p-4 bg-[#F5F1EA] border-t border-[#25231F]/10 flex items-center justify-between">
               <button
                 onClick={() => setPreviewVideoUrl(film.video_url)}
-                className="text-[11px] text-[#c5a880] hover:underline flex items-center gap-1"
+                className="text-[11px] text-[#B39B7A] hover:underline flex items-center gap-1"
               >
                 <span>Preview Cinema</span>
                 <Play className="w-3 h-3" />
@@ -182,7 +182,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleOpenEdit(film)}
-                  className="p-1.5 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5 transition-colors"
+                  className="p-1.5 text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
                   title="Edit Film"
                 >
                   <Edit3 className="w-4 h-4" />
@@ -202,20 +202,20 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
 
       {/* Add / Edit Film Modal */}
       {isEditing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-[#121212] border border-white/10 max-w-xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/85 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-[#F5F1EA] border border-[#25231F]/15 max-w-xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
             <button
               onClick={() => setIsEditing(false)}
-              className="absolute top-4 right-4 p-2 text-[#888] hover:text-white"
+              className="absolute top-4 right-4 p-2 text-[#888] hover:text-[#25231F]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono">
+              <span className="text-[10px] uppercase tracking-widest text-[#B39B7A] font-mono">
                 {activeFilm.id ? "Edit Film" : "Add New Film"}
               </span>
-              <h3 className="font-serif text-2xl text-[#fbf9f5] mt-1">
+              <h3 className="font-serif text-2xl text-[#25231F] mt-1">
                 {activeFilm.title || "New Film"}
               </h3>
             </div>
@@ -223,7 +223,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
             <form onSubmit={handleSave} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Film Title *
                   </label>
                   <input
@@ -234,12 +234,12 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                     onChange={(e) =>
                       setActiveFilm({ ...activeFilm, title: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Couple Names *
                   </label>
                   <input
@@ -250,14 +250,14 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                     onChange={(e) =>
                       setActiveFilm({ ...activeFilm, couple_names: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Location *
                   </label>
                   <input
@@ -268,12 +268,12 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                     onChange={(e) =>
                       setActiveFilm({ ...activeFilm, location: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Duration *
                   </label>
                   <input
@@ -284,12 +284,12 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                     onChange={(e) =>
                       setActiveFilm({ ...activeFilm, duration: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Category *
                   </label>
                   <select
@@ -297,7 +297,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                     onChange={(e) =>
                       setActiveFilm({ ...activeFilm, category: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   >
                     <option value="Wedding Teaser">Wedding Teaser</option>
                     <option value="Feature Film">Feature Film</option>
@@ -308,7 +308,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Video URL (YouTube or Vimeo) *
                 </label>
                 <input
@@ -319,7 +319,7 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                   onChange={(e) =>
                     setActiveFilm({ ...activeFilm, video_url: e.target.value })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
@@ -339,11 +339,11 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                   onChange={(e) =>
                     setActiveFilm({ ...activeFilm, featured: e.target.checked })
                   }
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
                 <label
                   htmlFor="featured-film-checkbox"
-                  className="text-xs text-[#fbf9f5] cursor-pointer"
+                  className="text-xs text-[#25231F] cursor-pointer"
                 >
                   Feature this film prominently on the homepage
                 </label>
@@ -355,18 +355,18 @@ export function AdminFilmsView({ initialFilms }: AdminFilmsViewProps) {
                   id="published-film-checkbox"
                   checked={Boolean(activeFilm.published)}
                   onChange={(e) => setActiveFilm({ ...activeFilm, published: e.target.checked })}
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
-                <label htmlFor="published-film-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                <label htmlFor="published-film-checkbox" className="text-xs text-[#25231F] cursor-pointer">
                   Publish this film on the live website
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#25231F]/15 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#a6a095] hover:text-white"
+                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#8A8175] hover:text-[#25231F]"
                 >
                   Cancel
                 </button>

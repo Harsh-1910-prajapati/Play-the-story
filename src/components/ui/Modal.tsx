@@ -60,7 +60,7 @@ export function Modal({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity animate-in fade-in duration-300"
+        className="fixed inset-0 bg-[#25231F]/85 backdrop-blur-md transition-opacity animate-in fade-in duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -68,17 +68,17 @@ export function Modal({
       {/* Modal Container */}
       <div
         className={cn(
-          "relative w-full bg-[#111111] border border-white/10 text-[#fbf9f5] shadow-2xl p-6 sm:p-8 z-10 my-8 transition-all animate-in zoom-in-95 duration-200",
+          "relative w-full bg-[#F5F1EA] border border-[#25231F]/15 text-[#25231F] shadow-2xl p-6 sm:p-8 z-10 my-8 transition-all animate-in zoom-in-95 duration-200",
           maxWidthClasses[maxWidth],
           className
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+        <div className="flex items-center justify-between pb-4 border-b border-[#25231F]/15 mb-6">
           {title ? (
             <h3
               id="modal-title"
-              className="font-serif text-2xl sm:text-3xl text-[#fbf9f5] font-normal"
+              className="font-serif text-2xl sm:text-3xl text-[#25231F] font-normal"
             >
               {title}
             </h3>
@@ -88,7 +88,7 @@ export function Modal({
           <button
             onClick={onClose}
             type="button"
-            className="p-2 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5 transition-colors"
+            className="p-2 text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />

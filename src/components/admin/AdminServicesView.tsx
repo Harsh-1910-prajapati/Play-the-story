@@ -118,12 +118,12 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl text-[#25231F] font-normal">
             Services & Deliverables
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Manage packages, offerings, and deliverables shown across the website.
           </p>
         </div>
@@ -144,10 +144,10 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
         {services.map((service) => (
           <div
             key={service.id}
-            className="bg-[#121212] border border-white/10 overflow-hidden flex flex-col justify-between hover:border-[#c5a880]/40 transition-colors"
+            className="bg-[#F5F1EA] border border-[#25231F]/15 overflow-hidden flex flex-col justify-between hover:border-[#B39B7A]/40 transition-colors"
           >
             <div>
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#25231F]">
                 <Image
                   src={service.image_url}
                   alt={service.title}
@@ -158,7 +158,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
               </div>
 
               <div className="p-5">
-                <h3 className="font-serif text-xl text-[#fbf9f5] font-medium mb-1">
+                <h3 className="font-serif text-xl text-[#25231F] font-medium mb-1">
                   {service.title}
                 </h3>
                 <p className="text-xs text-[#888] line-clamp-2 font-light mb-4">
@@ -166,7 +166,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                 </p>
 
                 {service.features && service.features.length > 0 && (
-                  <div className="text-[11px] text-[#c5a880] flex items-center gap-1.5">
+                  <div className="text-[11px] text-[#B39B7A] flex items-center gap-1.5">
                     <Check className="w-3.5 h-3.5" />
                     <span>{service.features.length} Deliverables Configured</span>
                   </div>
@@ -174,10 +174,10 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
               </div>
             </div>
 
-            <div className="p-4 bg-[#161616] border-t border-white/5 flex items-center justify-end gap-2">
+            <div className="p-4 bg-[#F5F1EA] border-t border-[#25231F]/10 flex items-center justify-end gap-2">
               <button
                 onClick={() => handleOpenEdit(service)}
-                className="p-1.5 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5 transition-colors"
+                className="p-1.5 text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
                 title="Edit Service"
               >
                 <Edit3 className="w-4 h-4" />
@@ -196,27 +196,27 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
 
       {/* Edit / Add Modal */}
       {isEditing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-[#121212] border border-white/10 max-w-xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/85 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-[#F5F1EA] border border-[#25231F]/15 max-w-xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
             <button
               onClick={() => setIsEditing(false)}
-              className="absolute top-4 right-4 p-2 text-[#888] hover:text-white"
+              className="absolute top-4 right-4 p-2 text-[#888] hover:text-[#25231F]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono">
+              <span className="text-[10px] uppercase tracking-widest text-[#B39B7A] font-mono">
                 {activeService.id ? "Edit Service" : "Add Service"}
               </span>
-              <h3 className="font-serif text-2xl text-[#fbf9f5] mt-1">
+              <h3 className="font-serif text-2xl text-[#25231F] mt-1">
                 {activeService.title || "New Service"}
               </h3>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Service Title *
                 </label>
                 <input
@@ -227,7 +227,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                   onChange={(e) =>
                     setActiveService({ ...activeService, title: e.target.value })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
@@ -237,15 +237,15 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                   id="published-service-checkbox"
                   checked={Boolean(activeService.published)}
                   onChange={(e) => setActiveService({ ...activeService, published: e.target.checked })}
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
-                <label htmlFor="published-service-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                <label htmlFor="published-service-checkbox" className="text-xs text-[#25231F] cursor-pointer">
                   Publish this service on the live website
                 </label>
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Short Description (Homepage preview) *
                 </label>
                 <input
@@ -259,12 +259,12 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                       short_description: e.target.value,
                     })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Full Description *
                 </label>
                 <textarea
@@ -278,7 +278,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                       full_description: e.target.value,
                     })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
@@ -292,7 +292,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
 
               {/* Features List */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Included Features / Deliverables
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -307,12 +307,12 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                         handleAddFeature();
                       }
                     }}
-                    className="flex-1 bg-[#181818] border border-white/10 px-3 py-1.5 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="flex-1 bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-1.5 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                   <button
                     type="button"
                     onClick={handleAddFeature}
-                    className="px-3 py-1.5 bg-[#222] hover:bg-[#333] text-xs text-[#fbf9f5] border border-white/10"
+                    className="px-3 py-1.5 bg-[#D8C9B5] hover:bg-[#8A8175] text-xs text-[#25231F] border border-[#25231F]/15"
                   >
                     Add
                   </button>
@@ -322,7 +322,7 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                   {(activeService.features || []).map((feat, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center justify-between bg-[#161616] p-2 text-xs text-[#d5d0c7] border border-white/5"
+                      className="flex items-center justify-between bg-[#F5F1EA] p-2 text-xs text-[#8A8175] border border-[#25231F]/10"
                     >
                       <span className="truncate">{feat}</span>
                       <button
@@ -337,11 +337,11 @@ export function AdminServicesView({ initialServices }: AdminServicesViewProps) {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#25231F]/15 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#a6a095] hover:text-white"
+                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#8A8175] hover:text-[#25231F]"
                 >
                   Cancel
                 </button>

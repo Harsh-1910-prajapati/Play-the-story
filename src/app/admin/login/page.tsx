@@ -42,13 +42,13 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 py-12 bg-[#080808]">
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 py-12 bg-[#25231F]">
       <div className="w-full max-w-md">
         {/* Back Link */}
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#a6a095] hover:text-[#c5a880] transition-colors"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#8A8175] hover:text-[#B39B7A] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Live Website</span>
@@ -56,15 +56,15 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Login Card */}
-        <div className="bg-[#111111] border border-white/10 p-8 sm:p-10 shadow-2xl">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-8 sm:p-10 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-full bg-[#c5a880]/15 text-[#c5a880] flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-full bg-[#B39B7A]/15 text-[#B39B7A] flex items-center justify-center mx-auto mb-4">
               <Lock className="w-6 h-6" />
             </div>
-            <h1 className="font-serif text-2xl sm:text-3xl text-[#fbf9f5] font-normal">
+            <h1 className="font-serif text-2xl sm:text-3xl text-[#25231F] font-normal">
               Studio Admin Login
             </h1>
-            <p className="text-xs uppercase tracking-widest text-[#c5a880] mt-1 font-mono">
+            <p className="text-xs uppercase tracking-widest text-[#B39B7A] mt-1 font-mono">
               Play The Story
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1.5 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1.5 font-medium">
                 Admin Email
               </label>
               <div className="relative">
@@ -88,14 +88,14 @@ export default function AdminLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@playthestory.com"
-                  className="w-full bg-[#181818] border border-white/10 px-3.5 py-2.5 pl-10 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3.5 py-2.5 pl-10 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
                 />
                 <Mail className="w-4 h-4 text-[#777] absolute left-3.5 top-3" />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1.5 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1.5 font-medium">
                 Password
               </label>
               <div className="relative">
@@ -105,7 +105,7 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-[#181818] border border-white/10 px-3.5 py-2.5 pl-10 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3.5 py-2.5 pl-10 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
                 />
                 <Lock className="w-4 h-4 text-[#777] absolute left-3.5 top-3" />
               </div>
@@ -125,8 +125,8 @@ export default function AdminLoginPage() {
           </form>
 
           {/* Credentials Info Helper */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex items-start gap-2.5 text-[11px] text-[#777]">
-            <ShieldCheck className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
+          <div className="mt-8 pt-6 border-t border-[#25231F]/15 flex items-start gap-2.5 text-[11px] text-[#777]">
+            <ShieldCheck className="w-4 h-4 text-[#B39B7A] shrink-0 mt-0.5" />
             <span>
               Sign in with the Supabase Auth user assigned the admin role.
             </span>

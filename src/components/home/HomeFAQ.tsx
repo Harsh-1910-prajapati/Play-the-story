@@ -30,9 +30,10 @@ const FAQS = [
 
 export function HomeFAQ() {
   return (
-    <section className="py-24 sm:py-32 bg-[#0d0d0d] border-t border-white/5 relative">
+    <section className="py-24 sm:py-32 bg-[#25231F] border-t border-[#25231F]/10 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
+          className="[&_h2]:text-[#F5F1EA] [&_p]:text-[#D8C9B5]"
           subtitle="Frequently Asked Questions"
           title="LET'S CLEAR A FEW THINGS"
           description="Everything you need to know about working with Play The Story, our coverage, travel, and booking process."
@@ -43,22 +44,22 @@ export function HomeFAQ() {
               <details
                 key={idx}
                 open={idx === 0}
-                className="group border border-white/10 transition-colors duration-300 bg-[#121212] open:border-[#c5a880]/50 hover:border-white/20"
+                className="group border border-[#25231F]/15 transition-colors duration-300 bg-[#F5F1EA] open:border-[#B39B7A]/50 hover:border-[#25231F]/25"
               >
                 <summary
-                  className="list-none w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#c5a880]"
+                  className="list-none w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#B39B7A]"
                 >
-                  <span className="font-serif text-lg sm:text-xl text-[#fbf9f5] font-normal tracking-wide">
+                  <span className="font-serif text-lg sm:text-xl text-[#25231F] font-normal tracking-wide">
                     {faq.q}
                   </span>
                   <span
-                    className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-[#c5a880] transition-transform duration-300 group-open:rotate-180 group-open:bg-[#c5a880]/10 group-open:border-[#c5a880]/40"
+                    className="w-8 h-8 rounded-full border border-[#25231F]/15 flex items-center justify-center shrink-0 text-[#B39B7A] transition-transform duration-300 group-open:rotate-180 group-open:bg-[#B39B7A]/10 group-open:border-[#B39B7A]/40"
                   >
                     <ChevronDown className="w-4 h-4" />
                   </span>
                 </summary>
 
-                <div id={`faq-answer-${idx}`} className="px-6 pb-6 pt-1 text-sm text-[#a6a095] font-light leading-relaxed border-t border-white/5">
+                <div id={`faq-answer-${idx}`} className="px-6 pb-6 pt-1 text-sm text-[#8A8175] font-light leading-relaxed border-t border-[#25231F]/10">
                   <p>{faq.a}</p>
                 </div>
               </details>

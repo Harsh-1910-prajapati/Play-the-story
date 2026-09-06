@@ -62,20 +62,20 @@ export function Lightbox({
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
     >
       <div
-        className="fixed inset-0 bg-black/95 backdrop-blur-md"
+        className="fixed inset-0 bg-[#25231F]/95 backdrop-blur-md"
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div className="relative z-10 w-full h-full max-w-6xl flex flex-col justify-between py-4">
         {/* Top bar */}
-        <div className="flex items-center justify-between text-[#fbf9f5] px-4">
-          <div className="text-xs uppercase tracking-widest text-[#c5a880]">
+        <div className="flex items-center justify-between text-[#25231F] px-4">
+          <div className="text-xs uppercase tracking-widest text-[#B39B7A]">
             Photo {currentIndex + 1} of {images.length}
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/10 transition-colors"
+            className="p-2 text-[#8A8175] hover:text-[#25231F] hover:bg-white/10 transition-colors"
             aria-label="Close lightbox"
           >
             <X className="w-6 h-6" />
@@ -88,7 +88,7 @@ export function Lightbox({
           <button
             onClick={handlePrev}
             aria-label="Previous photograph"
-            className="absolute left-2 sm:left-4 z-20 p-3 bg-black/60 hover:bg-black text-white hover:text-[#c5a880] border border-white/10 transition-colors"
+            className="absolute left-2 sm:left-4 z-20 p-3 bg-[#25231F]/60 hover:bg-[#25231F] text-white hover:text-[#B39B7A] border border-[#25231F]/15 transition-colors"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -109,7 +109,7 @@ export function Lightbox({
           <button
             onClick={handleNext}
             aria-label="Next photograph"
-            className="absolute right-2 sm:right-4 z-20 p-3 bg-black/60 hover:bg-black text-white hover:text-[#c5a880] border border-white/10 transition-colors"
+            className="absolute right-2 sm:right-4 z-20 p-3 bg-[#25231F]/60 hover:bg-[#25231F] text-white hover:text-[#B39B7A] border border-[#25231F]/15 transition-colors"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -117,7 +117,7 @@ export function Lightbox({
 
         {/* Bottom caption */}
         {current.caption && (
-          <div className="text-center text-xs sm:text-sm text-[#d5d0c7] font-serif italic py-2 max-w-xl mx-auto">
+          <div className="text-center text-xs sm:text-sm text-[#8A8175] font-serif italic py-2 max-w-xl mx-auto">
             &ldquo;{current.caption}&rdquo;
           </div>
         )}

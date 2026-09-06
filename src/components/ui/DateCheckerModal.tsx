@@ -81,14 +81,14 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
     >
       {isSuccess ? (
         <div className="text-center py-6">
-          <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#c5a880]/15 flex items-center justify-center text-[#c5a880]">
+          <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#B39B7A]/15 flex items-center justify-center text-[#B39B7A]">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h4 className="font-serif text-2xl text-[#fbf9f5] mb-2">
+          <h4 className="font-serif text-2xl text-[#25231F] mb-2">
             We are checking our dates!
           </h4>
-          <p className="text-sm text-[#a6a095] mb-6 leading-relaxed">
-            Thank you, <span className="text-[#fbf9f5]">{formData.name}</span>. We limit our bookings to a selective number of weddings each season to guarantee our signature cinematic craftsmanship.
+          <p className="text-sm text-[#8A8175] mb-6 leading-relaxed">
+            Thank you, <span className="text-[#25231F]">{formData.name}</span>. We limit our bookings to a selective number of weddings each season to guarantee our signature cinematic craftsmanship.
           </p>
           <div className="flex flex-col gap-3">
             <Button
@@ -106,13 +106,13 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <p className="text-xs sm:text-sm text-[#a6a095] -mt-2 mb-4 font-light">
+          <p className="text-xs sm:text-sm text-[#8A8175] -mt-2 mb-4 font-light">
             We accept limited bespoke weddings per calendar year across Ahmedabad, Gujarat, and destination venues to maintain unmatched artistic attention.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                 Your Name *
               </label>
               <input
@@ -121,11 +121,11 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
                 placeholder="Bride or Groom name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
               />
             </div>
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                 Partner&apos;s Name
               </label>
               <input
@@ -135,14 +135,14 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
                 onChange={(e) =>
                   setFormData({ ...formData, partner_name: e.target.value })
                 }
-                className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                 Wedding Date *
               </label>
               <div className="relative">
@@ -153,13 +153,13 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
                   onChange={(e) =>
                     setFormData({ ...formData, wedding_date: e.target.value })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
-                <Calendar className="w-4 h-4 absolute right-3 top-2.5 text-[#a6a095] pointer-events-none" />
+                <Calendar className="w-4 h-4 absolute right-3 top-2.5 text-[#8A8175] pointer-events-none" />
               </div>
             </div>
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+              <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                 Phone / WhatsApp *
               </label>
               <input
@@ -168,13 +168,13 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
                 placeholder="+91 98765 43210"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+            <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
               Venue / City *
             </label>
             <div className="relative">
@@ -186,14 +186,14 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
                 onChange={(e) =>
                   setFormData({ ...formData, location: e.target.value })
                 }
-                className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+                className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
               />
-              <MapPin className="w-4 h-4 absolute right-3 top-2.5 text-[#a6a095] pointer-events-none" />
+              <MapPin className="w-4 h-4 absolute right-3 top-2.5 text-[#8A8175] pointer-events-none" />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+            <label className="block text-[11px] uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
               Coverage Type
             </label>
             <select
@@ -201,7 +201,7 @@ export function DateCheckerModal({ isOpen, onClose }: DateCheckerModalProps) {
               onChange={(e) =>
                 setFormData({ ...formData, event_type: e.target.value })
               }
-              className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+              className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-sm text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
             >
               <option value="Full Wedding Coverage (Photo + Cinema)">
                 Full Wedding (Photo + Cinematic Film)

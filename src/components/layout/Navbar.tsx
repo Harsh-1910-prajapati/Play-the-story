@@ -38,8 +38,8 @@ export function Navbar() {
         className={cn(
           "fixed top-0 inset-x-0 z-40 transition-all duration-500",
           isScrolled
-            ? "bg-[#080808]/90 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl"
-            : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5"
+            ? "bg-[#25231F]/90 backdrop-blur-md border-b border-[#25231F]/15 py-3 shadow-2xl"
+            : "bg-gradient-to-b from-[#25231F]/80 via-[#25231F]/40 to-transparent py-5"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -59,11 +59,11 @@ export function Navbar() {
             />
 
             <div className="flex flex-col leading-none">
-              <span className="font-serif text-lg sm:text-xl tracking-[0.22em] uppercase text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-medium">
+              <span className="font-serif text-lg sm:text-xl tracking-[0.22em] uppercase text-[#F5F1EA] group-hover:text-[#B39B7A] transition-colors font-medium">
                 PLAY
               </span>
 
-              <span className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors font-light -mt-0.5">
+              <span className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-[#B39B7A] group-hover:text-[#F5F1EA] transition-colors font-light -mt-0.5">
                 THE STORY
               </span>
             </div>
@@ -85,14 +85,14 @@ export function Navbar() {
                   className={cn(
                     "text-xs uppercase tracking-[0.22em] font-medium transition-colors relative py-1",
                     isActive
-                      ? "text-[#c5a880]"
-                      : "text-[#d5d0c7] hover:text-[#fbf9f5]"
+                      ? "text-[#B39B7A]"
+                      : "text-[#F5F1EA] hover:text-[#D8C9B5]"
                   )}
                 >
                   {item.name}
 
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#c5a880]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#B39B7A]" />
                   )}
                 </Link>
               );
@@ -105,10 +105,10 @@ export function Navbar() {
               variant="outline"
               size="sm"
               href="/contact"
-              className="border-[#c5a880]/60 text-[#fbf9f5] hover:border-[#c5a880] hover:bg-[#c5a880]/10 flex items-center gap-2 text-xs uppercase tracking-widest px-5 py-2.5 transition-all"
+              className="border-[#B39B7A]/60 text-[#F5F1EA] hover:border-[#B39B7A] hover:bg-[#B39B7A]/10 flex items-center gap-2 text-xs uppercase tracking-widest px-5 py-2.5 transition-all"
             >
               <span>LET&apos;S TALK</span>
-              <span className="text-[#c5a880]">→</span>
+              <span className="text-[#B39B7A]">→</span>
             </Button>
           </div>
 
@@ -116,14 +116,14 @@ export function Navbar() {
           <div className="flex items-center gap-3 md:hidden">
             <Link
               href="/contact"
-              className="text-[11px] uppercase tracking-wider text-[#c5a880] border border-[#c5a880]/50 px-2.5 py-1"
+              className="text-[11px] uppercase tracking-wider text-[#B39B7A] border border-[#B39B7A]/50 px-2.5 py-1"
             >
               LET&apos;S TALK →
             </Link>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-[#fbf9f5] hover:text-[#c5a880] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
+              className="p-2 text-[#F5F1EA] hover:text-[#B39B7A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B39B7A]"
               aria-label="Toggle Navigation Menu"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation"
@@ -141,7 +141,7 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <div
             id="mobile-navigation"
-            className="md:hidden fixed inset-x-0 top-full bg-[#0d0d0d] border-b border-white/10 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300"
+            className="md:hidden fixed inset-x-0 top-full bg-[#25231F] border-b border-[#25231F]/15 px-6 py-8 shadow-2xl animate-in slide-in-from-top-5 duration-300"
           >
             <nav className="flex flex-col space-y-5">
               {siteConfig.navLinks.map((item) => {
@@ -159,20 +159,20 @@ export function Navbar() {
                     className={cn(
                       "text-sm uppercase tracking-[0.25em] font-medium py-1 transition-colors flex items-center justify-between",
                       isActive
-                        ? "text-[#c5a880]"
-                        : "text-[#d5d0c7]"
+                        ? "text-[#B39B7A]"
+                        : "text-[#8A8175]"
                     )}
                   >
                     <span>{item.name}</span>
 
                     {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#c5a880]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#B39B7A]" />
                     )}
                   </Link>
                 );
               })}
 
-              <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+              <div className="pt-4 border-t border-[#25231F]/15 flex flex-col gap-3">
                 <Button
                   variant="primary"
                   size="md"
@@ -184,7 +184,7 @@ export function Navbar() {
                   <span>→</span>
                 </Button>
 
-                <p className="text-[10px] text-center uppercase tracking-widest text-[#a6a095] mt-2 font-light">
+                <p className="text-[10px] text-center uppercase tracking-widest text-[#8A8175] mt-2 font-light">
                   {siteConfig.location.coverageText}
                 </p>
               </div>
@@ -201,4 +201,3 @@ export function Navbar() {
     </>
   );
 }
-

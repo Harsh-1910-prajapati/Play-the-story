@@ -14,17 +14,17 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="pt-28 sm:pt-36 pb-24 bg-[#080808]">
+    <div className="pt-28 sm:pt-36 pb-24 bg-[#25231F]">
       {/* Hero Header */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-20 sm:mb-28">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-4">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Our Story & Philosophy</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#fbf9f5] font-light leading-[1.1] mb-6">
+        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#25231F] font-light leading-[1.1] mb-6">
           The Art of Preserving What Outlives Time
         </h1>
-        <p className="font-serif text-xl sm:text-2xl text-[#dfc8a5] italic max-w-3xl mx-auto font-light leading-relaxed">
+        <p className="font-serif text-xl sm:text-2xl text-[#B39B7A] italic max-w-3xl mx-auto font-light leading-relaxed">
           &ldquo;We don&apos;t just photograph weddings. We preserve the quiet sighs, the electric glances, and the legacy of families coming together.&rdquo;
         </p>
       </section>
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[4/5] w-full overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative aspect-[4/5] w-full overflow-hidden border border-[#25231F]/15 shadow-2xl">
             <Image
               src="https://res.cloudinary.com/glhspt53/image/upload/v1788538650/photo-1519741497674-611481863552.jpg"
               alt="Play The Story Team at work"
@@ -43,27 +43,27 @@ export default function AboutPage() {
               className="object-cover"
             />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-[#141414] border border-[#c5a880]/40 p-6 hidden sm:block max-w-xs shadow-2xl">
-              <p className="text-[10px] uppercase tracking-widest text-[#c5a880] mb-1">
+            <div className="absolute -bottom-6 -left-6 bg-[#F5F1EA] border border-[#B39B7A]/40 p-6 hidden sm:block max-w-xs shadow-2xl">
+              <p className="text-[10px] uppercase tracking-widest text-[#B39B7A] mb-1">
                 Studio Location
               </p>
-              <p className="font-serif text-lg text-[#fbf9f5]">
+              <p className="font-serif text-lg text-[#25231F]">
                 Sindhu Bhavan Marg, Ahmedabad
               </p>
             </div>
           </div>
 
           <div className="lg:col-span-6 space-y-6">
-            <div className="text-xs uppercase tracking-[0.2em] text-[#c5a880] font-medium">
+            <div className="text-xs uppercase tracking-[0.2em] text-[#B39B7A] font-medium">
               Roots & Vision
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] font-normal leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#25231F] font-normal leading-tight">
               Rooted in Ahmedabad, Capturing Timeless Unions Across the Globe
             </h2>
-            <div className="w-12 h-[1px] bg-[#c5a880]" />
-            <div className="space-y-4 text-sm sm:text-base text-[#a6a095] font-light leading-relaxed">
+            <div className="w-12 h-[1px] bg-[#B39B7A]" />
+            <div className="space-y-4 text-sm sm:text-base text-[#8A8175] font-light leading-relaxed">
               <p>
-                <strong className="text-[#fbf9f5] font-normal">Play The Story</strong> was born from a deep conviction: wedding memories should not feel like rehearsed fashion catalog shoots or formulaic video collages. An Indian wedding is an orchestral whirlwind of heritage, intense emotion, familial bonds, and sacred ceremonies.
+                <strong className="text-[#25231F] font-normal">Play The Story</strong> was born from a deep conviction: wedding memories should not feel like rehearsed fashion catalog shoots or formulaic video collages. An Indian wedding is an orchestral whirlwind of heritage, intense emotion, familial bonds, and sacred ceremonies.
               </p>
               <p>
                 Headquartered along Sindhu Bhavan Marg in Ahmedabad, Gujarat, our boutique studio works with discerning couples who value discretion, fine-art aesthetics, and genuine photojournalism.
@@ -73,13 +73,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="pt-4 flex flex-wrap gap-6 text-xs text-[#c5a880] uppercase tracking-wider font-medium">
+            <div className="pt-4 flex flex-wrap gap-6 text-xs text-[#B39B7A] uppercase tracking-wider font-medium">
               <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#c5a880]" />
+                <CheckCircle className="w-4 h-4 text-[#B39B7A]" />
                 Limited Weddings Per Year
               </span>
               <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#c5a880]" />
+                <CheckCircle className="w-4 h-4 text-[#B39B7A]" />
                 Bespoke DaVinci Color Grade
               </span>
             </div>
@@ -88,7 +88,7 @@ export default function AboutPage() {
       </section>
 
       {/* The 3 Pillars of Our Craft */}
-      <section className="py-24 bg-[#0d0d0d] border-y border-white/5 mb-28">
+      <section className="py-24 bg-[#25231F] border-y border-[#25231F]/10 mb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="The Craft"
@@ -97,53 +97,53 @@ export default function AboutPage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#141414] border border-white/10 p-8 flex flex-col justify-between">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-8 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#c5a880] mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#B39B7A] mb-6">
                   <Heart className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-2xl text-[#fbf9f5] mb-3">
+                <h3 className="font-serif text-2xl text-[#25231F] mb-3">
                   Unobtrusive Presence
                 </h3>
-                <p className="text-sm text-[#a6a095] font-light leading-relaxed">
+                <p className="text-sm text-[#8A8175] font-light leading-relaxed">
                   We blend quietly into your wedding crowd. We do not stop ceremonies for fake retakes. The sweetest frames happen when people forget that a camera is even in the room.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-white/5 text-[11px] uppercase tracking-widest text-[#c5a880]">
+              <div className="mt-6 pt-4 border-t border-[#25231F]/10 text-[11px] uppercase tracking-widest text-[#B39B7A]">
                 Candid Honesty
               </div>
             </div>
 
-            <div className="bg-[#141414] border border-white/10 p-8 flex flex-col justify-between">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-8 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#c5a880] mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#B39B7A] mb-6">
                   <Film className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-2xl text-[#fbf9f5] mb-3">
+                <h3 className="font-serif text-2xl text-[#25231F] mb-3">
                   Cinema Documentary Style
                 </h3>
-                <p className="text-sm text-[#a6a095] font-light leading-relaxed">
+                <p className="text-sm text-[#8A8175] font-light leading-relaxed">
                   Our films are built around real dialogue—the quiet vows whispered to one another, the emotional toast by a sibling, the sound of the wedding shehnai echoing in the courtyard.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-white/5 text-[11px] uppercase tracking-widest text-[#c5a880]">
+              <div className="mt-6 pt-4 border-t border-[#25231F]/10 text-[11px] uppercase tracking-widest text-[#B39B7A]">
                 Narrative Sound & 4K
               </div>
             </div>
 
-            <div className="bg-[#141414] border border-white/10 p-8 flex flex-col justify-between">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-8 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#c5a880] mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#1e1e1e] flex items-center justify-center text-[#B39B7A] mb-6">
                   <Camera className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-2xl text-[#fbf9f5] mb-3">
+                <h3 className="font-serif text-2xl text-[#25231F] mb-3">
                   Heirloom Fine-Art Delivery
                 </h3>
-                <p className="text-sm text-[#a6a095] font-light leading-relaxed">
+                <p className="text-sm text-[#8A8175] font-light leading-relaxed">
                   Your wedding gallery is delivered in a private digital vault alongside custom handcrafted Italian leather heirloom photo albums meant to be held by grandchildren fifty years from now.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-white/5 text-[11px] uppercase tracking-widest text-[#c5a880]">
+              <div className="mt-6 pt-4 border-t border-[#25231F]/10 text-[11px] uppercase tracking-widest text-[#B39B7A]">
                 Generational Legacy
               </div>
             </div>
@@ -189,17 +189,17 @@ export default function AboutPage() {
               }`}
             >
               <div className="sm:w-1/2 pl-12 sm:pl-0 sm:px-8">
-                <div className="text-xs uppercase tracking-widest text-[#c5a880] mb-1 font-mono">
+                <div className="text-xs uppercase tracking-widest text-[#B39B7A] mb-1 font-mono">
                   Phase {item.step}
                 </div>
-                <h4 className="font-serif text-2xl text-[#fbf9f5] mb-2">{item.title}</h4>
-                <p className="text-xs sm:text-sm text-[#a6a095] font-light leading-relaxed">
+                <h4 className="font-serif text-2xl text-[#25231F] mb-2">{item.title}</h4>
+                <p className="text-xs sm:text-sm text-[#8A8175] font-light leading-relaxed">
                   {item.desc}
                 </p>
               </div>
 
               {/* Node Marker */}
-              <div className="absolute left-0 sm:left-1/2 -translate-x-0 sm:-translate-x-1/2 w-8 h-8 rounded-full bg-[#161616] border border-[#c5a880] flex items-center justify-center text-[10px] text-[#c5a880] font-mono z-10">
+              <div className="absolute left-0 sm:left-1/2 -translate-x-0 sm:-translate-x-1/2 w-8 h-8 rounded-full bg-[#F5F1EA] border border-[#B39B7A] flex items-center justify-center text-[10px] text-[#B39B7A] font-mono z-10">
                 {item.step}
               </div>
 
@@ -211,11 +211,11 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-8">
-        <div className="bg-[#111111] border border-white/10 p-10 sm:p-14 shadow-2xl">
-          <h3 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] mb-4 font-light">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-10 sm:p-14 shadow-2xl">
+          <h3 className="font-serif text-3xl sm:text-4xl text-[#25231F] mb-4 font-light">
             We Would Love to Hear Your Story
           </h3>
-          <p className="text-sm text-[#a6a095] max-w-xl mx-auto mb-8 font-light leading-relaxed">
+          <p className="text-sm text-[#8A8175] max-w-xl mx-auto mb-8 font-light leading-relaxed">
             Inquire about our availability for your wedding dates in Ahmedabad, Gujarat, or anywhere across the globe.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

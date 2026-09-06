@@ -44,13 +44,14 @@ export default async function HomePage() {
       {/* 3. Introduction: WE DON'T JUST TAKE PICTURES. WE TELL STORIES. */}
       <HomeIntroduction />
 
-      {/* 4. Services Section: WHAT WE DO */}
-      <section id="services" className="py-24 sm:py-32 bg-[#090909]">
+      {/* 4. Services Section: WHAT WE CREATE */}
+      <section id="services" className="py-24 sm:py-32 bg-[#25231F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            className="[&_h2]:text-[#F5F1EA] [&_p]:text-[#D8C9B5]"
             subtitle="Studio Capabilities"
-            title="WHAT WE DO"
-            description="From candid rituals and fine-art couple portraits to commercial campaigns and Hollywood-grade color grading, explore our full spectrum of creative visual storytelling."
+            title="WHAT WE CREATE"
+            description="Weddings, pre-weddings, events, portraits, brands, films, and content — made with a cinematic eye and a human point of view."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -66,7 +67,7 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-12 text-center">
-            <Button href="/services" variant="outline" size="md">
+            <Button href="/services" variant="outline" size="md" className="text-[#F5F1EA] border-[#B39B7A]/60 hover:bg-[#D8C9B5] hover:text-[#25231F]">
               <span className="flex items-center gap-2 uppercase tracking-widest text-xs">
                 <span>Explore All 7 Services & Deliverables</span>
                 <ArrowRight className="w-4 h-4" />
@@ -77,7 +78,7 @@ export default async function HomePage() {
       </section>
 
       {/* 5. Work / Portfolio: OUR WORK */}
-      <section id="work" className="py-24 sm:py-32 bg-[#171717] border-t border-white/5">
+      <section id="work" className="py-24 sm:py-32 bg-[#F5F1EA] border-t border-[#25231F]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Visual Archives"
@@ -93,23 +94,23 @@ export default async function HomePage() {
       {featuredStory && <FeaturedWeddingStory story={featuredStory} />}
 
       {/* 7. Cinematic Films: STORIES IN MOTION */}
-      <section id="films" className="py-24 sm:py-32 bg-[#090909]">
+      <section id="films" className="py-24 sm:py-32 bg-[#25231F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-3 font-mono">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-3 font-mono">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Motion Cinema</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#fbf9f5] font-light uppercase tracking-wide">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#F5F1EA] font-light uppercase tracking-wide">
                 STORIES IN MOTION
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-[#a6a095] max-w-xl font-light">
+              <p className="mt-3 text-sm sm:text-base text-[#D8C9B5] max-w-xl font-light">
                 Some stories are better heard in laughter, felt in movement and remembered in motion.
               </p>
             </div>
 
-            <Button href="/films" variant="outline" size="sm" className="self-start md:self-auto">
+            <Button href="/films" variant="outline" size="sm" className="self-start md:self-auto text-[#F5F1EA] border-[#B39B7A]/60 hover:bg-[#D8C9B5] hover:text-[#25231F]">
               <span className="flex items-center gap-2 uppercase tracking-widest text-xs">
                 <span>View All Cinema Films</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -132,16 +133,17 @@ export default async function HomePage() {
       <WhyChooseUs />
 
       {/* 10. Reviews / Testimonials: PEOPLE WHO TRUSTED US */}
-      <section id="reviews" className="py-24 sm:py-32 bg-[#0c0c0c] border-t border-white/5">
+      <section id="reviews" className="py-24 sm:py-32 bg-[#25231F] border-t border-[#25231F]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            className="[&_h2]:text-[#F5F1EA] [&_p]:text-[#D8C9B5]"
             subtitle="Client Words"
             title="PEOPLE WHO TRUSTED US"
             description="Genuine words from couples and brands who trusted us to capture their milestones."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {testimonials.slice(0, 4).map((test) => (
+            {testimonials.slice(0, 3).map((test) => (
               <TestimonialCard key={test.id} testimonial={test} />
             ))}
           </div>
@@ -149,7 +151,7 @@ export default async function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/reviews"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#c5a880] hover:text-[#fbf9f5] transition-colors border-b border-[#c5a880]/30 pb-1"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#B39B7A] hover:text-[#D8C9B5] transition-colors border-b border-[#B39B7A]/30 pb-1"
             >
               <span>Read More Verified Reviews</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -169,4 +171,3 @@ export default async function HomePage() {
     </div>
   );
 }
-

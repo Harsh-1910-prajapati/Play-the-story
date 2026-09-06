@@ -96,12 +96,12 @@ export function AdminTestimonialsView({
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl text-[#25231F] font-normal">
             Client Testimonials & Reviews
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Manage heartfelt love notes and wedding reviews from couples.
           </p>
         </div>
@@ -122,38 +122,38 @@ export function AdminTestimonialsView({
         {testimonials.map((test) => (
           <div
             key={test.id}
-            className="bg-[#121212] border border-white/10 p-6 flex flex-col justify-between hover:border-[#c5a880]/40 transition-colors"
+            className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 flex flex-col justify-between hover:border-[#B39B7A]/40 transition-colors"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-1 text-[#c5a880]">
+                <div className="flex items-center gap-1 text-[#B39B7A]">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
                       className={`w-3.5 h-3.5 ${
                         i < test.rating
-                          ? "fill-[#c5a880] text-[#c5a880]"
+                          ? "fill-[#B39B7A] text-[#B39B7A]"
                           : "text-white/20"
                       }`}
                     />
                   ))}
                 </div>
                 {test.featured && (
-                  <span className="text-[10px] uppercase tracking-wider text-[#c5a880] bg-[#c5a880]/10 px-2 py-0.5 border border-[#c5a880]/30 font-mono">
+                  <span className="text-[10px] uppercase tracking-wider text-[#B39B7A] bg-[#B39B7A]/10 px-2 py-0.5 border border-[#B39B7A]/30 font-mono">
                     Featured
                   </span>
                 )}
               </div>
 
-              <p className="font-serif text-sm text-[#fbf9f5] italic leading-relaxed mb-6 font-light">
+              <p className="font-serif text-sm text-[#25231F] italic leading-relaxed mb-6 font-light">
                 &ldquo;{test.review_text}&rdquo;
               </p>
             </div>
 
-            <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div className="pt-4 border-t border-[#25231F]/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 {test.photo_url ? (
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#c5a880]/40 shrink-0">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#B39B7A]/40 shrink-0">
                     <Image
                       src={test.photo_url}
                       alt={test.client_name}
@@ -163,12 +163,12 @@ export function AdminTestimonialsView({
                     />
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-[#222] flex items-center justify-center text-[10px] text-[#c5a880] font-serif font-bold shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#D8C9B5] flex items-center justify-center text-[10px] text-[#B39B7A] font-serif font-bold shrink-0">
                     {test.client_name.substring(0, 2).toUpperCase()}
                   </div>
                 )}
                 <div>
-                  <h4 className="text-xs font-medium text-[#fbf9f5]">
+                  <h4 className="text-xs font-medium text-[#25231F]">
                     {test.client_name}
                   </h4>
                   <p className="text-[10px] text-[#888]">{test.wedding_event}</p>
@@ -178,7 +178,7 @@ export function AdminTestimonialsView({
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => handleOpenEdit(test)}
-                  className="p-1.5 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5 transition-colors"
+                  className="p-1.5 text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
                   title="Edit Review"
                 >
                   <Edit3 className="w-4 h-4" />
@@ -198,27 +198,27 @@ export function AdminTestimonialsView({
 
       {/* Add / Edit Modal */}
       {isEditing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-[#121212] border border-white/10 max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/85 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-[#F5F1EA] border border-[#25231F]/15 max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
             <button
               onClick={() => setIsEditing(false)}
-              className="absolute top-4 right-4 p-2 text-[#888] hover:text-white"
+              className="absolute top-4 right-4 p-2 text-[#888] hover:text-[#25231F]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono">
+              <span className="text-[10px] uppercase tracking-widest text-[#B39B7A] font-mono">
                 {activeTestimonial.id ? "Edit Testimonial" : "Add Testimonial"}
               </span>
-              <h3 className="font-serif text-2xl text-[#fbf9f5] mt-1">
+              <h3 className="font-serif text-2xl text-[#25231F] mt-1">
                 {activeTestimonial.client_name || "New Review"}
               </h3>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Client / Couple Name *
                 </label>
                 <input
@@ -232,13 +232,13 @@ export function AdminTestimonialsView({
                       client_name: e.target.value,
                     })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Wedding Event / Venue *
                   </label>
                   <input
@@ -252,12 +252,12 @@ export function AdminTestimonialsView({
                         wedding_event: e.target.value,
                       })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Rating (Stars)
                   </label>
                   <select
@@ -268,7 +268,7 @@ export function AdminTestimonialsView({
                         rating: Number(e.target.value),
                       })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   >
                     <option value={5}>5 Stars (Exceptional)</option>
                     <option value={4}>4 Stars</option>
@@ -286,7 +286,7 @@ export function AdminTestimonialsView({
               />
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Review Text *
                 </label>
                 <textarea
@@ -300,7 +300,7 @@ export function AdminTestimonialsView({
                       review_text: e.target.value,
                     })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
@@ -315,11 +315,11 @@ export function AdminTestimonialsView({
                       featured: e.target.checked,
                     })
                   }
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
                 <label
                   htmlFor="featured-review-checkbox"
-                  className="text-xs text-[#fbf9f5] cursor-pointer"
+                  className="text-xs text-[#25231F] cursor-pointer"
                 >
                   Feature this review on the homepage testimonials section
                 </label>
@@ -331,18 +331,18 @@ export function AdminTestimonialsView({
                   id="published-review-checkbox"
                   checked={Boolean(activeTestimonial.published)}
                   onChange={(e) => setActiveTestimonial({ ...activeTestimonial, published: e.target.checked })}
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
-                <label htmlFor="published-review-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                <label htmlFor="published-review-checkbox" className="text-xs text-[#25231F] cursor-pointer">
                   Publish this review on the live website
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#25231F]/15 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#a6a095] hover:text-white"
+                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#8A8175] hover:text-[#25231F]"
                 >
                   Cancel
                 </button>

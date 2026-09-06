@@ -72,31 +72,31 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl text-[#25231F] font-normal">
             Client Booking Enquiries
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Review wedding date availability requests and manage follow-ups.
           </p>
         </div>
 
         {/* Status Filter Tabs */}
-        <div className="flex items-center gap-2 bg-[#141414] p-1 border border-white/10">
+        <div className="flex items-center gap-2 bg-[#F5F1EA] p-1 border border-[#25231F]/15">
           {["all", "new", "contacted", "in_progress", "completed", "archived"].map((status) => (
             <button
               key={status}
               onClick={() => setFilterStatus(status)}
               className={`px-3 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
                 filterStatus === status
-                  ? "bg-[#c5a880] text-black font-semibold shadow"
-                  : "text-[#a6a095] hover:text-[#fbf9f5]"
+                  ? "bg-[#B39B7A] text-[#F5F1EA] font-semibold shadow"
+                  : "text-[#8A8175] hover:text-[#25231F]"
               }`}
             >
               {status.replace("_", " ")}
               {status === "new" && (
-                <span className="ml-1.5 px-1.5 py-0.2 bg-black/40 rounded-full text-[10px]">
+                <span className="ml-1.5 px-1.5 py-0.2 bg-[#25231F]/40 rounded-full text-[10px]">
                   {enquiries.filter((e) => e.status === "new").length}
                 </span>
               )}
@@ -106,10 +106,10 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
       </div>
 
       {/* Enquiries Table */}
-      <div className="bg-[#121212] border border-white/10 overflow-hidden shadow-2xl">
+      <div className="bg-[#F5F1EA] border border-[#25231F]/15 overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-[#d5d0c7]">
-            <thead className="bg-[#181818] text-[10px] uppercase tracking-wider text-[#a6a095] border-b border-white/10">
+          <table className="w-full text-left text-xs text-[#8A8175]">
+            <thead className="bg-[#F5F1EA] text-[10px] uppercase tracking-wider text-[#8A8175] border-b border-[#25231F]/15">
               <tr>
                 <th className="p-4">Client & Partner</th>
                 <th className="p-4">Contact</th>
@@ -122,17 +122,17 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
             <tbody className="divide-y divide-white/5">
               {filtered.length > 0 ? (
                 filtered.map((enq) => (
-                  <tr key={enq.id} className="hover:bg-white/5 transition-colors">
+                  <tr key={enq.id} className="hover:bg-[#D8C9B5] transition-colors">
                     <td className="p-4">
-                      <div className="font-medium text-[#fbf9f5] text-sm">
+                      <div className="font-medium text-[#25231F] text-sm">
                         {enq.name}
                       </div>
                       {enq.partner_name && (
-                        <div className="text-xs text-[#c5a880]">
+                        <div className="text-xs text-[#B39B7A]">
                           & {enq.partner_name}
                         </div>
                       )}
-                      <span className="text-[10px] text-[#666] block mt-1">
+                      <span className="text-[10px] text-[#8A8175] block mt-1">
                         Submitted {new Date(enq.created_at).toLocaleDateString()}
                       </span>
                     </td>
@@ -141,14 +141,14 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                       <div className="space-y-1">
                         <a
                           href={`tel:${enq.phone}`}
-                          className="flex items-center gap-1.5 text-[#fbf9f5] hover:text-[#c5a880]"
+                          className="flex items-center gap-1.5 text-[#25231F] hover:text-[#B39B7A]"
                         >
-                          <Phone className="w-3.5 h-3.5 text-[#c5a880]" />
+                          <Phone className="w-3.5 h-3.5 text-[#B39B7A]" />
                           <span>{enq.phone}</span>
                         </a>
                         <a
                           href={`mailto:${enq.email}`}
-                          className="flex items-center gap-1.5 text-[#888] hover:text-white text-[11px]"
+                          className="flex items-center gap-1.5 text-[#888] hover:text-[#25231F] text-[11px]"
                         >
                           <Mail className="w-3.5 h-3.5" />
                           <span className="truncate max-w-[150px]">{enq.email}</span>
@@ -157,18 +157,18 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                     </td>
 
                     <td className="p-4 whitespace-nowrap">
-                      <div className="flex items-center gap-1.5 text-[#fbf9f5]">
-                        <Calendar className="w-3.5 h-3.5 text-[#c5a880]" />
+                      <div className="flex items-center gap-1.5 text-[#25231F]">
+                        <Calendar className="w-3.5 h-3.5 text-[#B39B7A]" />
                         <span>{formatDate(enq.wedding_date)}</span>
                       </div>
                       <div className="flex items-center gap-1 text-[11px] text-[#888] mt-1">
-                        <MapPin className="w-3 h-3 text-[#c5a880]" />
+                        <MapPin className="w-3 h-3 text-[#B39B7A]" />
                         <span>{enq.location}</span>
                       </div>
-                      <span className="text-[10px] text-[#666] block">{enq.event_type}</span>
+                      <span className="text-[10px] text-[#8A8175] block">{enq.event_type}</span>
                     </td>
 
-                    <td className="p-4 whitespace-nowrap font-mono text-[#c5a880]">
+                    <td className="p-4 whitespace-nowrap font-mono text-[#B39B7A]">
                       {enq.estimated_budget}
                     </td>
 
@@ -182,9 +182,9 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                             e.target.value as EnquiryStatus
                           )
                         }
-                        className={`text-[11px] uppercase tracking-wider px-2.5 py-1 bg-black border rounded focus:outline-none ${
+                        className={`text-[11px] uppercase tracking-wider px-2.5 py-1 bg-[#25231F] border rounded focus:outline-none ${
                           enq.status === "new"
-                            ? "border-[#c5a880] text-[#c5a880]"
+                            ? "border-[#B39B7A] text-[#B39B7A]"
                             : enq.status === "contacted"
                             ? "border-blue-400 text-blue-300"
                             : "border-green-400 text-green-300"
@@ -202,7 +202,7 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => setSelectedEnquiry(enq)}
-                          className="p-1.5 text-[#a6a095] hover:text-[#c5a880] hover:bg-white/5 transition-colors"
+                          className="p-1.5 text-[#8A8175] hover:text-[#B39B7A] hover:bg-[#D8C9B5] transition-colors"
                           title="View Details"
                         >
                           <Eye className="w-4 h-4" />
@@ -211,7 +211,7 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
                           href={`https://wa.me/${enq.phone.replace(/[^0-9]/g, "")}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 text-[#25D366] hover:bg-white/5 transition-colors"
+                          className="p-1.5 text-[#25D366] hover:bg-[#D8C9B5] transition-colors"
                           title="Chat on WhatsApp"
                         >
                           <MessageSquare className="w-4 h-4" />
@@ -230,7 +230,7 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
               ) : (
                 <tr>
                   <td colSpan={6} className="p-12 text-center text-[#777]">
-                    <Inbox className="w-8 h-8 mx-auto mb-2 text-[#444]" />
+                    <Inbox className="w-8 h-8 mx-auto mb-2 text-[#8A8175]" />
                     <span>No enquiries found for the selected filter.</span>
                   </td>
                 </tr>
@@ -242,20 +242,20 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
 
       {/* Detail Modal Drawer */}
       {selectedEnquiry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-          <div className="bg-[#121212] border border-white/10 max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/85 backdrop-blur-sm">
+          <div className="bg-[#F5F1EA] border border-[#25231F]/15 max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
             <button
               onClick={() => setSelectedEnquiry(null)}
-              className="absolute top-4 right-4 p-2 text-[#888] hover:text-white"
+              className="absolute top-4 right-4 p-2 text-[#888] hover:text-[#25231F]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono">
+              <span className="text-[10px] uppercase tracking-widest text-[#B39B7A] font-mono">
                 Enquiry Details
               </span>
-              <h3 className="font-serif text-2xl text-[#fbf9f5] mt-1">
+              <h3 className="font-serif text-2xl text-[#25231F] mt-1">
                 {selectedEnquiry.name}{" "}
                 {selectedEnquiry.partner_name && `& ${selectedEnquiry.partner_name}`}
               </h3>
@@ -264,40 +264,40 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
               </p>
             </div>
 
-            <div className="space-y-3 text-xs text-[#d5d0c7] bg-[#161616] p-4 border border-white/5">
+            <div className="space-y-3 text-xs text-[#8A8175] bg-[#F5F1EA] p-4 border border-[#25231F]/10">
               <div className="flex justify-between">
                 <span className="text-[#888]">Wedding Date:</span>
-                <span className="font-medium text-[#fbf9f5]">
+                <span className="font-medium text-[#25231F]">
                   {formatDate(selectedEnquiry.wedding_date)}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#888]">Location:</span>
-                <span className="font-medium text-[#fbf9f5]">
+                <span className="font-medium text-[#25231F]">
                   {selectedEnquiry.location}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#888]">Event Coverage:</span>
-                <span className="font-medium text-[#fbf9f5]">
+                <span className="font-medium text-[#25231F]">
                   {selectedEnquiry.event_type}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#888]">Budget:</span>
-                <span className="font-medium text-[#c5a880]">
+                <span className="font-medium text-[#B39B7A]">
                   {selectedEnquiry.estimated_budget}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#888]">Phone:</span>
-                <span className="font-medium text-[#fbf9f5]">
+                <span className="font-medium text-[#25231F]">
                   {selectedEnquiry.phone}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#888]">Email:</span>
-                <span className="font-medium text-[#fbf9f5]">
+                <span className="font-medium text-[#25231F]">
                   {selectedEnquiry.email}
                 </span>
               </div>
@@ -305,21 +305,21 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
 
             {selectedEnquiry.message && (
               <div>
-                <p className="text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+                <p className="text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
                   Client Message
                 </p>
-                <div className="bg-[#181818] p-4 text-xs text-[#d5d0c7] leading-relaxed border border-white/5 italic">
+                <div className="bg-[#F5F1EA] p-4 text-xs text-[#8A8175] leading-relaxed border border-[#25231F]/10 italic">
                   &ldquo;{selectedEnquiry.message}&rdquo;
                 </div>
               </div>
             )}
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between pt-4 border-t border-[#25231F]/15">
               <a
                 href={`https://wa.me/${selectedEnquiry.phone.replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-[#25D366] text-black text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
+                className="px-4 py-2 bg-[#25D366] text-[#F5F1EA] text-xs font-semibold uppercase tracking-wider flex items-center gap-2"
               >
                 <MessageSquare className="w-4 h-4" />
                 Open WhatsApp
@@ -327,7 +327,7 @@ export function AdminEnquiriesView({ initialEnquiries }: AdminEnquiriesViewProps
 
               <button
                 onClick={() => setSelectedEnquiry(null)}
-                className="px-4 py-2 text-xs uppercase tracking-wider text-[#a6a095] hover:text-white"
+                className="px-4 py-2 text-xs uppercase tracking-wider text-[#8A8175] hover:text-[#25231F]"
               >
                 Close
               </button>

@@ -39,8 +39,8 @@ export function StoriesFilterView({ stories }: StoriesFilterViewProps) {
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2.5 text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 ${
                 isActive
-                  ? "bg-[#c5a880] text-black shadow-[0_0_20px_rgba(197,168,128,0.25)]"
-                  : "bg-[#141414] text-[#a6a095] hover:text-[#fbf9f5] border border-white/5 hover:border-white/20"
+                  ? "bg-[#B39B7A] text-[#F5F1EA] shadow-[0_0_20px_rgba(179,155,122,0.25)]"
+                  : "bg-[#F5F1EA] text-[#8A8175] hover:text-[#25231F] border border-[#25231F]/10 hover:border-[#25231F]/25"
               }`}
             >
               {cat}
@@ -57,9 +57,9 @@ export function StoriesFilterView({ stories }: StoriesFilterViewProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-[#111111] border border-white/5">
-          <p className="font-serif text-2xl text-[#fbf9f5] mb-2">No Stories Found</p>
-          <p className="text-sm text-[#a6a095]">
+        <div className="text-center py-20 bg-[#F5F1EA] border border-[#25231F]/10">
+          <p className="font-serif text-2xl text-[#25231F] mb-2">No Stories Found</p>
+          <p className="text-sm text-[#8A8175]">
             No stories currently found under the {activeCategory} category.
           </p>
         </div>

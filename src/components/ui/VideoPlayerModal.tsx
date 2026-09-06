@@ -62,26 +62,26 @@ export function VideoPlayerModal({
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
     >
       <div
-        className="fixed inset-0 bg-black/95 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-[#25231F]/95 backdrop-blur-md transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div className="relative w-full max-w-5xl z-10">
-        <div className="flex items-center justify-between pb-3 text-[#fbf9f5]">
-          <h3 className="font-serif text-lg sm:text-xl text-[#fbf9f5] truncate pr-4">
+        <div className="flex items-center justify-between pb-3 text-[#25231F]">
+          <h3 className="font-serif text-lg sm:text-xl text-[#25231F] truncate pr-4">
             {title || "Cinematic Wedding Film"}
           </h3>
           <button
             onClick={onClose}
-            className="p-2 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/10 transition-colors"
+            className="p-2 text-[#8A8175] hover:text-[#25231F] hover:bg-white/10 transition-colors"
             aria-label="Close cinema player"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="relative w-full aspect-video bg-black border border-white/15 overflow-hidden shadow-2xl">
+        <div className="relative w-full aspect-video bg-[#25231F] border border-white/15 overflow-hidden shadow-2xl">
           {isDirectVideo ? (
             <video
               src={embedUrl}

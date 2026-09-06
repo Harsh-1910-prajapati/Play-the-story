@@ -52,7 +52,7 @@ export function ImageUploader({
 
   return (
     <div className="space-y-2">
-      <label className="block text-xs uppercase tracking-wider text-[#c5a880] font-medium">
+      <label className="block text-xs uppercase tracking-wider text-[#B39B7A] font-medium">
         {label}
       </label>
 
@@ -63,10 +63,10 @@ export function ImageUploader({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="https://images.unsplash.com/... or Cloudinary URL"
-          className="flex-1 bg-[#161616] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880]"
+          className="flex-1 bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A]"
         />
-        <label className="cursor-pointer bg-[#222222] hover:bg-[#333333] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] flex items-center gap-1.5 transition-colors shrink-0">
-          <Upload className="w-3.5 h-3.5 text-[#c5a880]" />
+        <label className="cursor-pointer bg-[#D8C9B5] hover:bg-[#8A8175] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] flex items-center gap-1.5 transition-colors shrink-0">
+          <Upload className="w-3.5 h-3.5 text-[#B39B7A]" />
           <span>{isUploading ? "Uploading..." : "Upload"}</span>
           <input
             type="file"
@@ -88,7 +88,7 @@ export function ImageUploader({
 
       {/* Preview */}
       {value && (
-        <div className="relative aspect-video max-w-sm overflow-hidden bg-black border border-white/10 mt-2">
+        <div className="relative aspect-video max-w-sm overflow-hidden bg-[#25231F] border border-[#25231F]/15 mt-2">
           <Image
             src={value}
             alt="Uploaded Preview"
@@ -99,12 +99,12 @@ export function ImageUploader({
           <button
             type="button"
             onClick={() => onChange("")}
-            className="absolute top-2 right-2 p-1.5 bg-black/80 hover:bg-red-950 text-white rounded-full transition-colors"
+            className="absolute top-2 right-2 p-1.5 bg-[#25231F]/80 hover:bg-red-950 text-white rounded-full transition-colors"
             title="Remove image"
           >
             <X className="w-3.5 h-3.5" />
           </button>
-          <div className="absolute bottom-2 left-2 bg-black/80 px-2 py-0.5 text-[10px] text-[#c5a880] flex items-center gap-1">
+          <div className="absolute bottom-2 left-2 bg-[#25231F]/80 px-2 py-0.5 text-[10px] text-[#B39B7A] flex items-center gap-1">
             <Check className="w-3 h-3" />
             <span>Image Attached</span>
           </div>

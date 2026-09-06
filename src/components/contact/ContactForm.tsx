@@ -68,14 +68,14 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-[#111111] border border-[#c5a880]/40 p-8 sm:p-12 text-center shadow-2xl animate-in zoom-in-95 duration-300">
-        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#c5a880]/15 flex items-center justify-center text-[#c5a880]">
+      <div className="bg-[#F5F1EA] border border-[#B39B7A]/40 p-8 sm:p-12 text-center shadow-2xl animate-in zoom-in-95 duration-300">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#B39B7A]/15 flex items-center justify-center text-[#B39B7A]">
           <CheckCircle2 className="w-9 h-9" />
         </div>
-        <h3 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] mb-3">
+        <h3 className="font-serif text-3xl sm:text-4xl text-[#25231F] mb-3">
           Thank You, {formData.name}
         </h3>
-        <p className="text-sm sm:text-base text-[#a6a095] max-w-lg mx-auto font-light leading-relaxed mb-8">
+        <p className="text-sm sm:text-base text-[#8A8175] max-w-lg mx-auto font-light leading-relaxed mb-8">
           We have safely received your wedding inquiry. Our creative director will review date availability and reach out to you within 24 hours.
         </p>
 
@@ -117,13 +117,13 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#111111] border border-white/10 p-6 sm:p-10 lg:p-12 shadow-2xl space-y-6"
+      className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 sm:p-10 lg:p-12 shadow-2xl space-y-6"
     >
-      <div className="border-b border-white/10 pb-4 mb-6">
-        <h3 className="font-serif text-2xl sm:text-3xl text-[#fbf9f5] font-light">
+      <div className="border-b border-[#25231F]/15 pb-4 mb-6">
+        <h3 className="font-serif text-2xl sm:text-3xl text-[#25231F] font-light">
           Wedding Inquiry Form
         </h3>
-        <p className="text-xs text-[#a6a095] mt-1 font-light">
+        <p className="text-xs text-[#8A8175] mt-1 font-light">
           Please provide as much detail as possible to help us prepare a personalized quote.
         </p>
       </div>
@@ -140,7 +140,7 @@ export function ContactForm() {
       {/* Row 1: Names */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="contact-name" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-name" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Your Full Name *
           </label>
           <input
@@ -151,12 +151,12 @@ export function ContactForm() {
             placeholder="e.g. Pooja Shah"
             value={formData.name}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-partner-name" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-partner-name" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Partner&apos;s Name
           </label>
           <input
@@ -166,7 +166,7 @@ export function ContactForm() {
             placeholder="e.g. Ronak Patel"
             value={formData.partner_name}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
       </div>
@@ -174,7 +174,7 @@ export function ContactForm() {
       {/* Row 2: Contact Info */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="contact-email" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-email" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Email Address *
           </label>
           <input
@@ -185,12 +185,12 @@ export function ContactForm() {
             placeholder="pooja@example.com"
             value={formData.email}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-phone" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-phone" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Phone / WhatsApp *
           </label>
           <input
@@ -201,7 +201,7 @@ export function ContactForm() {
             placeholder="+91 98251 12345"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
       </div>
@@ -209,7 +209,7 @@ export function ContactForm() {
       {/* Row 3: Wedding Date & Event Type */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="contact-wedding-date" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-wedding-date" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Event / Shoot Date *
           </label>
           <input
@@ -219,12 +219,12 @@ export function ContactForm() {
             required
             value={formData.wedding_date}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-event-type" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-event-type" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Service / Event Type *
           </label>
           <select
@@ -232,7 +232,7 @@ export function ContactForm() {
             name="event_type"
             value={formData.event_type}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] focus:outline-none focus:border-[#B39B7A] transition-colors"
           >
             <option value="Weddings (Full Photography & Cinema)">
               Weddings (Full Photography & Cinema)
@@ -250,7 +250,7 @@ export function ContactForm() {
       {/* Row 4: Location & Budget */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="contact-location" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-location" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Wedding Venue / City *
           </label>
           <input
@@ -261,12 +261,12 @@ export function ContactForm() {
             placeholder="e.g. The Ummed, Ahmedabad"
             value={formData.location}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-budget" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+          <label htmlFor="contact-budget" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
             Estimated Photography/Film Budget
           </label>
           <select
@@ -274,7 +274,7 @@ export function ContactForm() {
             name="estimated_budget"
             value={formData.estimated_budget}
             onChange={handleChange}
-            className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] focus:outline-none focus:border-[#c5a880] transition-colors"
+            className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] focus:outline-none focus:border-[#B39B7A] transition-colors"
           >
             <option value="₹2,00,000 – ₹3,50,000">₹2,00,000 – ₹3,50,000</option>
             <option value="₹3,50,000 – ₹5,00,000">₹3,50,000 – ₹5,00,000</option>
@@ -286,7 +286,7 @@ export function ContactForm() {
 
       {/* Row 5: Message */}
       <div>
-        <label htmlFor="contact-message" className="block text-xs uppercase tracking-wider text-[#c5a880] mb-2 font-medium">
+        <label htmlFor="contact-message" className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-2 font-medium">
           Tell Us About Your Celebration (Optional)
         </label>
         <textarea
@@ -296,7 +296,7 @@ export function ContactForm() {
           placeholder="Tell us about your wedding ceremonies, traditions, estimated guest count, or any special moments you care most about..."
           value={formData.message}
           onChange={handleChange}
-          className="w-full bg-[#181818] border border-white/10 px-4 py-3 text-sm text-[#fbf9f5] placeholder:text-[#555] focus:outline-none focus:border-[#c5a880] transition-colors"
+          className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-4 py-3 text-sm text-[#25231F] placeholder:text-[#8A8175] focus:outline-none focus:border-[#B39B7A] transition-colors"
         />
       </div>
 

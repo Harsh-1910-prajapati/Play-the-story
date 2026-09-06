@@ -17,17 +17,17 @@ export default async function StoriesPage() {
   const stories = await dataRepository.getStories();
 
   return (
-    <div className="pt-28 sm:pt-36 pb-24 bg-[#080808]">
+    <div className="pt-28 sm:pt-36 pb-24 bg-[#25231F]">
       {/* Header */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-16 sm:mb-20">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-4">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Curated Archives</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#fbf9f5] font-light leading-[1.1] mb-6">
+        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#25231F] font-light leading-[1.1] mb-6">
           Our Stories
         </h1>
-        <p className="text-sm sm:text-base md:text-lg text-[#a6a095] max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-[#8A8175] max-w-2xl mx-auto font-light leading-relaxed">
           A timeless collection of weddings, pre-weddings, and celebrations captured with emotional intimacy and editorial beauty.
         </p>
       </section>

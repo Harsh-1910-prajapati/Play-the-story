@@ -27,22 +27,22 @@ export function SectionHeading({
       {subtitle && (
         <div
           className={cn(
-            "flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-3 font-medium",
+            "flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-3 font-medium",
             align === "center" ? "justify-center" : "justify-start"
           )}
         >
-          <span className="w-6 h-[1px] bg-[#c5a880]/60 inline-block" />
+          <span className="w-6 h-[1px] bg-[#B39B7A]/60 inline-block" />
           <span>{subtitle}</span>
           {align === "center" && (
-            <span className="w-6 h-[1px] bg-[#c5a880]/60 inline-block" />
+            <span className="w-6 h-[1px] bg-[#B39B7A]/60 inline-block" />
           )}
         </div>
       )}
-      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fbf9f5] font-normal leading-[1.15] tracking-tight">
+      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#25231F] font-normal leading-[1.15] tracking-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-sm md:text-base text-[#a6a095] leading-relaxed font-light">
+        <p className="mt-4 text-sm md:text-base text-[#8A8175] leading-relaxed font-light">
           {description}
         </p>
       )}

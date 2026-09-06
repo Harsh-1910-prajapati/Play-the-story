@@ -176,12 +176,12 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
   return (
     <div className="space-y-8">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl text-[#25231F] font-normal">
             Wedding Stories
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Manage your visual wedding documentary chapters published on the website.
           </p>
         </div>
@@ -202,11 +202,11 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
         {stories.map((story) => (
           <div
             key={story.id}
-            className="bg-[#121212] border border-white/10 overflow-hidden flex flex-col justify-between hover:border-[#c5a880]/40 transition-colors"
+            className="bg-[#F5F1EA] border border-[#25231F]/15 overflow-hidden flex flex-col justify-between hover:border-[#B39B7A]/40 transition-colors"
           >
             <div>
               {/* Thumbnail */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#25231F]">
                 <Image
                   src={story.cover_image}
                   alt={story.couple_names}
@@ -214,11 +214,11 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
-                <div className="absolute top-2 left-2 bg-black/80 px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-[#c5a880]">
+                <div className="absolute top-2 left-2 bg-[#25231F]/80 px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-[#B39B7A]">
                   {story.category}
                 </div>
                 {story.featured && (
-                  <div className="absolute top-2 right-2 bg-[#c5a880] text-black px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                  <div className="absolute top-2 right-2 bg-[#B39B7A] text-[#F5F1EA] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
                     <Star className="w-3 h-3 fill-black" />
                     Featured
                   </div>
@@ -227,13 +227,13 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
 
               {/* Info */}
               <div className="p-5">
-                <div className="text-[11px] text-[#a6a095] mb-1 font-light">
+                <div className="text-[11px] text-[#8A8175] mb-1 font-light">
                   {story.location} • {formatDate(story.wedding_date)}
                 </div>
-                <h3 className="font-serif text-xl text-[#fbf9f5] font-medium">
+                <h3 className="font-serif text-xl text-[#25231F] font-medium">
                   {story.couple_names}
                 </h3>
-                <p className="text-xs text-[#dfc8a5] italic mt-0.5 line-clamp-1">
+                <p className="text-xs text-[#B39B7A] italic mt-0.5 line-clamp-1">
                   &ldquo;{story.title}&rdquo;
                 </p>
                 <p className="text-xs text-[#888] mt-2 line-clamp-2 font-light">
@@ -243,11 +243,11 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
             </div>
 
             {/* Actions */}
-            <div className="p-4 bg-[#161616] border-t border-white/5 flex items-center justify-between">
+            <div className="p-4 bg-[#F5F1EA] border-t border-[#25231F]/10 flex items-center justify-between">
               <Link
                 href={`/stories/${story.slug}`}
                 target="_blank"
-                className="text-[11px] text-[#c5a880] hover:underline flex items-center gap-1"
+                className="text-[11px] text-[#B39B7A] hover:underline flex items-center gap-1"
               >
                 <span>Preview</span>
                 <ExternalLink className="w-3 h-3" />
@@ -256,7 +256,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleOpenEdit(story)}
-                  className="p-1.5 text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5 transition-colors"
+                  className="p-1.5 text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
                   title="Edit Story"
                 >
                   <Edit3 className="w-4 h-4" />
@@ -276,20 +276,20 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
 
       {/* Edit / Add Modal */}
       {isEditing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-[#121212] border border-white/10 max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/85 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-[#F5F1EA] border border-[#25231F]/15 max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl my-8 relative">
             <button
               onClick={() => setIsEditing(false)}
-              className="absolute top-4 right-4 p-2 text-[#888] hover:text-white"
+              className="absolute top-4 right-4 p-2 text-[#888] hover:text-[#25231F]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono">
+              <span className="text-[10px] uppercase tracking-widest text-[#B39B7A] font-mono">
                 {activeStory.id ? "Edit Wedding Story" : "Create New Wedding Story"}
               </span>
-              <h3 className="font-serif text-2xl text-[#fbf9f5] mt-1">
+              <h3 className="font-serif text-2xl text-[#25231F] mt-1">
                 {activeStory.couple_names || "New Story"}
               </h3>
             </div>
@@ -297,7 +297,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
             <form onSubmit={handleSave} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Couple Names *
                   </label>
                   <input
@@ -308,12 +308,12 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, couple_names: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Story Title / Headline *
                   </label>
                   <input
@@ -324,14 +324,14 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, title: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Wedding Date *
                   </label>
                   <input
@@ -341,12 +341,12 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, wedding_date: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Category *
                   </label>
                   <select
@@ -357,7 +357,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                         category: e.target.value as StoryCategory,
                       })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   >
                     <option value="Weddings">Weddings</option>
                     <option value="Pre-Weddings">Pre-Weddings</option>
@@ -368,7 +368,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Location *
                   </label>
                   <input
@@ -379,14 +379,14 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, location: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Wedding Type / Style
                   </label>
                   <input
@@ -396,12 +396,12 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, wedding_type: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                  <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                     Film URL (Optional YouTube/Vimeo)
                   </label>
                   <input
@@ -411,7 +411,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                     onChange={(e) =>
                       setActiveStory({ ...activeStory, film_url: e.target.value })
                     }
-                    className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                    className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                   />
                 </div>
               </div>
@@ -426,9 +426,9 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
               />
 
               {activeStory.id && (
-                <div className="space-y-3 border-t border-white/10 pt-4">
+                <div className="space-y-3 border-t border-[#25231F]/15 pt-4">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                    <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                       Story Gallery
                     </label>
                     <p className="text-[11px] text-[#777]">Add, describe, remove, or reorder images in this story.</p>
@@ -448,21 +448,21 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                       value={galleryDraftAlt}
                       onChange={(e) => setGalleryDraftAlt(e.target.value)}
                       placeholder="Descriptive alt text"
-                      className="flex-1 bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                      className="flex-1 bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                     />
-                    <button type="button" onClick={handleAddGalleryImage} className="px-3 py-2 bg-[#222] text-xs text-[#fbf9f5] border border-white/10">
+                    <button type="button" onClick={handleAddGalleryImage} className="px-3 py-2 bg-[#D8C9B5] text-xs text-[#25231F] border border-[#25231F]/15">
                       Add Image
                     </button>
                   </div>
                   <div className="space-y-2">
                     {(activeStory.gallery || []).map((image, index) => (
-                      <div key={image.id} className="flex items-center gap-3 bg-[#181818] border border-white/10 p-2">
-                        <div className="relative w-16 h-12 shrink-0 bg-black overflow-hidden">
+                      <div key={image.id} className="flex items-center gap-3 bg-[#F5F1EA] border border-[#25231F]/15 p-2">
+                        <div className="relative w-16 h-12 shrink-0 bg-[#25231F] overflow-hidden">
                           <Image src={image.image_url} alt={image.alt_text || "Gallery image"} fill sizes="64px" className="object-cover" />
                         </div>
-                        <span className="text-[11px] text-[#a6a095] flex-1 truncate">{image.alt_text}</span>
-                        <button type="button" onClick={() => handleMoveGalleryImage(index, -1)} disabled={index === 0} className="text-xs text-[#c5a880] disabled:text-[#444]" title="Move image up">↑</button>
-                        <button type="button" onClick={() => handleMoveGalleryImage(index, 1)} disabled={index === (activeStory.gallery?.length || 1) - 1} className="text-xs text-[#c5a880] disabled:text-[#444]" title="Move image down">↓</button>
+                        <span className="text-[11px] text-[#8A8175] flex-1 truncate">{image.alt_text}</span>
+                        <button type="button" onClick={() => handleMoveGalleryImage(index, -1)} disabled={index === 0} className="text-xs text-[#B39B7A] disabled:text-[#8A8175]" title="Move image up">↑</button>
+                        <button type="button" onClick={() => handleMoveGalleryImage(index, 1)} disabled={index === (activeStory.gallery?.length || 1) - 1} className="text-xs text-[#B39B7A] disabled:text-[#8A8175]" title="Move image down">↓</button>
                         <button type="button" onClick={() => handleDeleteGalleryImage(image.id)} className="text-xs text-red-400" title="Delete gallery image">Delete</button>
                       </div>
                     ))}
@@ -471,7 +471,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
               )}
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#c5a880] mb-1 font-medium">
+                <label className="block text-xs uppercase tracking-wider text-[#B39B7A] mb-1 font-medium">
                   Story Narrative / Description *
                 </label>
                 <textarea
@@ -482,7 +482,7 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                   onChange={(e) =>
                     setActiveStory({ ...activeStory, description: e.target.value })
                   }
-                  className="w-full bg-[#181818] border border-white/10 px-3 py-2 text-xs text-[#fbf9f5] focus:outline-none focus:border-[#c5a880]"
+                  className="w-full bg-[#F5F1EA] border border-[#25231F]/15 px-3 py-2 text-xs text-[#25231F] focus:outline-none focus:border-[#B39B7A]"
                 />
               </div>
 
@@ -495,11 +495,11 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                   onChange={(e) =>
                     setActiveStory({ ...activeStory, featured: e.target.checked })
                   }
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
                 <label
                   htmlFor="featured-checkbox"
-                  className="text-xs text-[#fbf9f5] cursor-pointer"
+                  className="text-xs text-[#25231F] cursor-pointer"
                 >
                   Feature this story prominently on the homepage editorial section
                 </label>
@@ -511,18 +511,18 @@ export function AdminStoriesView({ initialStories }: AdminStoriesViewProps) {
                   id="published-checkbox"
                   checked={Boolean(activeStory.published)}
                   onChange={(e) => setActiveStory({ ...activeStory, published: e.target.checked })}
-                  className="rounded border-white/10 bg-black text-[#c5a880] focus:ring-[#c5a880]"
+                  className="rounded border-[#25231F]/15 bg-[#25231F] text-[#B39B7A] focus:ring-[#B39B7A]"
                 />
-                <label htmlFor="published-checkbox" className="text-xs text-[#fbf9f5] cursor-pointer">
+                <label htmlFor="published-checkbox" className="text-xs text-[#25231F] cursor-pointer">
                   Publish this story on the live website
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#25231F]/15 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#a6a095] hover:text-white"
+                  className="px-4 py-2 text-xs uppercase tracking-wider text-[#8A8175] hover:text-[#25231F]"
                 >
                   Cancel
                 </button>

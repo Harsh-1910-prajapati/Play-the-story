@@ -51,12 +51,12 @@ export function AdminOverviewView({
   return (
     <div className="space-y-10">
       {/* Top Welcome & Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#25231F]/15">
         <div>
-          <h1 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] font-normal">
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#25231F] font-normal">
             Studio Overview
           </h1>
-          <p className="text-xs text-[#a6a095] mt-1 font-light">
+          <p className="text-xs text-[#8A8175] mt-1 font-light">
             Welcome to the Play The Story control suite. Manage wedding stories, films, services, and enquiries.
           </p>
         </div>
@@ -64,14 +64,14 @@ export function AdminOverviewView({
         <div className="flex items-center gap-3">
           <Link
             href="/admin/stories/new"
-            className="px-4 py-2 bg-[#c5a880] text-black text-xs font-semibold uppercase tracking-wider hover:bg-[#dfc8a5] transition-colors flex items-center gap-1.5 shadow-md"
+            className="px-4 py-2 bg-[#B39B7A] text-[#F5F1EA] text-xs font-semibold uppercase tracking-wider hover:bg-[#B39B7A] transition-colors flex items-center gap-1.5 shadow-md"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Story</span>
           </Link>
           <Link
             href="/admin/films"
-            className="px-4 py-2 bg-[#161616] border border-white/10 text-[#fbf9f5] text-xs font-medium uppercase tracking-wider hover:bg-[#222] transition-colors flex items-center gap-1.5"
+            className="px-4 py-2 bg-[#F5F1EA] border border-[#25231F]/15 text-[#25231F] text-xs font-medium uppercase tracking-wider hover:bg-[#D8C9B5] transition-colors flex items-center gap-1.5"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Film</span>
@@ -82,26 +82,26 @@ export function AdminOverviewView({
       {/* Metric Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Total Enquiries */}
-        <div className="bg-[#121212] border border-white/10 p-6 flex flex-col justify-between">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-wider text-[#a6a095]">
+            <span className="text-xs uppercase tracking-wider text-[#8A8175]">
               Total Enquiries
             </span>
-            <Inbox className="w-5 h-5 text-[#c5a880]" />
+            <Inbox className="w-5 h-5 text-[#B39B7A]" />
           </div>
           <div className="flex items-baseline gap-3">
-            <span className="font-serif text-3xl sm:text-4xl text-[#fbf9f5]">
+            <span className="font-serif text-3xl sm:text-4xl text-[#25231F]">
               {stats.totalEnquiries}
             </span>
             {stats.newEnquiries > 0 && (
-              <span className="px-2 py-0.5 rounded-full bg-[#c5a880]/20 text-[#c5a880] text-[11px] font-mono">
+              <span className="px-2 py-0.5 rounded-full bg-[#B39B7A]/20 text-[#B39B7A] text-[11px] font-mono">
                 {stats.newEnquiries} New
               </span>
             )}
           </div>
           <Link
             href="/admin/enquiries"
-            className="mt-4 pt-3 border-t border-white/5 text-[11px] text-[#c5a880] flex items-center justify-between hover:underline"
+            className="mt-4 pt-3 border-t border-[#25231F]/10 text-[11px] text-[#B39B7A] flex items-center justify-between hover:underline"
           >
             <span>View all submissions</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -109,19 +109,19 @@ export function AdminOverviewView({
         </div>
 
         {/* Total Stories */}
-        <div className="bg-[#121212] border border-white/10 p-6 flex flex-col justify-between">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-wider text-[#a6a095]">
+            <span className="text-xs uppercase tracking-wider text-[#8A8175]">
               Wedding Stories
             </span>
-            <Camera className="w-5 h-5 text-[#c5a880]" />
+            <Camera className="w-5 h-5 text-[#B39B7A]" />
           </div>
-          <span className="font-serif text-3xl sm:text-4xl text-[#fbf9f5]">
+          <span className="font-serif text-3xl sm:text-4xl text-[#25231F]">
             {stats.totalStories}
           </span>
           <Link
             href="/admin/stories"
-            className="mt-4 pt-3 border-t border-white/5 text-[11px] text-[#c5a880] flex items-center justify-between hover:underline"
+            className="mt-4 pt-3 border-t border-[#25231F]/10 text-[11px] text-[#B39B7A] flex items-center justify-between hover:underline"
           >
             <span>Manage stories</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -129,19 +129,19 @@ export function AdminOverviewView({
         </div>
 
         {/* Total Films */}
-        <div className="bg-[#121212] border border-white/10 p-6 flex flex-col justify-between">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-wider text-[#a6a095]">
+            <span className="text-xs uppercase tracking-wider text-[#8A8175]">
               Cinematic Films
             </span>
-            <Film className="w-5 h-5 text-[#c5a880]" />
+            <Film className="w-5 h-5 text-[#B39B7A]" />
           </div>
-          <span className="font-serif text-3xl sm:text-4xl text-[#fbf9f5]">
+          <span className="font-serif text-3xl sm:text-4xl text-[#25231F]">
             {stats.totalFilms}
           </span>
           <Link
             href="/admin/films"
-            className="mt-4 pt-3 border-t border-white/5 text-[11px] text-[#c5a880] flex items-center justify-between hover:underline"
+            className="mt-4 pt-3 border-t border-[#25231F]/10 text-[11px] text-[#B39B7A] flex items-center justify-between hover:underline"
           >
             <span>Manage films</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -149,19 +149,19 @@ export function AdminOverviewView({
         </div>
 
         {/* Total Testimonials */}
-        <div className="bg-[#121212] border border-white/10 p-6 flex flex-col justify-between">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-wider text-[#a6a095]">
+            <span className="text-xs uppercase tracking-wider text-[#8A8175]">
               Client Reviews
             </span>
-            <MessageSquareQuote className="w-5 h-5 text-[#c5a880]" />
+            <MessageSquareQuote className="w-5 h-5 text-[#B39B7A]" />
           </div>
-          <span className="font-serif text-3xl sm:text-4xl text-[#fbf9f5]">
+          <span className="font-serif text-3xl sm:text-4xl text-[#25231F]">
             {stats.totalTestimonials}
           </span>
           <Link
             href="/admin/testimonials"
-            className="mt-4 pt-3 border-t border-white/5 text-[11px] text-[#c5a880] flex items-center justify-between hover:underline"
+            className="mt-4 pt-3 border-t border-[#25231F]/10 text-[11px] text-[#B39B7A] flex items-center justify-between hover:underline"
           >
             <span>Manage reviews</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -170,25 +170,25 @@ export function AdminOverviewView({
       </div>
 
       {/* Recent Enquiries Table */}
-      <div className="bg-[#121212] border border-white/10 p-6">
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+      <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#25231F]/15">
           <div>
-            <h2 className="font-serif text-2xl text-[#fbf9f5]">Recent Booking Enquiries</h2>
-            <p className="text-xs text-[#a6a095] mt-0.5">
+            <h2 className="font-serif text-2xl text-[#25231F]">Recent Booking Enquiries</h2>
+            <p className="text-xs text-[#8A8175] mt-0.5">
               Couples who requested date availability or custom quotes
             </p>
           </div>
           <Link
             href="/admin/enquiries"
-            className="text-xs text-[#c5a880] hover:underline uppercase tracking-wider font-medium"
+            className="text-xs text-[#B39B7A] hover:underline uppercase tracking-wider font-medium"
           >
             View All ({enquiries.length})
           </Link>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-[#d5d0c7]">
-            <thead className="bg-[#181818] text-[10px] uppercase tracking-wider text-[#a6a095] border-b border-white/10">
+          <table className="w-full text-left text-xs text-[#8A8175]">
+            <thead className="bg-[#F5F1EA] text-[10px] uppercase tracking-wider text-[#8A8175] border-b border-[#25231F]/15">
               <tr>
                 <th className="p-3">Client & Partner</th>
                 <th className="p-3">Wedding Date</th>
@@ -200,9 +200,9 @@ export function AdminOverviewView({
             </thead>
             <tbody className="divide-y divide-white/5">
               {enquiries.slice(0, 5).map((enq) => (
-                <tr key={enq.id} className="hover:bg-white/5 transition-colors">
+                <tr key={enq.id} className="hover:bg-[#D8C9B5] transition-colors">
                   <td className="p-3">
-                    <div className="font-medium text-[#fbf9f5]">
+                    <div className="font-medium text-[#25231F]">
                       {enq.name} {enq.partner_name && `& ${enq.partner_name}`}
                     </div>
                     <div className="text-[11px] text-[#888] flex items-center gap-2 mt-0.5">
@@ -212,19 +212,19 @@ export function AdminOverviewView({
                     </div>
                   </td>
                   <td className="p-3 whitespace-nowrap">
-                    <div className="flex items-center gap-1.5 text-[#fbf9f5]">
-                      <Clock className="w-3.5 h-3.5 text-[#c5a880]" />
+                    <div className="flex items-center gap-1.5 text-[#25231F]">
+                      <Clock className="w-3.5 h-3.5 text-[#B39B7A]" />
                       <span>{formatDate(enq.wedding_date)}</span>
                     </div>
                     <span className="text-[10px] text-[#888]">{enq.event_type}</span>
                   </td>
                   <td className="p-3 whitespace-nowrap">
-                    <div className="flex items-center gap-1 text-[#fbf9f5]">
-                      <MapPin className="w-3.5 h-3.5 text-[#c5a880]" />
+                    <div className="flex items-center gap-1 text-[#25231F]">
+                      <MapPin className="w-3.5 h-3.5 text-[#B39B7A]" />
                       <span>{enq.location}</span>
                     </div>
                   </td>
-                  <td className="p-3 whitespace-nowrap font-mono text-[#c5a880]">
+                  <td className="p-3 whitespace-nowrap font-mono text-[#B39B7A]">
                     {enq.estimated_budget}
                   </td>
                   <td className="p-3 whitespace-nowrap">
@@ -237,9 +237,9 @@ export function AdminOverviewView({
                           e.target.value as EnquiryStatus
                         )
                       }
-                      className={`text-[10px] uppercase tracking-wider px-2 py-1 bg-black border rounded focus:outline-none ${
+                      className={`text-[10px] uppercase tracking-wider px-2 py-1 bg-[#25231F] border rounded focus:outline-none ${
                         enq.status === "new"
-                          ? "border-[#c5a880] text-[#c5a880]"
+                          ? "border-[#B39B7A] text-[#B39B7A]"
                           : enq.status === "contacted"
                           ? "border-blue-400 text-blue-300"
                           : "border-green-400 text-green-300"

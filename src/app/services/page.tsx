@@ -40,17 +40,17 @@ export default async function ServicesPage() {
   const services = await dataRepository.getServices();
 
   return (
-    <div className="pt-28 sm:pt-36 pb-24 bg-[#080808]">
+    <div className="pt-28 sm:pt-36 pb-24 bg-[#25231F]">
       {/* Hero Header */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-20 sm:mb-28">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-4">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Bespoke Collections</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#fbf9f5] font-light leading-[1.1] mb-6">
+        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#25231F] font-light leading-[1.1] mb-6">
           Our Services & Deliverables
         </h1>
-        <p className="text-sm sm:text-base md:text-lg text-[#a6a095] max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-[#8A8175] max-w-2xl mx-auto font-light leading-relaxed">
           Every celebration is unique. We offer comprehensive, tailor-made photography and cinema collections designed to preserve your wedding story with enduring elegance.
         </p>
       </section>
@@ -62,13 +62,13 @@ export default async function ServicesPage() {
           return (
             <div
               key={service.id}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-[#111111] border border-white/10 p-6 sm:p-10 lg:p-14 ${
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-[#F5F1EA] border border-[#25231F]/15 p-6 sm:p-10 lg:p-14 ${
                 isReversed ? "lg:flex-row-reverse" : ""
               }`}
             >
               {/* Image Col */}
               <div
-                className={`relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/10 shadow-2xl ${
+                className={`relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-[#25231F]/15 shadow-2xl ${
                   isReversed ? "lg:col-span-6 lg:order-2" : "lg:col-span-6"
                 }`}
               >
@@ -79,7 +79,7 @@ export default async function ServicesPage() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute top-4 left-4 z-10 bg-black/80 backdrop-blur-sm border border-white/10 text-[10px] uppercase tracking-widest text-[#c5a880] px-3 py-1 font-mono">
+                <div className="absolute top-4 left-4 z-10 bg-[#25231F]/80 backdrop-blur-sm border border-[#25231F]/15 text-[10px] uppercase tracking-widest text-[#B39B7A] px-3 py-1 font-mono">
                   Collection 0{index + 1}
                 </div>
               </div>
@@ -91,33 +91,33 @@ export default async function ServicesPage() {
                 }`}
               >
                 <div>
-                  <h2 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] font-normal leading-tight">
+                  <h2 className="font-serif text-3xl sm:text-4xl text-[#25231F] font-normal leading-tight">
                     {service.title}
                   </h2>
-                  <p className="mt-2 text-xs uppercase tracking-widest text-[#c5a880] font-medium">
+                  <p className="mt-2 text-xs uppercase tracking-widest text-[#B39B7A] font-medium">
                     Ahmedabad • Destination Venues
                   </p>
                 </div>
 
-                <div className="w-12 h-[1px] bg-[#c5a880]" />
+                <div className="w-12 h-[1px] bg-[#B39B7A]" />
 
-                <p className="text-sm sm:text-base text-[#a6a095] font-light leading-relaxed">
+                <p className="text-sm sm:text-base text-[#8A8175] font-light leading-relaxed">
                   {service.full_description}
                 </p>
 
                 {/* Features list */}
                 {service.features && service.features.length > 0 && (
                   <div className="pt-2">
-                    <p className="text-xs uppercase tracking-wider text-[#d5d0c7] font-medium mb-3">
+                    <p className="text-xs uppercase tracking-wider text-[#8A8175] font-medium mb-3">
                       Included Deliverables:
                     </p>
                     <ul className="space-y-2.5">
                       {service.features.map((feat, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2.5 text-xs sm:text-sm text-[#a6a095] font-light"
+                          className="flex items-start gap-2.5 text-xs sm:text-sm text-[#8A8175] font-light"
                         >
-                          <span className="w-4 h-4 rounded-full bg-[#c5a880]/15 text-[#c5a880] flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-4 h-4 rounded-full bg-[#B39B7A]/15 text-[#B39B7A] flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-2.5 h-2.5" />
                           </span>
                           <span>{feat}</span>
@@ -139,7 +139,7 @@ export default async function ServicesPage() {
       </section>
 
       {/* What Every Collection Includes */}
-      <section className="py-24 bg-[#0c0c0c] border-y border-white/5 mb-28">
+      <section className="py-24 bg-[#25231F] border-y border-[#25231F]/10 mb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="The Standard"
@@ -148,34 +148,34 @@ export default async function ServicesPage() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#141414] border border-white/10 p-6">
-              <Shield className="w-8 h-8 text-[#c5a880] mb-4" />
-              <h3 className="font-serif text-xl text-[#fbf9f5] mb-2">Dual Lead Crew</h3>
-              <p className="text-xs text-[#a6a095] font-light leading-relaxed">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6">
+              <Shield className="w-8 h-8 text-[#B39B7A] mb-4" />
+              <h3 className="font-serif text-xl text-[#25231F] mb-2">Dual Lead Crew</h3>
+              <p className="text-xs text-[#8A8175] font-light leading-relaxed">
                 Every event is covered by seasoned primary photographers and cinematographers with backup equipment on-site.
               </p>
             </div>
 
-            <div className="bg-[#141414] border border-white/10 p-6">
-              <Clock className="w-8 h-8 text-[#c5a880] mb-4" />
-              <h3 className="font-serif text-xl text-[#fbf9f5] mb-2">48-Hour Preview</h3>
-              <p className="text-xs text-[#a6a095] font-light leading-relaxed">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6">
+              <Clock className="w-8 h-8 text-[#B39B7A] mb-4" />
+              <h3 className="font-serif text-xl text-[#25231F] mb-2">48-Hour Preview</h3>
+              <p className="text-xs text-[#8A8175] font-light leading-relaxed">
                 Receive high-res edited signature portraits within two days so you can celebrate your wedding with the world immediately.
               </p>
             </div>
 
-            <div className="bg-[#141414] border border-white/10 p-6">
-              <Film className="w-8 h-8 text-[#c5a880] mb-4" />
-              <h3 className="font-serif text-xl text-[#fbf9f5] mb-2">4K Cinema Master</h3>
-              <p className="text-xs text-[#a6a095] font-light leading-relaxed">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6">
+              <Film className="w-8 h-8 text-[#B39B7A] mb-4" />
+              <h3 className="font-serif text-xl text-[#25231F] mb-2">4K Cinema Master</h3>
+              <p className="text-xs text-[#8A8175] font-light leading-relaxed">
                 Shot on top-tier Sony FX and RED cinema lines, delivering razor-sharp 4K footage calibrated for big screens.
               </p>
             </div>
 
-            <div className="bg-[#141414] border border-white/10 p-6">
-              <Sparkles className="w-8 h-8 text-[#c5a880] mb-4" />
-              <h3 className="font-serif text-xl text-[#fbf9f5] mb-2">Private Cloud Vault</h3>
-              <p className="text-xs text-[#a6a095] font-light leading-relaxed">
+            <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-6">
+              <Sparkles className="w-8 h-8 text-[#B39B7A] mb-4" />
+              <h3 className="font-serif text-xl text-[#25231F] mb-2">Private Cloud Vault</h3>
+              <p className="text-xs text-[#8A8175] font-light leading-relaxed">
                 A private, password-protected online gallery active for 5 years with effortless high-speed downloads for family.
               </p>
             </div>
@@ -195,15 +195,15 @@ export default async function ServicesPage() {
           {FAQS.map((faq, idx) => (
             <div
               key={idx}
-              className="bg-[#111111] border border-white/10 p-6 sm:p-7 hover:border-[#c5a880]/30 transition-colors"
+              className="bg-[#F5F1EA] border border-[#25231F]/15 p-6 sm:p-7 hover:border-[#B39B7A]/30 transition-colors"
             >
               <div className="flex items-start gap-3">
-                <HelpCircle className="w-5 h-5 text-[#c5a880] shrink-0 mt-0.5" />
+                <HelpCircle className="w-5 h-5 text-[#B39B7A] shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-serif text-lg sm:text-xl text-[#fbf9f5] font-normal mb-2">
+                  <h3 className="font-serif text-lg sm:text-xl text-[#25231F] font-normal mb-2">
                     {faq.q}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#a6a095] font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#8A8175] font-light leading-relaxed">
                     {faq.a}
                   </p>
                 </div>
@@ -215,11 +215,11 @@ export default async function ServicesPage() {
 
       {/* Bottom CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <div className="bg-[#111111] border border-white/10 p-10 sm:p-14">
-          <h3 className="font-serif text-3xl sm:text-4xl text-[#fbf9f5] mb-4 font-light">
+        <div className="bg-[#F5F1EA] border border-[#25231F]/15 p-10 sm:p-14">
+          <h3 className="font-serif text-3xl sm:text-4xl text-[#25231F] mb-4 font-light">
             Ready to Plan Your Wedding Coverage?
           </h3>
-          <p className="text-sm text-[#a6a095] max-w-xl mx-auto mb-8 font-light leading-relaxed">
+          <p className="text-sm text-[#8A8175] max-w-xl mx-auto mb-8 font-light leading-relaxed">
             Reach out to discuss your wedding schedule, guest size, and venue in Ahmedabad or destination locations.
           </p>
           <Button href="/contact" variant="primary" size="lg">

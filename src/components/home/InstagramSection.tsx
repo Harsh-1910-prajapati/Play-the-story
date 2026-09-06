@@ -33,16 +33,16 @@ const INSTAGRAM_PREVIEWS = [
 
 export function InstagramSection() {
   return (
-    <section className="py-20 bg-[#080808] border-t border-white/5">
+    <section className="py-20 bg-[#25231F] border-t border-[#25231F]/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#c5a880] mb-2 font-medium">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#B39B7A] mb-2 font-medium">
               <InstagramIcon className="w-3.5 h-3.5" />
               <span>{siteConfig.contact.instagramHandle}</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#fbf9f5] font-light">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F5F1EA] font-light">
               Follow Our Stories on Instagram
             </h2>
           </div>
@@ -51,7 +51,7 @@ export function InstagramSection() {
             href={siteConfig.contact.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#c5a880] hover:text-[#fbf9f5] transition-colors border-b border-[#c5a880]/40 pb-1"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#B39B7A] hover:text-[#D8C9B5] transition-colors border-b border-[#B39B7A]/40 pb-1"
           >
             <span>Visit @playthestory</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -66,7 +66,7 @@ export function InstagramSection() {
               href={siteConfig.contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden bg-[#141414] border border-white/5 block"
+              className="group relative aspect-square overflow-hidden bg-[#F5F1EA] border border-[#25231F]/10 block"
               aria-label={item.caption}
             >
               <Image
@@ -76,8 +76,8 @@ export function InstagramSection() {
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-3 text-center">
-                <InstagramIcon className="w-6 h-6 text-[#c5a880]" />
+              <div className="absolute inset-0 bg-[#25231F]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-3 text-center">
+                <InstagramIcon className="w-6 h-6 text-[#B39B7A]" />
               </div>
             </a>
           ))}

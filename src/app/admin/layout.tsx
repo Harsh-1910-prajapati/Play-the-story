@@ -38,7 +38,7 @@ export default function AdminLayout({
 
   // If on login page, don't show admin chrome
   if (pathname === "/admin/login") {
-    return <div className="min-h-screen bg-[#080808] text-[#fbf9f5]">{children}</div>;
+    return <div className="min-h-screen bg-[#25231F] text-[#25231F]">{children}</div>;
   }
 
   const handleLogout = async () => {
@@ -60,16 +60,16 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#fbf9f5] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#25231F] text-[#25231F] flex flex-col md:flex-row">
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 bg-[#0d0d0d] border-r border-white/10 shrink-0 min-h-screen">
+      <aside className="hidden md:flex flex-col w-64 bg-[#25231F] border-r border-[#25231F]/15 shrink-0 min-h-screen">
         {/* Brand Header */}
-        <div className="p-6 border-b border-white/10">
+        <div className="p-6 border-b border-[#25231F]/15">
           <Link href="/admin" className="block">
-            <span className="font-serif text-lg tracking-widest uppercase text-[#fbf9f5] font-medium block">
+            <span className="font-serif text-lg tracking-widest uppercase text-[#25231F] font-medium block">
               Play The Story
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-[#c5a880] block mt-0.5 font-mono">
+            <span className="text-[10px] uppercase tracking-wider text-[#B39B7A] block mt-0.5 font-mono">
               Studio Admin Portal
             </span>
           </Link>
@@ -90,11 +90,11 @@ export default function AdminLayout({
                 className={cn(
                   "flex items-center gap-3 px-3.5 py-2.5 text-xs font-medium uppercase tracking-wider transition-colors",
                   isActive
-                    ? "bg-[#c5a880] text-black shadow-md font-semibold"
-                    : "text-[#a6a095] hover:text-[#fbf9f5] hover:bg-white/5"
+                    ? "bg-[#B39B7A] text-[#F5F1EA] shadow-md font-semibold"
+                    : "text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5]"
                 )}
               >
-                <Icon className={cn("w-4 h-4", isActive ? "text-black" : "text-[#c5a880]")} />
+                <Icon className={cn("w-4 h-4", isActive ? "text-[#F5F1EA]" : "text-[#B39B7A]")} />
                 <span>{item.name}</span>
               </Link>
             );
@@ -102,13 +102,13 @@ export default function AdminLayout({
         </nav>
 
         {/* Footer Actions */}
-        <div className="p-4 border-t border-white/10 space-y-2">
+        <div className="p-4 border-t border-[#25231F]/15 space-y-2">
           <Link
             href="/"
             target="_blank"
-            className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#a6a095] hover:text-white hover:bg-white/5 transition-colors"
+            className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#8A8175] hover:text-[#25231F] hover:bg-[#D8C9B5] transition-colors"
           >
-            <Globe className="w-4 h-4 text-[#c5a880]" />
+            <Globe className="w-4 h-4 text-[#B39B7A]" />
             <span>View Live Site</span>
           </Link>
 
@@ -124,19 +124,19 @@ export default function AdminLayout({
       </aside>
 
       {/* Mobile Top Header */}
-      <div className="md:hidden bg-[#0d0d0d] border-b border-white/10 p-4 flex items-center justify-between sticky top-0 z-30">
+      <div className="md:hidden bg-[#25231F] border-b border-[#25231F]/15 p-4 flex items-center justify-between sticky top-0 z-30">
         <Link href="/admin">
-          <span className="font-serif text-base tracking-wider uppercase text-[#fbf9f5]">
+          <span className="font-serif text-base tracking-wider uppercase text-[#25231F]">
             Play The Story
           </span>
-          <span className="text-[9px] uppercase tracking-wider text-[#c5a880] block font-mono">
+          <span className="text-[9px] uppercase tracking-wider text-[#B39B7A] block font-mono">
             Admin
           </span>
         </Link>
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 text-[#fbf9f5]"
+          className="p-2 text-[#25231F]"
           aria-label="Toggle Menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -145,7 +145,7 @@ export default function AdminLayout({
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#111111] border-b border-white/10 p-4 space-y-2">
+        <div className="md:hidden bg-[#F5F1EA] border-b border-[#25231F]/15 p-4 space-y-2">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive =
@@ -160,8 +160,8 @@ export default function AdminLayout({
                 className={cn(
                   "flex items-center gap-3 px-3.5 py-2.5 text-xs font-medium uppercase tracking-wider",
                   isActive
-                    ? "bg-[#c5a880] text-black font-semibold"
-                    : "text-[#a6a095] hover:text-[#fbf9f5]"
+                    ? "bg-[#B39B7A] text-[#F5F1EA] font-semibold"
+                    : "text-[#8A8175] hover:text-[#25231F]"
                 )}
               >
                 <Icon className="w-4 h-4" />
@@ -169,11 +169,11 @@ export default function AdminLayout({
               </Link>
             );
           })}
-          <div className="pt-2 border-t border-white/10 flex justify-between">
+          <div className="pt-2 border-t border-[#25231F]/15 flex justify-between">
             <Link
               href="/"
               target="_blank"
-              className="text-xs text-[#c5a880] flex items-center gap-1 py-2"
+              className="text-xs text-[#B39B7A] flex items-center gap-1 py-2"
             >
               <Globe className="w-3.5 h-3.5" />
               <span>Live Site</span>
