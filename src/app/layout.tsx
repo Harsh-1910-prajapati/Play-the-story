@@ -90,10 +90,10 @@ const jsonLd = {
   email: siteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "B-504, Sindhu Bhavan Marg, Bodakdev",
+    streetAddress: "Panache, Besides, Tragad UNDER PASS, nr. Vaishnodevi Circle, Khoraj",
     addressLocality: "Ahmedabad",
     addressRegion: "Gujarat",
-    postalCode: "380054",
+    postalCode: "382421",
     addressCountry: "IN",
   },
   geo: {

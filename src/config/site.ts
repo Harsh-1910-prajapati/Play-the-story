@@ -34,8 +34,7 @@ export interface SiteConfig {
   }[];
 }
 
-const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919825000000";
+const WHATSAPP_NUMBER = "919104027413";
 
 export const siteConfig: SiteConfig = {
   name: "PLAY THE STORY",
@@ -48,20 +47,20 @@ export const siteConfig: SiteConfig = {
     city: "Ahmedabad",
     state: "Gujarat",
     country: "India",
-    address: "B-504, Sindhu Bhavan Marg, Bodakdev, Ahmedabad, Gujarat 380054",
-    googleMapsUrl: "https://maps.google.com/?q=Sindhu+Bhavan+Marg+Ahmedabad",
+    address: "Panache, Besides, Tragad UNDER PASS, nr. Vaishnodevi Circle, Khoraj, Ahmedabad, Gujarat 382421",
+    googleMapsUrl: "https://maps.google.com/?q=Panache+Tragad+Under+Pass+Khoraj+Ahmedabad",
     coverageText: "AHMEDABAD · GUJARAT · INDIA · WORLDWIDE",
   },
   contact: {
-    phone: "+919825000000",
-    phoneFormatted: "+91 98250 00000",
+    phone: "9104027413",
+    phoneFormatted: "9104027413",
     whatsapp: WHATSAPP_NUMBER,
-    whatsappFormatted: "+91 98250 00000",
+    whatsappFormatted: "9104027413",
     whatsappPrefilledMessage:
       "Hello Play The Story! I would like to inquire about a project and check availability.",
     email: "hello@playthestory.com",
-    instagram: "https://instagram.com/playthestory",
-    instagramHandle: "@playthestory",
+    instagram: "https://www.instagram.com/playthe_story",
+    instagramHandle: "@playthe_story",
     youtube: "https://youtube.com/@playthestory",
     vimeo: "https://vimeo.com/playthestory",
   },

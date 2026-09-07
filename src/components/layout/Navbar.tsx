@@ -104,7 +104,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              href="/contact"
+              href="https://wa.me/919104027413"
               className="border-[#c5a880]/60 text-[#fbf9f5] hover:border-[#c5a880] hover:bg-[#c5a880]/10 flex items-center gap-2 text-xs uppercase tracking-widest px-5 py-2.5 transition-all"
             >
               <span>LET&apos;S TALK</span>
@@ -115,7 +115,7 @@ export function Navbar() {
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-3 md:hidden">
             <Link
-              href="/contact"
+              href="https://wa.me/919104027413"
               className="text-[11px] uppercase tracking-wider text-[#c5a880] border border-[#c5a880]/50 px-2.5 py-1"
             >
               LET&apos;S TALK →
