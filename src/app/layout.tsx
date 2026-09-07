@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DEFAULT_SOCIAL_IMAGE } from "@/config/seo";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -24,7 +25,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://playthestory.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://playthestory.com"
+  ),
   title: {
     default: `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
@@ -63,9 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [
-      DEFAULT_SOCIAL_IMAGE,
-    ],
+    images: [DEFAULT_SOCIAL_IMAGE],
   },
   robots: {
     index: true,
@@ -90,7 +91,8 @@ const jsonLd = {
   email: siteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Panache, Besides, Tragad UNDER PASS, nr. Vaishnodevi Circle, Khoraj",
+    streetAddress:
+      "Panache, Besides, Tragad UNDER PASS, nr. Vaishnodevi Circle, Khoraj",
     addressLocality: "Ahmedabad",
     addressRegion: "Gujarat",
     postalCode: "382421",
@@ -101,12 +103,20 @@ const jsonLd = {
     latitude: 23.0338,
     longitude: 72.5076,
   },
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://playthestory.com",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL || "https://playthestory.com",
   priceRange: "₹₹₹₹",
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
       opens: "10:00",
       closes: "19:00",
     },
@@ -129,12 +139,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+
       <body className="min-h-screen flex flex-col bg-[#080808] text-[#fbf9f5] antialiased selection:bg-[#c5a880] selection:text-black">
         <Navbar />
+
         <main className="flex-1">{children}</main>
+
         <Footer />
+
         <FloatingWhatsApp />
+
+        {/* Vercel Analytics */}
         <Analytics />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );
