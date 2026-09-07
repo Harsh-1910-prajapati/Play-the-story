@@ -104,7 +104,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              href="https://wa.me/919104027413"
+              href="/contact"
               className="border-[#c5a880]/60 text-[#fbf9f5] hover:border-[#c5a880] hover:bg-[#c5a880]/10 flex items-center gap-2 text-xs uppercase tracking-widest px-5 py-2.5 transition-all"
             >
               <span>LET&apos;S TALK</span>
