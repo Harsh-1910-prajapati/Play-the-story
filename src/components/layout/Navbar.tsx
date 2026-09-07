@@ -115,7 +115,7 @@ export function Navbar() {
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-3 md:hidden">
             <Link
-              href="https://wa.me/919104027413"
+              href="/contact"
               className="text-[11px] uppercase tracking-wider text-[#c5a880] border border-[#c5a880]/50 px-2.5 py-1"
             >
               LET&apos;S TALK →
