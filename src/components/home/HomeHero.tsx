@@ -56,6 +56,10 @@ export function HomeHero() {
             Photography • Films • Content
           </p>
 
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-[#e7e2d7] font-sans font-light mb-8 animate-in fade-in slide-in-from-bottom-5 duration-700 delay-250">
+            Weddings · Brands · People · Stories
+          </p>
+
           {/* Studio Narrative Statement */}
           <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-[#e7e2d7] font-serif italic leading-relaxed font-light mb-10 px-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
             &ldquo;From intimate moments to grand celebrations, personal portraits to powerful brand films — we create visuals that feel real, cinematic and unmistakably yours.&rdquo;

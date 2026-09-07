@@ -1,6 +1,6 @@
 import React from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Camera, Film, Sparkles, Layers } from "lucide-react";
+import { Camera, Film, Sparkles } from "lucide-react";
 
 const PILLARS = [
   {
@@ -27,45 +27,37 @@ const PILLARS = [
     description:
       "No generic templates or rigid formulas. Whether it is an intimate haveli wedding or a modern fashion commercial, each project receives its own unique visual language.",
   },
-  {
-    number: "04",
-    label: "COMPLETE",
-    icon: Layers,
-    tagline: "Photography, films, reels and editing under one roof.",
-    description:
-      "A seamless full-service creative workflow: photography, high-definition motion cinema, vertical viral reels, and Hollywood-grade DaVinci post-production.",
-  },
 ];
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 sm:py-32 bg-[#171717] relative overflow-hidden border-y border-white/5">
+    <section className="py-24 sm:py-32 bg-[#ebe5dc] relative overflow-hidden border-y border-[#25231f]/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           subtitle="Why Us"
           title="WHY PLAY THE STORY?"
-          description="One creative studio designed for different kinds of visual stories. Crafted with relentless care from pre-production to master delivery."
+          description="REAL. CINEMATIC. PERSONAL."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {PILLARS.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.number}
-                className="group relative bg-[#121212] border border-white/10 p-8 hover:border-[#c5a880]/60 transition-all duration-300 flex flex-col justify-between"
+                className="group relative bg-[#f5f1ea] border border-[#25231f]/10 p-8 hover:border-[#b39b7a]/60 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-8">
                     <span className="font-mono text-xs text-[#c5a880] tracking-widest font-semibold">
                       {item.number}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-[#1c1c1c] border border-white/10 group-hover:border-[#c5a880]/50 flex items-center justify-center text-[#c5a880] transition-colors group-hover:bg-[#c5a880]/10">
+                    <div className="w-10 h-10 rounded-full bg-[#ebe5dc] border border-[#25231f]/10 group-hover:border-[#b39b7a]/50 flex items-center justify-center text-[#8a8175] transition-colors group-hover:bg-[#d8c9b5]/30">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <h3 className="font-serif text-2xl text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors mb-2 font-normal tracking-wide">
+                  <h3 className="font-serif text-2xl text-[#25231f] group-hover:text-[#8a8175] transition-colors mb-2 font-normal tracking-wide">
                     {item.label}
                   </h3>
 
@@ -73,7 +65,7 @@ export function WhyChooseUs() {
                     {item.tagline}
                   </p>
 
-                  <p className="text-xs sm:text-sm text-[#a6a095] font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#8a8175] font-light leading-relaxed">
                     {item.description}
                   </p>
                 </div>

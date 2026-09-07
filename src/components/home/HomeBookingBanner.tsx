@@ -27,7 +27,7 @@ export function HomeBookingBanner() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#c5a880] mb-4 font-mono">
-            <span>START YOUR CHAPTER</span>
+            <span>PLAY THE STORY</span>
           </div>
 
           <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl text-[#fbf9f5] font-light leading-[1.08] uppercase tracking-wide mb-6">
@@ -35,7 +35,7 @@ export function HomeBookingBanner() {
           </h2>
 
           <p className="text-base sm:text-xl text-[#dfc8a5] font-serif italic max-w-xl mx-auto font-light leading-relaxed mb-10">
-            Let&apos;s make something worth remembering.
+            LET&apos;S CREATE SOMETHING REAL.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -45,7 +45,7 @@ export function HomeBookingBanner() {
               href="/contact"
               className="w-full sm:w-auto flex items-center justify-center gap-3 tracking-widest text-xs uppercase shadow-[0_0_25px_rgba(197,168,128,0.25)]"
             >
-              <span>START A CONVERSATION</span>
+              <span>WHATSAPP</span>
               <span>→</span>
             </Button>
           </div>
@@ -68,7 +68,7 @@ export function HomeBookingBanner() {
               rel="noopener noreferrer"
               className="hover:text-[#fbf9f5] transition-colors"
             >
-              Instagram
+              Instagram →
             </a>
             <span className="text-white/20">•</span>
             <a

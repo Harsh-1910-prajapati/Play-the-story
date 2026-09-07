@@ -41,16 +41,16 @@ export default async function HomePage() {
       {/* 1 & 2. Full-screen Cinematic Hero */}
       <HomeHero />
 
-      {/* 3. Introduction: WE DON'T JUST TAKE PICTURES. WE TELL STORIES. */}
+      {/* 3. Introduction */}
       <HomeIntroduction />
 
-      {/* 4. Services Section: WHAT WE DO */}
+      {/* 4. Services Section: WHAT WE CREATE */}
       <section id="services" className="py-24 sm:py-32 bg-[#090909]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="Studio Capabilities"
-            title="WHAT WE DO"
-            description="From candid rituals and fine-art couple portraits to commercial campaigns and Hollywood-grade color grading, explore our full spectrum of creative visual storytelling."
+            subtitle="Photography · Films · Content"
+            title="WHAT WE CREATE"
+            description="Weddings, pre-weddings, events, portraits, brands, films and content, shaped with a human eye."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -68,7 +68,7 @@ export default async function HomePage() {
           <div className="mt-12 text-center">
             <Button href="/services" variant="outline" size="md">
               <span className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                <span>Explore All 7 Services & Deliverables</span>
+                <span>Explore All Creations</span>
                 <ArrowRight className="w-4 h-4" />
               </span>
             </Button>
@@ -82,7 +82,7 @@ export default async function HomePage() {
           <SectionHeading
             subtitle="Visual Archives"
             title="OUR WORK"
-            description="Explore our curated visual archives featuring intimate weddings, stylized couples, commercial campaigns, personal portraits, and motion films."
+            description="A considered collection of real moments, people, places and brands."
           />
 
           <HomePortfolioGrid initialStories={stories} />
@@ -137,11 +137,11 @@ export default async function HomePage() {
           <SectionHeading
             subtitle="Client Words"
             title="PEOPLE WHO TRUSTED US"
-            description="Genuine words from couples and brands who trusted us to capture their milestones."
+            description="A few words from people who trusted us with something real."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {testimonials.slice(0, 4).map((test) => (
+            {testimonials.slice(0, 3).map((test) => (
               <TestimonialCard key={test.id} testimonial={test} />
             ))}
           </div>

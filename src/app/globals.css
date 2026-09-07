@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #c5a880;
-  --color-gold-light: #e0cca9;
-  --color-gold-dark: #9e7f56;
-  --color-gold-glow: rgba(197, 168, 128, 0.15);
+  --color-gold: #b39b7a;
+  --color-gold-light: #d8c9b5;
+  --color-gold-dark: #8a8175;
+  --color-gold-glow: rgba(179, 155, 122, 0.12);
   
   --color-charcoal-950: #080808;
   --color-charcoal-900: #0f0f0f;
@@ -12,17 +12,17 @@
   --color-charcoal-700: #222222;
   --color-charcoal-600: #333333;
   
-  --color-cream: #fbf9f5;
-  --color-cream-muted: #d5d0c7;
-  --color-cream-dim: #9c9689;
+  --color-cream: #25231f;
+  --color-cream-muted: #8a8175;
+  --color-cream-dim: #8a8175;
 
   --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 :root {
-  --background: #080808;
-  --foreground: #fbf9f5;
+  --background: #f5f1ea;
+  --foreground: #25231f;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
@@ -46,7 +46,7 @@
 /* Base Body Styles */
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -54,13 +54,13 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  selection-background-color: #c5a880;
-  selection-color: #080808;
+  selection-background-color: #d8c9b5;
+  selection-color: #25231f;
 }
 
 ::selection {
-  background-color: #c5a880;
-  color: #080808;
+  background-color: #d8c9b5;
+  color: #25231f;
 }
 
 a:focus-visible,
@@ -68,23 +68,23 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #c5a880;
+  outline: 2px solid #b39b7a;
   outline-offset: 3px;
 }
 
 /* Editorial Gold Accent Helpers */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #dfc8a5 0%, #c5a880 50%, #9e7f56 100%);
+  background: linear-gradient(135deg, #8a8175 0%, #b39b7a 50%, #8a8175 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .border-gold-subtle {
-  border-color: rgba(197, 168, 128, 0.25);
+  border-color: rgba(179, 155, 122, 0.25);
 }
 
 .gold-glow {
-  box-shadow: 0 0 35px -5px rgba(197, 168, 128, 0.15);
+  box-shadow: 0 0 35px -5px rgba(179, 155, 122, 0.12);
 }
 
 /* Subtle image reveal effect */

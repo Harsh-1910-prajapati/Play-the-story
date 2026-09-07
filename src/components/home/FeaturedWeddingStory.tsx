@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { WeddingStory } from "@/types";
-import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -11,27 +10,36 @@ interface FeaturedWeddingStoryProps {
 
 export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
   return (
-    <section id="featured-story" className="py-24 sm:py-32 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="featured-story" className="relative min-h-[82vh] flex items-end bg-[#25231f] overflow-hidden">
       {/* Editorial Decorative Background Details */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#c5a880]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c5a880]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Image
+        src={story.cover_image}
+        alt={`${story.couple_names} featured story`}
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#25231f]/90 via-[#25231f]/25 to-transparent" />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         {/* Section Pre-title */}
-        <div className="text-center mb-16">
+        <div className="text-left mb-10">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#c5a880] mb-3 font-mono">
             <Sparkles className="w-3.5 h-3.5" />
             <span>FEATURED STORY</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#fbf9f5] font-light tracking-wide uppercase">
-            A MOMENT WORTH REMEMBERING
+          <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl text-[#f5f1ea] font-light tracking-wide uppercase">
+            FEATURED STORY
           </h2>
         </div>
 
         {/* Magazine Spread Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#111111] border border-white/10 p-6 sm:p-10 lg:p-14 shadow-2xl">
+        <div className="max-w-xl">
           {/* Magazine Image Column */}
-          <div className="lg:col-span-7 relative">
+          <div className="hidden">
             <div className="relative aspect-[4/5] sm:aspect-[16/11] w-full overflow-hidden border border-white/10 shadow-2xl">
               <Image
                 src={story.cover_image}
@@ -57,35 +65,28 @@ export function FeaturedWeddingStory({ story }: FeaturedWeddingStoryProps) {
           </div>
 
           {/* Magazine Text Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 lg:pl-4">
+          <div className="flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wider text-[#a6a095] font-mono">
-                <span>{story.category}</span>
-                <span>/</span>
-                <span>{story.location}</span>
-                <span>•</span>
-                <span>{formatDate(story.wedding_date)}</span>
+                <span>The Ummed · Ahmedabad</span>
               </div>
 
-              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#fbf9f5] font-normal leading-[1.12]">
-                {story.couple_names}
+              <h3 className="font-serif text-4xl sm:text-6xl text-[#f5f1ea] font-normal leading-[1.12]">
+                ANANYA × KABIR
               </h3>
 
               <div className="w-12 h-[1.5px] bg-[#c5a880]" />
 
-              <p className="font-serif text-lg text-[#dfc8a5] italic leading-snug">
-                &ldquo;{story.title}&rdquo;
+              <p className="font-serif text-lg text-[#d8c9b5] italic leading-snug">
+                The Ummed · Ahmedabad
               </p>
 
-              <p className="text-sm text-[#a6a095] font-light leading-relaxed">
-                {story.description}
-              </p>
             </div>
 
             <div className="pt-4">
               <Button href={`/stories/${story.slug}`} variant="gold" size="md">
                 <span className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                  <span>VIEW FULL STORY</span>
+                  <span>VIEW STORY</span>
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </Button>

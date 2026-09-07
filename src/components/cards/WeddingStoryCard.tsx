@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { WeddingStory } from "@/types";
-import { formatDate } from "@/lib/utils";
 import { MapPin, ArrowUpRight } from "lucide-react";
 
 interface WeddingStoryCardProps {
@@ -41,17 +40,11 @@ export function WeddingStoryCard({ story, priority = false }: WeddingStoryCardPr
           <div className="flex items-center gap-1.5 text-xs text-[#a6a095] mb-2 font-light">
             <MapPin className="w-3.5 h-3.5 text-[#c5a880]" />
             <span className="truncate">{story.location}</span>
-            <span className="text-white/20">•</span>
-            <span>{formatDate(story.wedding_date)}</span>
           </div>
 
           <h3 className="font-serif text-2xl sm:text-3xl text-[#fbf9f5] group-hover:text-[#dfc8a5] transition-colors font-normal leading-snug">
             {story.couple_names}
           </h3>
-
-          <p className="text-xs text-[#d5d0c7] line-clamp-2 mt-2 font-light opacity-90">
-            {story.description}
-          </p>
 
           <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] uppercase tracking-widest text-[#c5a880] group-hover:text-[#fbf9f5] transition-colors">
             <span>View Story</span>

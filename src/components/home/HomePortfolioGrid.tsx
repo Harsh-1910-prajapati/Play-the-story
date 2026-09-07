@@ -16,7 +16,7 @@ const CATEGORIES = [
   "COUPLES",
   "EVENTS",
   "PORTRAITS",
-  "COMMERCIAL",
+  "BRANDS",
   "FILMS",
 ];
 
@@ -36,6 +36,9 @@ export function HomePortfolioGrid({ initialStories }: HomePortfolioGridProps) {
           }
           if (activeCategory === "FILMS") {
             return Boolean(s.film_url);
+          }
+          if (activeCategory === "BRANDS") {
+            return cat === "COMMERCIAL" || cat === "BRANDS";
           }
           return cat === activeCategory;
         });

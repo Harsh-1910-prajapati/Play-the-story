@@ -51,11 +51,11 @@ export function HomeAboutSnippet() {
             </div>
 
             <p className="text-sm sm:text-base text-[#d5d0c7] font-light leading-relaxed">
-              We started Play The Story with one singular conviction: visual memories should not look staged, formulaic, or synthetic. Whether documenting a sacred three-day royal wedding, creating evocative couple portraits, or directing a modern brand film, we approach each frame with editorial discipline and human warmth.
+              Play The Story began with a simple belief: the best images feel like you. We make space for the quiet glances, loud laughter and honest connection that give every celebration its shape.
             </p>
 
             <p className="text-sm sm:text-base text-[#a6a095] font-light leading-relaxed">
-              Headquartered in Ahmedabad, Gujarat, our team travels worldwide, providing complete end-to-end cinematography, creative photography, and Hollywood-grade DaVinci color grading under one dedicated roof.
+              Based in Ahmedabad and working wherever a story takes us, we bring a calm team, a clear eye and a lot of care to every frame.
             </p>
 
             <div className="pt-4">
