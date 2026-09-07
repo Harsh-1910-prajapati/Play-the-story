@@ -59,10 +59,12 @@ export default async function ServicesPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 mb-32">
         {services.map((service, index) => {
           const isReversed = index % 2 !== 0;
+          const serviceAnchor = service.slug === "content-creation" ? "content" : service.slug;
           return (
             <div
               key={service.id}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-[#111111] border border-white/10 p-6 sm:p-10 lg:p-14 ${
+              id={serviceAnchor}
+              className={`scroll-mt-32 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-[#111111] border border-white/10 p-6 sm:p-10 lg:p-14 ${
                 isReversed ? "lg:flex-row-reverse" : ""
               }`}
             >

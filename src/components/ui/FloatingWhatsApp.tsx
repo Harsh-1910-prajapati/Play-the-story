@@ -17,7 +17,7 @@ export function FloatingWhatsApp() {
   return (
     <>
       {/* Mobile Sticky Bottom CTA */}
-      <aside aria-label="Quick contact" className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#0d0d0d]/95 backdrop-blur-md border-t border-[#c5a880]/30 px-4 py-3 flex items-center justify-between gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.8)] print:hidden">
+      <aside aria-label="Quick contact" className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#0d0d0d]/95 backdrop-blur-md border-t border-[#c5a880]/30 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex items-center justify-between gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.8)] print:hidden">
         <div className="flex flex-col text-left">
           <span className="text-[10px] uppercase tracking-widest text-[#c5a880] font-mono leading-none">
             Direct Studio Line

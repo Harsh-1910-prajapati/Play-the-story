@@ -15,7 +15,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#050505] border-t border-white/10 text-[#fbf9f5] pt-20 pb-12">
+    <footer className="bg-[#050505] border-t border-white/10 text-[#fbf9f5] pt-20 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/10">
